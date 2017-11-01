@@ -11,7 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 
 " Syntax checking hacks
-" Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 
 " Vim motion on speed!
 " Plugin 'easymotion/vim-easymotion'
@@ -88,6 +88,9 @@ Plugin 'Valloric/MatchTagAlways'
 " vim interface to Web API
 " Plugin 'mattn/webapi-vim'
 
+" This is a Vim plugin that provides Rust file detection, syntax highlighting,
+" formatting, Syntastic integration, and more.
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 filetype plugin indent on
