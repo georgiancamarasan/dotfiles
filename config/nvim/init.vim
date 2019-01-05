@@ -127,6 +127,9 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Vim plugin for insert mode completion of words in adjacent tmux panes 
 Plug 'wellle/tmux-complete.vim'
 
+" Seamless navigation between tmux panes and vim splits <Paste>
+Plug 'christoomey/vim-tmux-navigator'
+
 " Vastly improved Javascript indentation and syntax support in Vim. 
 Plug 'pangloss/vim-javascript'
 
