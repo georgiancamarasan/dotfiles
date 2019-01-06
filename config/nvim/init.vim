@@ -142,6 +142,12 @@ Plug 'chr4/nginx.vim'
 " precision colorscheme for the vim text editor
 Plug 'altercation/vim-colors-solarized'
 
+" Better whitespace highlighting for Vim 
+Plug 'ntpeters/vim-better-whitespace'
+
+" Vim mapping for sorting a range of text
+Plug 'christoomey/vim-sort-motion'
+
 call plug#end()
 
 " Setup autocomplete
@@ -151,6 +157,14 @@ endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
+
+" Set up go to definition
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+
+" Set up comments
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
 
 " NERDTree settings
 noremap <leader>] :NERDTreeToggle<CR>
@@ -162,7 +176,7 @@ let g:NERDTreeDirArrowCollapsible = 'v'
 let g:NERDTreeHijackNetrw=1
 
 " Editor windows settings
-set number " Show line numbers
+set relativenumber " Show relative line numbers
 set nowrap " Don't wrap lines
 set shiftwidth=2 " Number of spaces for identation
 
