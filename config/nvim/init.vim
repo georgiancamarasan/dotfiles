@@ -167,7 +167,7 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCommentEmptyLines = 1
 
 " NERDTree settings
-noremap <leader>] :NERDTreeToggle<CR>
+noremap <leader>] :NERDTreeToggle<CR><c-w>K
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:NERDTreeDirArrowExpandable = '>'
