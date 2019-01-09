@@ -31,7 +31,7 @@ Plug 'tpope/vim-dadbod'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " A tree explorer plugin for vim.
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " A command-line fuzzy finder 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -100,7 +100,7 @@ Plug 'tpope/vim-markdown'
 Plug 'henrik/vim-indexed-search'
 
 " A plugin of NERDTree showing git status
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Maintains a history of previous yanks, changes and deletes
 " Plug 'vim-scripts/YankRing.vim'
@@ -162,18 +162,28 @@ let g:ycm_server_log_level = 'debug'
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
 " Set up comments
-let g:NERDSpaceDelims = 1
-let g:NERDDefaultAlign = 'left'
-let g:NERDCommentEmptyLines = 1
+" let g:NERDSpaceDelims = 1
+" let g:NERDDefaultAlign = 'left'
+" let g:NERDCommentEmptyLines = 1
 
 " NERDTree settings
-noremap <leader>] :NERDTreeToggle<CR><c-w>K
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" noremap <leader>] :NERDTreeToggle<CR><c-w>K
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-let g:NERDTreeDirArrowExpandable = '>'
-let g:NERDTreeDirArrowCollapsible = 'v'
+" let g:NERDTreeDirArrowExpandable = '>'
+" let g:NERDTreeDirArrowCollapsible = 'v'
 
-let g:NERDTreeHijackNetrw=1
+" let g:NERDTreeHijackNetrw=1
+
+" newtr settings
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 0 " Open in same window
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+"augroup ProjectDrawer
+  "autocmd!
+  "autocmd VimEnter * :Vexplore
+"augroup END
 
 " Editor windows settings
 set relativenumber " Show relative line numbers
@@ -207,3 +217,15 @@ noremap <leader>_ ddkP
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Move to the previous buffer with "gp"
+nnoremap gp :bp<CR>
+
+" Move to the next buffer with "gn"
+nnoremap gn :bn<CR>
+
+" List all possible buffers with "gl"
+nnoremap gl :ls<CR>
+
+" List all possible buffers with "gb" and accept a new buffer argument [1]
+nnoremap gb :ls<CR>:b
