@@ -105,8 +105,11 @@ Plug 'henrik/vim-indexed-search'
 " Maintains a history of previous yanks, changes and deletes
 " Plug 'vim-scripts/YankRing.vim'
 
+" Miscellaneous auto-load Vim scripts
+Plug 'xolox/vim-misc'
+
 " Automated tag file generation and syntax highlighting of tags
-" Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-easytags'
 
 " A Vim plugin that always highlights the enclosing html/xml tags
 Plug 'Valloric/MatchTagAlways'
@@ -142,11 +145,14 @@ Plug 'chr4/nginx.vim'
 " precision colorscheme for the vim text editor
 Plug 'altercation/vim-colors-solarized'
 
-" Better whitespace highlighting for Vim 
+" Better whitespace highlighting for Vim
 Plug 'ntpeters/vim-better-whitespace'
 
 " Vim mapping for sorting a range of text
 Plug 'christoomey/vim-sort-motion'
+
+" Ember Handlebars/HTMLBars plugin for Vim with indentation support
+Plug 'joukevandermaas/vim-ember-hbs'
 
 call plug#end()
 
