@@ -217,6 +217,10 @@ endif
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'badwolf'
 
+" easytags settings
+" Search for tags
+nnoremap <leader>. :CtrlPTag<cr>
+
 " Shortcuts
 noremap <leader>- ddp
 noremap <leader>_ ddkP
