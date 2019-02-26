@@ -154,6 +154,9 @@ Plug 'christoomey/vim-sort-motion'
 " Ember Handlebars/HTMLBars plugin for Vim with indentation support
 Plug 'joukevandermaas/vim-ember-hbs'
 
+" Calendar from the vim site
+Plug '~/code/vim-plugins/calendar.vim'
+
 call plug#end()
 
 " Setup autocomplete
@@ -220,6 +223,9 @@ let g:airline_theme = 'badwolf'
 " easytags settings
 " Search for tags
 nnoremap <leader>. :CtrlPTag<cr>
+
+" vimwiki settings
+let g:vimwiki_folding = 'syntax'
 
 " Shortcuts
 noremap <leader>- ddp
