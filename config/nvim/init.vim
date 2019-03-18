@@ -142,9 +142,6 @@ Plug 'HerringtonDarkholme/yats.vim'
 " Improved nginx vim plugin (incl. syntax highlighting)
 Plug 'chr4/nginx.vim'
 
-" precision colorscheme for the vim text editor
-Plug 'altercation/vim-colors-solarized'
-
 " Better whitespace highlighting for Vim
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -156,6 +153,21 @@ Plug 'joukevandermaas/vim-ember-hbs'
 
 " Calendar from the vim site
 Plug '~/code/vim-plugins/calendar.vim'
+
+" precision colorscheme for the vim text editor
+" Plug 'altercation/vim-colors-solarized'
+
+" Vim theme
+" Plug 'fatih/molokai'
+
+" Vim theme
+" Plug 'fortes/vim-escuro'
+
+" Vim theme
+Plug 'julien/vim-miniml'
+
+" Vim theme
+" Plug 'napcs/vim-mycontrast'
 
 call plug#end()
 
@@ -213,7 +225,7 @@ if has('gui_running')
 else
   syntax enable
   set background=dark
-  colorscheme solarized
+  colorscheme miniml
 endif
 
 " Airline theme
