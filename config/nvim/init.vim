@@ -64,7 +64,7 @@ Plug 'prettier/vim-prettier', {
 Plug 'scrooloose/nerdcommenter'
 
 " Dark powered asynchronous completion framework for neovim/Vim8
-" Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim'
 
 " Syntax checking hacks
 Plug 'vim-syntastic/syntastic'
@@ -82,7 +82,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 
 " A code-completion engine
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 
 " Vim Pug (formerly Jade) template engine syntax highlighting and indention
 " Plug 'digitaltoad/vim-pug'
