@@ -155,19 +155,19 @@ Plug 'joukevandermaas/vim-ember-hbs'
 Plug '~/code/vim-plugins/calendar.vim'
 
 " precision colorscheme for the vim text editor
-" Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
 " Vim theme
-" Plug 'fatih/molokai'
+Plug 'fatih/molokai'
 
 " Vim theme
-" Plug 'fortes/vim-escuro'
+Plug 'fortes/vim-escuro'
 
 " Vim theme
 Plug 'julien/vim-miniml'
 
 " Vim theme
-" Plug 'napcs/vim-mycontrast'
+Plug 'napcs/vim-mycontrast'
 
 call plug#end()
 
@@ -225,7 +225,7 @@ if has('gui_running')
 else
   syntax enable
   set background=dark
-  colorscheme miniml
+  colorscheme molokai
 endif
 
 " Airline theme
@@ -257,3 +257,6 @@ nnoremap gl :ls<CR>
 
 " List all possible buffers with "gb" and accept a new buffer argument [1]
 nnoremap gb :ls<CR>:b
+
+" Replace Esc with jk
+inoremap jk <ESC>
