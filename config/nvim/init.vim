@@ -238,6 +238,8 @@ nnoremap <leader>. :CtrlPTag<cr>
 
 " vimwiki settings
 let g:vimwiki_folding = 'syntax'
+let g:vimwiki_list = [{'name': 'My Wiki', 'path': '~/Nextcloud/mywiki/wiki', 'path_html': '~/Nextcloud/mywiki/html', 'ext': '.md', 'syntax': 'markdown', 'index': 'index' },
+  \ {'name': 'Work Wiki', 'path': '~/Nextcloud/workwiki/wiki', 'path_html': '~/Nextcloud/workwiki/html', 'ext': '.md', 'syntax': 'markdown', 'index': 'index' }]
 
 " Shortcuts
 noremap <leader>- ddp
