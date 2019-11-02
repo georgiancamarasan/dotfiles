@@ -18,12 +18,6 @@ Plug 'tpope/vim-obsession'
 " vinegar.vim: Combine with netrw to create a delicious salad dressing 
 Plug 'tpope/vim-vinegar'
 
-" Modern database interface for Vim 
-Plug 'tpope/vim-dadbod'
-
-" The ultimate snippet solution for Vim.
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
 " A tree explorer plugin for vim.
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -43,50 +37,11 @@ Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 " Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more 
 Plug 'ryanoasis/vim-devicons'
 
-" A Vim plugin for Prettier
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'scss', 'json', 'markdown', 'yaml', 'html'] }
-
-" Vim plugin for intensely orgasmic commenting
-Plug 'scrooloose/nerdcommenter'
-
-" Dark powered asynchronous completion framework for neovim/Vim8
-Plug 'Shougo/deoplete.nvim'
-
-" Syntax checking hacks
-Plug 'vim-syntastic/syntastic'
-
-" EditorConfig plugin for Vim http://editorconfig.org
-Plug 'editorconfig/editorconfig-vim'
-
-" The most advanced TypeScript Syntax Highlighting
-Plug 'HerringtonDarkholme/yats.vim'
-
-" A code-completion engine
-" Plug 'Valloric/YouCompleteMe'
-
-" Vim Pug (formerly Jade) template engine syntax highlighting and indention
-" Plug 'digitaltoad/vim-pug'
-
-" Vim Markdown runtime files
-Plug 'tpope/vim-markdown'
-
 " A plugin of NERDTree showing git status
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Miscellaneous auto-load Vim scripts
 Plug 'xolox/vim-misc'
-
-" Automated tag file generation and syntax highlighting of tags
-Plug 'xolox/vim-easytags'
-
-" vim interface to Web API
-" Plug 'mattn/webapi-vim'
-
-" This is a Vim plugin that provides Rust file detection, syntax highlighting,
-" formatting, Syntastic integration, and more.
-Plug 'rust-lang/rust.vim'
 
 " Vim plugin for insert mode completion of words in adjacent tmux panes 
 Plug 'wellle/tmux-complete.vim'
@@ -94,38 +49,8 @@ Plug 'wellle/tmux-complete.vim'
 " Seamless navigation between tmux panes and vim splits <Paste>
 Plug 'christoomey/vim-tmux-navigator'
 
-" Vastly improved Javascript indentation and syntax support in Vim. 
-Plug 'pangloss/vim-javascript'
-
-" Yet Another TypeScript Syntax: The most advanced TypeScript Syntax Highlighting in Vim 
-Plug 'HerringtonDarkholme/yats.vim'
-
-" Improved nginx vim plugin (incl. syntax highlighting)
-Plug 'chr4/nginx.vim'
-
-" Vim mapping for sorting a range of text
-Plug 'christoomey/vim-sort-motion'
-
-" Ember Handlebars/HTMLBars plugin for Vim with indentation support
-Plug 'joukevandermaas/vim-ember-hbs'
-
 " Calendar from the vim site
 Plug '~/code/vim-plugins/calendar.vim'
-
-" precision colorscheme for the vim text editor
-Plug 'altercation/vim-colors-solarized'
-
-" Vim theme
-Plug 'fatih/molokai'
-
-" Vim theme
-Plug 'fortes/vim-escuro'
-
-" Vim theme
-Plug 'julien/vim-miniml'
-
-" Vim theme
-Plug 'napcs/vim-mycontrast'
 
 call plug#end()
 

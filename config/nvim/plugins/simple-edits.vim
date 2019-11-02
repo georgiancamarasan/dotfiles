@@ -25,3 +25,6 @@ Plug 'ntpeters/vim-better-whitespace'
 " Show 'Match 123 of 456 /search term/' in Vim searches.
 Plug 'henrik/vim-indexed-search'
 
+" Vim mapping for sorting a range of text
+Plug 'christoomey/vim-sort-motion'
+
