@@ -1,6 +1,5 @@
 " vinegar.vim: Combine with netrw to create a delicious salad dressing
 Plug 'tpope/vim-vinegar'
-
 " A tree explorer plugin for vim.
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -16,4 +15,3 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'ryanoasis/vim-devicons'
-

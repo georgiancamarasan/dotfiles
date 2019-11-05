@@ -24,9 +24,6 @@ Plug 'editorconfig/editorconfig-vim'
 " The most advanced TypeScript Syntax Highlighting
 Plug 'HerringtonDarkholme/yats.vim'
 
-" A code-completion engine
-" Plug 'Valloric/YouCompleteMe'
-
 " Vim Pug (formerly Jade) template engine syntax highlighting and indention
 " Plug 'digitaltoad/vim-pug'
 
@@ -54,4 +51,10 @@ Plug 'chr4/nginx.vim'
 
 " Ember Handlebars/HTMLBars plugin for Vim with indentation support
 Plug 'joukevandermaas/vim-ember-hbs'
+
+" A code-completion engine
+" Plug 'Valloric/YouCompleteMe'
+
+" A code-completion engine
+" Plug 'Valloric/YouCompleteMe'
 
