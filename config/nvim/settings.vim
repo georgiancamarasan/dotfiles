@@ -27,3 +27,6 @@ set relativenumber " Show relative line numbers
 " Yank and put from system clipboard
 set clipboard+=unnamedplus
 
+" Set a global fold level to remember you have folding in VIM
+set foldlevelstart=1
+set foldmethod=syntax
