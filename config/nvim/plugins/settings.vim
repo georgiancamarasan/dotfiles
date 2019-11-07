@@ -41,7 +41,3 @@ let g:airline_theme = 'badwolf'
 " Set up go to definition
 "nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
-" easytags settings
-" Search for tags
-nnoremap <leader>. :CtrlPTag<cr>
-

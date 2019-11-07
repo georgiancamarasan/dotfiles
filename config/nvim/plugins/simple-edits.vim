@@ -1,5 +1,5 @@
 " Vim alignment
-Plug 'junegunn/vim-easy-aling'
+Plug 'junegunn/vim-easy-align'
 
 " quoting/paranthesizing made simple
 Plug 'tpope/vim-surround'
