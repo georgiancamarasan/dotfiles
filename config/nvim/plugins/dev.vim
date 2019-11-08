@@ -9,9 +9,6 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'scss', 'json', 'markdown', 'yaml', 'html'] }
 
-" Vim plugin for intensely orgasmic commenting
-Plug 'scrooloose/nerdcommenter'
-
 " Dark powered asynchronous completion framework for neovim/Vim8
 Plug 'Shougo/deoplete.nvim'
 
@@ -43,18 +40,11 @@ Plug 'rust-lang/rust.vim'
 " Vastly improved Javascript indentation and syntax support in Vim. 
 Plug 'pangloss/vim-javascript'
 
-" Yet Another TypeScript Syntax: The most advanced TypeScript Syntax Highlighting in Vim 
-Plug 'HerringtonDarkholme/yats.vim'
-
 " Improved nginx vim plugin (incl. syntax highlighting)
-Plug 'chr4/nginx.vim'
+"Plug 'chr4/nginx.vim'
 
 " Ember Handlebars/HTMLBars plugin for Vim with indentation support
-Plug 'joukevandermaas/vim-ember-hbs'
+"Plug 'joukevandermaas/vim-ember-hbs'
 
 " A code-completion engine
 " Plug 'Valloric/YouCompleteMe'
-
-" A code-completion engine
-" Plug 'Valloric/YouCompleteMe'
-
