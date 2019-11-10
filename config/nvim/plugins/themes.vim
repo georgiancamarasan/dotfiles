@@ -5,11 +5,11 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'fatih/molokai'
 
 " Vim theme
-Plug 'fortes/vim-escuro'
+"Plug 'fortes/vim-escuro'
 
 " Vim theme
-Plug 'julien/vim-miniml'
+"Plug 'julien/vim-miniml'
 
 " Vim theme
-Plug 'napcs/vim-mycontrast'
+"Plug 'napcs/vim-mycontrast'
 
