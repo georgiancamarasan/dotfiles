@@ -50,3 +50,10 @@ let g:airline_theme = 'badwolf'
 " Set up go to definition
 "nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
+" Yankring settings
+" The yanked text needs to be longer then this to be added to the history
+let g:yankring_min_element_length = 2
+" Use vertical split
+let g:yankring_window_use_horiz = 0
+" If using a vertical split, this option controls how wide to make the window.
+let g:yankring_window_width = 30

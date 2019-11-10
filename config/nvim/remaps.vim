@@ -30,3 +30,5 @@ xmap <leader>a <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap <leader>a <Plug>(EasyAlign)
 
+" Show the Yank history and chose which line to paste
+nnoremap <silent> <leader>p :YRShow<CR>
