@@ -10,7 +10,7 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'scss', 'json', 'markdown', 'yaml', 'html'] }
 
 " Dark powered asynchronous completion framework for neovim/Vim8
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Syntax checking hacks
 Plug 'vim-syntastic/syntastic'

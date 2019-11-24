@@ -32,3 +32,6 @@ nmap <leader>a <Plug>(EasyAlign)
 
 " Show the Yank history and chose which line to paste
 nnoremap <silent> <leader>p :YRShow<CR>
+
+" Jump to matching tag
+nnoremap <leader>] :MtaJumpToOtherTag<cr>

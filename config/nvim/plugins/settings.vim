@@ -57,3 +57,6 @@ let g:yankring_min_element_length = 2
 let g:yankring_window_use_horiz = 0
 " If using a vertical split, this option controls how wide to make the window.
 let g:yankring_window_width = 30
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
