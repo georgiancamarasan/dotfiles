@@ -35,3 +35,6 @@ nnoremap <silent> <leader>p :YRShow<CR>
 
 " Format file using prettier
 nnoremap <leader>f <Plug>(Prettier)
+
+" Jump to matching tag
+nnoremap <leader>] :MtaJumpToOtherTag<cr>
