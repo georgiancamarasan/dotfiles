@@ -60,3 +60,8 @@ let g:yankring_window_width = 30
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+
+" Ultisnips configuration
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
