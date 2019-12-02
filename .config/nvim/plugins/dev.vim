@@ -7,7 +7,22 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " A Vim plugin for Prettier
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'scss', 'json', 'markdown', 'yaml', 'html'] }
+  \ 'branch': 'release/1.x',
+  \ 'for': [
+    \ 'javascript',
+    \ 'typescript',
+    \ 'css',
+    \ 'scss',
+    \ 'json',
+    \ 'graphql',
+    \ 'markdown',
+    \ 'vue',
+    \ 'lua',
+    \ 'php',
+    \ 'python',
+    \ 'ruby',
+    \ 'yaml',
+    \ 'html'] }
 
 " Dark powered asynchronous completion framework for neovim/Vim8
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
