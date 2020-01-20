@@ -1,6 +1,9 @@
 " Modern database interface for Vim
 Plug 'tpope/vim-dadbod'
 
+" Perform all your vim insert mode completions with Tab
+" Plug 'ervandew/supertab'
+
 " The ultimate snippet solution for Vim.
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 

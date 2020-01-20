@@ -63,5 +63,7 @@ let g:deoplete#enable_at_startup = 1
 
 " Ultisnips configuration
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir=g:vim_config_dir . "/ultisnips"
