@@ -103,3 +103,8 @@ function config {
 }
 
 
+export WORKON_HOME=$HOME/.virtualenvs
+export WORKON_HOME=$HOME/.virtalenvsexportVIRTUALENVWRAPPER_PYTHON
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=' -p /usr/bin/python3 '
+source /bin/virtualenvwrapper.sh
