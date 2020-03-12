@@ -2,7 +2,7 @@
 Plug 'tpope/vim-dadbod'
 
 " Perform all your vim insert mode completions with Tab
-" Plug 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
 " The ultimate snippet solution for Vim.
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -28,7 +28,7 @@ Plug 'prettier/vim-prettier', {
     \ 'html'] }
 
 " Dark powered asynchronous completion framework for neovim/Vim8
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Syntax checking hacks
 Plug 'vim-syntastic/syntastic'
@@ -65,4 +65,4 @@ Plug 'pangloss/vim-javascript'
 "Plug 'joukevandermaas/vim-ember-hbs'
 
 " A code-completion engine
-" Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
