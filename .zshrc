@@ -107,4 +107,5 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=' -p /usr/bin/python3 '
 source /bin/virtualenvwrapper.sh
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -d ~/bin ] && export PATH=$PATH:~/bin
