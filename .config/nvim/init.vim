@@ -3,13 +3,15 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Plugin manager
 Plug 'junegunn/vim-plug'
 
+" Defaults everyone can agree on {{{
+Plug 'tpope/vim-sensible'
+" }}}
 
 " Miscellaneous auto-load Vim scripts {{{
 " Vim scripts that are used by other plugins
 "
 Plug 'xolox/vim-misc'
 " }}}
-
 
 " Vim alignment
 " Plug 'junegunn/vim-easy-align'
@@ -41,7 +43,6 @@ Plug 'xolox/vim-misc'
 " Vim mapping for sorting a range of text
 " Plug 'christoomey/vim-sort-motion'
 
-
 " A command-line fuzzy finder {{{
 " Options:
 " let g:fzf_layout = { 'down': '~40%' }
@@ -55,9 +56,12 @@ Plug 'xolox/vim-misc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " }}}
 
-
 " super simple vim plugin to show the list of buffers in the command bar {{{
 Plug 'bling/vim-bufferline'
+" }}}
+
+" The fancy start screen for Vim. {{{
+Plug 'mhinz/vim-startify'
 " }}}
 
 " Fuzzy file, buffer, mru, tag, etc finder {{{
@@ -69,11 +73,23 @@ Plug 'bling/vim-bufferline'
 Plug 'ctrlpvim/ctrlp.vim'
 " }}}
 
-" BufExplorer
-" Plug 'jlanzarotta/bufexplorer'
+" BufExplorer {{{
+" Usage:
+" With bufexplorer, you can quickly and easily switch between buffers by using the one of the default public interfaces:
+" <leader>be " normal open
+" <leader>bt " toggle open / close
+" <leader>bs " force horizontal split open
+" <leader>bv " force vertical split open
+Plug 'jlanzarotta/bufexplorer'
+" }}}
 
-" Vim plugin which asks for the right file to open
-" Plug 'EinfachToll/DidYouMean'
+" Vim plugin which asks for the right file to open {{{
+" This plugin can use fzf to present/filter the list if - it is enabled by:
+" let g:dym_use_fzf = 1 
+" in your .vimrc if the fzf.vim plugin is installed.
+"
+Plug 'EinfachToll/DidYouMean'
+" }}}
 
 " Modern database interface for Vim
 " Plug 'tpope/vim-dadbod'
@@ -104,21 +120,17 @@ Plug 'ctrlpvim/ctrlp.vim'
 "     \ 'yaml',
 "     \ 'html'] }
 
-
 " Dark powered asynchronous completion framework for neovim/Vim8
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-
 " Syntax checking hacks
 " Plug 'vim-syntastic/syntastic'
-
 
 " EditorConfig plugin for Vim http://editorconfig.org {{{
 " To view options type
 " :help editorconfig
 Plug 'editorconfig/editorconfig-vim'
 " }}}
-
 
 " The most advanced TypeScript Syntax Highlighting {{{
 " Yet Another TypeScript Syntax file for Vim, adapted from YAJS. Key differences:
@@ -134,14 +146,12 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 " }}}
 
-
 " Vim Pug (formerly Jade) template engine syntax highlighting and indention {{{
 "
 " For best results consider using this with an (improved) HTML5 syntax plugin.
 "
 " Plug 'digitaltoad/vim-pug'
 " }}}
-
 
 " Vim Markdown runtime files {{{
 " This is the development version of Vim's included syntax highlighting and
@@ -167,7 +177,6 @@ Plug 'HerringtonDarkholme/yats.vim'
 "
 " Plug 'tpope/vim-markdown'
 " }}}
-
 
 " Automated tag file generation and syntax highlighting of tags {{{
 "
@@ -213,7 +222,6 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'xolox/vim-easytags'
 " }}}
 
-
 " This is a Vim plugin that provides Rust file detection, syntax highlighting, {{{
 " formatting, Syntastic integration, and more.
 " rust.vim automatically registers cargo as a syntax checker with Syntastic, if nothing else is specified. See :help rust-syntastic for more details.
@@ -227,7 +235,6 @@ Plug 'xolox/vim-easytags'
 "
 Plug 'rust-lang/rust.vim'
 " }}}
-
 
 " Vastly improved Javascript indentation and syntax support in Vim. {{{
 "
@@ -245,7 +252,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'pangloss/vim-javascript'
 " }}}
 
-
 " Improved nginx vim plugin (incl. syntax highlighting) {{{
 "
 " The plugin is based on the recent vim-plugin distributed with nginx-1.12.0 and additionally features the following syntax improvements:
@@ -262,11 +268,9 @@ Plug 'pangloss/vim-javascript'
 Plug 'chr4/nginx.vim'
 " }}}
 
-
 " Ember Handlebars/HTMLBars plugin for Vim with indentation support {{{
 Plug 'joukevandermaas/vim-ember-hbs'
 " }}}
-
 
 " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim. It has several completion engines: {{{
 "
@@ -308,67 +312,143 @@ Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'Valloric/YouCompleteMe'
 " }}}
 
+" Vim themes {{{
+Plug 'fatih/molokai'
+" Plug 'fortes/vim-escuro'
+" Plug 'julien/vim-miniml'
+" Plug 'napcs/vim-mycontrast'
+" }}}
 
-" precision colorscheme for the vim text editor
-" Plug 'altercation/vim-colors-solarized'
+" A Vim plugin for Vim plugins {{{
+"
+" From tpope: I make so many Vim plugins I had to make a Vim plugin for making Vim plugins.
+"
+" Plug 'tpope/vim-scriptease'
+" }}}
 
-" Vim theme
-" Plug 'fatih/molokai'
+" Continuously updated session files {{{
+"
+" Use :Obsess (with optional file/directory name) to start recording to a session file and :Obsess! to stop and throw it away. 
+" That's it. Load a session in the usual manner: vim -S, or :source it.
+" There's also an indicator you can put in 'statusline', 'tabline', or 'titlestring'. 
+" See :help obsession-status.
+"
+Plug 'tpope/vim-obsession'
+" }}}
 
-" Vim theme
-"Plug 'fortes/vim-escuro'
+" Vim plugin for insert mode completion of words in adjacent tmux panes {{{
+"
+" This plugin adds a completion function that puts all words visible in your Tmux panes right under your fingertips. 
+" Just enter insert mode, start typing any word you see and press <C-X><C-U> to the trigger user defined insert mode completion.
+"
+Plug 'wellle/tmux-complete.vim'
+" }}}
 
-" Vim theme
-"Plug 'julien/vim-miniml'
+" Seamless navigation between tmux panes and vim splits {{{
+"
+" Usage
+" This plugin provides the following mappings which allow you to move between Vim panes and tmux splits seamlessly.
+"
+" <ctrl-h> => Left
+" <ctrl-j> => Down
+" <ctrl-k> => Up
+" <ctrl-l> => Right
+" <ctrl-\> => Previous split
+"
+" Note - you don't need to use your tmux prefix key sequence before using the mappings.
+"
+Plug 'christoomey/vim-tmux-navigator'
+" }}}
 
-" Vim theme
-"Plug 'napcs/vim-mycontrast'
-
-" Defaults everyone can agree on
-" Plug 'tpope/vim-sensible'
-
-" continuously updated session files
-" Plug 'tpope/vim-obsession'
-
-" Vim plugin for insert mode completion of words in adjacent tmux panes
-" Plug 'wellle/tmux-complete.vim'
-
-" Seamless navigation between tmux panes and vim splits <Paste>
-" Plug 'christoomey/vim-tmux-navigator'
-
-" Calendar from the vim site
-" Plug '~/code/vim-plugins/calendar.vim'
-
-" Personal Wiki for Vim http://vimwiki.github.io/
+" Personal Wiki for Vim http://vimwiki.github.io/ {{{
+"
+" <Leader>ww -- Open default wiki index file.
+" <Leader>wt -- Open default wiki index file in a new tab.
+" <Leader>ws -- Select and open wiki index file.
+" <Leader>wd -- Delete wiki file you are in.
+" <Leader>wr -- Rename wiki file you are in.
+"
+" For more keys, see :h vimwiki-mappings
+"
 " Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+" }}}
 
-" vinegar.vim: Combine with netrw to create a delicious salad dressing
-" Plug 'tpope/vim-vinegar'
-" A tree explorer plugin for vim.
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" vinegar.vim: Combine with netrw to create a delicious salad dressing {{{
+"
+" Press - in any buffer to hop up to the directory listing and seek to the file you just came from.
+" Press gh to toggle dot file hiding.
+" Press . on a file to pre-populate it at the end of a : command line.
+" Press y. to yank an absolute path for the file under the cursor.
+" Press ~ to go home.
+" Use Vim's built-in CTRL-^ (CTRL-6) for switching back to the previous buffer from the netrw buffer.
+"
+Plug 'tpope/vim-vinegar'
+" }}}
 
-" Powerline is a statusline plugin for vim, and provides statuslines and prompts for several other applications,
+
+" A tree explorer plugin for vim. {{{
+"
+" To open NERDTree
+" map <C-n> :NERDTreeToggle<CR>
+"
+" close vim if the only window left open is a NERDTree
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"
+Plug 'preservim/nerdtree'
+" }}}
+
+" Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more {{{
+Plug 'ryanoasis/vim-devicons'
+" }}}
+
+" Extra syntax and highlight for nerdtree files {{{
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" }}}
+
+" Powerline is a statusline plugin for vim, and provides statuslines and prompts for several other applications, {{{
 " including zsh, bash, tmux, IPython, Awesome and Qtile.
 " Plug 'powerline/powerline'
+" }}}
 
-" lean & mean status/tabline for vim that's light as air
-" Plug 'vim-airline/vim-airline'
+" lean & mean status/tabline for vim that's light as air {{{
+Plug 'vim-airline/vim-airline'
+" }}}
 
-" A collection of themes for vim-airline
-" Plug 'vim-airline/vim-airline-themes'
+" A collection of themes for vim-airline {{{
+Plug 'vim-airline/vim-airline-themes'
+" }}}
 
-" Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
-" Plug 'ryanoasis/vim-devicons'
+" A Git wrapper so awesome, it should be illegal {{{
+" The crown jewel of Fugitive is :Git (or just :G), which calls any arbitrary Git command. 
+" If you know how to use Git at the command line, you know how to use :Git.
+Plug 'tpope/vim-fugitive'
+" }}}
 
-" A Git wrapper so awesome, it should be illegal<Paste>
-" Plug 'tpope/vim-fugitive'
-
-" A Vim plugin for more pleasant editing on commit messages
+" A Vim plugin for more pleasant editing on commit messages {{{
+" When you type git commit, Vim starts and opens a commit buffer. This plugin improves the commit buffer.
 " Plug 'rhysd/committia.vim'
+" }}}
 
-" A plugin of NERDTree showing git status
-" Plug 'Xuyuanp/nerdtree-git-plugin'
+" A plugin of NERDTree showing git status {{{
+" Use this variable to change symbols:
+" let g:NERDTreeIndicatorMapCustom = {
+  " \ "Modified"  : "✹",
+  " \ "Staged"    : "✚",
+  " \ "Untracked" : "✭",
+  " \ "Renamed"   : "➜",
+  " \ "Unmerged"  : "═",
+  " \ "Deleted"   : "✖",
+  " \ "Dirty"     : "✗",
+  " \ "Clean"     : "✔︎",
+  " \ 'Ignored'   : '☒',
+  " \ "Unknown"   : "?"
+  " \ }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" }}}
 
+" enable repeating supported plugin maps with "." {{{
+Plug 'tpope/vim-repeat'
+" }}}
 call plug#end()
 
 " vimwiki settings
@@ -399,18 +479,21 @@ let g:netrw_winsize = 25
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 " let g:NERDToggleCheckAllLines = 1
 
-" NERDTree settings
-" noremap <leader>] :NERDTreeToggle<CR><c-w>K
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" NERDTree settings {{{
+noremap <leader>] :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeWinPos="right"
 
-" let g:NERDTreeDirArrowExpandable = '>'
-" let g:NERDTreeDirArrowCollapsible = 'v'
-
+let g:NERDTreeWinSize=10
 " let g:NERDTreeHijackNetrw=1
+" }}}
 
-" Airline theme
-" let g:airline_powerline_fonts = 1
+" Airline theme {{{
+let g:airline_powerline_fonts = 1
 " let g:airline_theme = 'badwolf'
+" }}}
 
 " Setup autocomplete = 1
 "if !exists("g:ycm_semantic_triggers")
@@ -462,7 +545,7 @@ set shiftwidth=2 " Number of spaces for identation
 "endif
 syntax enable
 set background=dark
-" colorscheme molokai
+colorscheme molokai
 
 " Editor windows settings
 set relativenumber " Show relative line numbers
