@@ -1,7 +1,13 @@
+" Basics {{{
+filetype plugin indent on         " Add filetype, plugin, and indent support
+syntax on                         " Turn on syntax highlighting
+" }}}
+
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Plugin manager
+" Plugin manager {{{
 Plug 'junegunn/vim-plug'
+" }}}
 
 " Defaults everyone can agree on {{{
 Plug 'tpope/vim-sensible'
@@ -13,35 +19,205 @@ Plug 'tpope/vim-sensible'
 Plug 'xolox/vim-misc'
 " }}}
 
-" Vim alignment
-" Plug 'junegunn/vim-easy-align'
+"  Language Server Protocol (LSP) support for vim and neovim. {{{
+"
+" Example configuration
+" Required for operations modifying multiple buffers like rename.
+" set hidden
+"
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+"     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+"     \ 'python': ['/usr/local/bin/pyls'],
+"     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+"     \ }
+"
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" " Or map each action separately
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+"
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+" }}}
 
-" quoting/paranthesizing made simple
-" Plug 'tpope/vim-surround'
+" Vim plugin providing operator motions to quickly replace text {{{
+"
+" Subversive provides two new operator motions to make it very easy to perform quick substitutions.
+" It contains no default mappings and will have no effect until you add your own maps to it.
+"
+" Mappings:
+" s for substitute
+" nmap s <plug>(SubversiveSubstitute)
+" nmap ss <plug>(SubversiveSubstituteLine)
+" nmap S <plug>(SubversiveSubstituteToEndOfLine)
+"
+Plug 'svermeulen/vim-subversive'
+" }}}
+"  A parser for a condensed HTML format {{{
+"
+"   Type in something (e.g. #header > h1), then press <C-E> whilst in insert mode to expand to HTML.
+"   Pressing <C-n> will cycle through empty elements.
+Plug 'rstacruz/sparkup'
+" }}}
 
-" Vim plugin for intensely orgasmic commenting
-" Plug 'scrooloose/nerdcommenter'
+" Vim alignment {{{
+"
+" Add the following mappings to your .vimrc.
+"
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+" xmap ga <Plug>(EasyAlign)
+"
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" nmap ga <Plug>(EasyAlign)
+"
+" Then with the following lines of text,
+"
+" apple   =red
+" grass+=green
+" sky-=   blue
+"
+" try these commands:
+"
+" vipga=
+" 	visual-select inner paragraph
+" 	Start EasyAlign command (ga)
+" 	Align around =
+" gaip=
+" 	Start EasyAlign command (ga) for
+" 	inner paragraph
+" 	Align around =
+"
+" = Around the 1st occurrences
+" 2= Around the 2nd occurrences
+" *= Around all occurrences
+" **= Left/Right alternating alignment around all occurrences
+" <Enter> Switching between left/right/center alignment modes
+"
+Plug 'junegunn/vim-easy-align'
+" }}}
 
-" Vim motion on speed!
-" Plug 'easymotion/vim-easymotion'
+" It's easiest to explain with examples. Press cs"' inside
+" "Hello world!"
+" to change it to
+" 'Hello world!'
+"
+" Now press cs'<q> to change it to
+" <q>Hello world!</q>
+"
+" To go full circle, press cst" to get
+" "Hello world!"
+"
+" To remove the delimiters entirely, press ds".
+" Hello world!
+"
+" Now with the cursor on "Hello", press ysiw] (iw is a text object).
+" [Hello] world!
+"
+" Let's make that braces and add some space (use } instead of { for no space): cs]{
+" { Hello } world!
+"
+" Now wrap the entire line in parentheses with yssb or yss).
+" ({ Hello } world!)
+"
+" Revert to the original text: ds{ds)
+" Hello world!
+"
+" Finally, let's try out visual mode. Press a capital V (for linewise visual mode) followed by S<p class="important">.
+" <p class="important">
+"   <em>Hello</em> world!
+" </p>
+"
+Plug 'tpope/vim-surround'
+" }}}
 
-" Maintains a history of previous yanks, changes and deletes
+" Vim plugin for intensely orgasmic commenting {{{
+"
+" Options:
+" Add spaces after comment delimiters by default
+" let g:NERDSpaceDelims = 1
+"
+" Use compact syntax for prettified multi-line comments
+" let g:NERDCompactSexyComs = 1
+"
+" Align line-wise comment delimiters flush left instead of following code indentation
+" let g:NERDDefaultAlign = 'left'
+"
+" Set a language to use its alternate delimiters by default
+" let g:NERDAltDelims_java = 1
+"
+" Add your own custom formats or override the defaults
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+"
+" Allow commenting and inverting empty lines (useful when commenting a region)
+" let g:NERDCommentEmptyLines = 1
+"
+" Enable trimming of trailing whitespace when uncommenting
+" let g:NERDTrimTrailingWhitespace = 1
+"
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+" let g:NERDToggleCheckAllLines = 1
+"
+Plug 'scrooloose/nerdcommenter'
+" }}}
+
+" Vim motion on speed! {{{
+"
+" Options:
+" map <Leader> <Plug>(easymotion-prefix)
+" All motions will then be triggered with <Leader> by default, e.g. <Leader>s, <Leader>gE.
+"
+Plug 'easymotion/vim-easymotion'
+" }}}
+
+" Maintains a history of previous yanks, changes and deletes {{{
 " Plug 'vim-scripts/YankRing.vim'
+" }}}
 
-" A Vim plugin that always highlights the enclosing html/xml tags
-" Plug 'Valloric/MatchTagAlways'
+" A Vim plugin that always highlights the enclosing html/xml tags {{{
+Plug 'Valloric/MatchTagAlways'
+" }}}
 
-" A vim plugin that simplifies the transition between multiline and single-line code
-" Plug 'AndrewRadev/splitjoin.vim'
+" A vim plugin that simplifies the transition between multiline and single-line code {{{
+"
+" Usage:
+"
+" gS to split a one-liner into multiple lines
+" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
+"
+Plug 'AndrewRadev/splitjoin.vim'
+" }}}
 
-" Better whitespace highlighting for Vim
-" Plug 'ntpeters/vim-better-whitespace'
+" Better whitespace highlighting for Vim {{{
+"
+" Options:
+" Set a custom highlight color
+" let g:better_whitespace_ctermcolor='<desired_color>'
+"
+" To enable highlighting and stripping whitespace on save by default, use respectively
+" let g:better_whitespace_enabled=1
+" let g:strip_whitespace_on_save=1
+"
+Plug 'ntpeters/vim-better-whitespace'
+" }}}
 
-" Show 'Match 123 of 456 /search term/' in Vim searches.
-" Plug 'henrik/vim-indexed-search'
+" Show 'Match 123 of 456 /search term/' in Vim searches. {{{
+Plug 'henrik/vim-indexed-search'
+" }}}
 
-" Vim mapping for sorting a range of text
-" Plug 'christoomey/vim-sort-motion'
+" Vim mapping for sorting a range of text {{{
+" Usage:
+"
+" gs2j => Sort down two lines (current + 2 below)
+" gsip => Sort the current paragraph
+" gsii => Sort the current indentation level (requires text-obj-indent plugin)
+"
+Plug 'christoomey/vim-sort-motion' " | Plug 'kana/vim-textobj-indent'
+" }}}
 
 " A command-line fuzzy finder {{{
 " Options:
@@ -85,46 +261,104 @@ Plug 'jlanzarotta/bufexplorer'
 
 " Vim plugin which asks for the right file to open {{{
 " This plugin can use fzf to present/filter the list if - it is enabled by:
-" let g:dym_use_fzf = 1 
+" let g:dym_use_fzf = 1
 " in your .vimrc if the fzf.vim plugin is installed.
 "
 Plug 'EinfachToll/DidYouMean'
 " }}}
 
-" Modern database interface for Vim
-" Plug 'tpope/vim-dadbod'
+" Modern database interface for Vim {{{
+"
+" Usage:
+" Omit further arguments to spawn an interactive console (like psql or
+" redis-cli).
+" :DB postgresql:///foobar
+" :DB redis:
+"
+" If additional arguments are provided, they are interpreted as a query string
+" to pass to the database. Results are displayed in a preview window.
+" :DB sqlite:myfile.sqlite3 select count(*) from widgets
+" :DB redis:/// CLIENT LIST
+"
+" Use < to pass in a filename.
+" :DB mongodb:///test < big_query.js
+"
+" There's also a special assignment syntax for saving a URL to a Vim variable
+" for later use.
+"
+" :DB g:prod = postgres://user:pass@db.example.com/production_database
+" :DB g:prod drop table users
+"
+Plug 'tpope/vim-dadbod'
+" }}}
 
-" Perform all your vim insert mode completions with Tab
-" Plug 'ervandew/supertab'
+" Perform all your vim insert mode completions with Tab {{{
+Plug 'ervandew/supertab'
+" }}}
 
-" The ultimate snippet solution for Vim.
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" The ultimate snippet solution for Vim. {{{
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" A Vim plugin for Prettier
-" Plug 'prettier/vim-prettier', {
-"   \ 'do': 'npm install',
-"   \ 'branch': 'release/1.x',
-"   \ 'for': [
-"     \ 'javascript',
-"     \ 'typescript',
-"     \ 'css',
-"     \ 'scss',
-"     \ 'json',
-"     \ 'graphql',
-"     \ 'markdown',
-"     \ 'vue',
-"     \ 'lua',
-"     \ 'php',
-"     \ 'python',
-"     \ 'ruby',
-"     \ 'yaml',
-"     \ 'html'] }
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
+"
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" }}}
 
-" Dark powered asynchronous completion framework for neovim/Vim8
+" A Vim plugin for Prettier {{{
+"
+" Usage:
+" <Leader>p
+"
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'branch': 'release/1.x',
+  \ 'for': [
+    \ 'javascript',
+    \ 'typescript',
+    \ 'css',
+    \ 'scss',
+    \ 'json',
+    \ 'graphql',
+    \ 'markdown',
+    \ 'vue',
+    \ 'lua',
+    \ 'php',
+    \ 'python',
+    \ 'ruby',
+    \ 'yaml',
+    \ 'html'] }
+" }}}
+
+" Dark powered asynchronous completion framework for neovim/Vim8 {{{
+"
+" Options:
+" let g:deoplete#enable_at_startup = 1
+"
+" See :help deoplete-options for a complete list of options.
+"
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" }}}
 
-" Syntax checking hacks
-" Plug 'vim-syntastic/syntastic'
+" Syntax checking hacks {{{
+"
+" Options:
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+"
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+"
+" :help syntastic
+"
+Plug 'vim-syntastic/syntastic'
+" }}}
 
 " EditorConfig plugin for Vim http://editorconfig.org {{{
 " To view options type
@@ -180,7 +414,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 
 " Automated tag file generation and syntax highlighting of tags {{{
 "
-" Note that if the plug-in warns you ctags isn't installed you'll have to download it from its [homepage] exctags, 
+" Note that if the plug-in warns you ctags isn't installed you'll have to download it from its [homepage] exctags,
 " or if you're running Debian/Ubuntu you can install it by executing the following shell command:
 " sudo apt-get install exuberant-ctags
 "
@@ -188,11 +422,11 @@ Plug 'HerringtonDarkholme/yats.vim'
 " By setting this option to true (1) you enable asynchronous tags file updates.
 " let g:easytags_async = 1
 "
-" The default value of this option is 'auto' which means to use keyword highlighting where this is possible without sacrificing accuracy. 
+" The default value of this option is 'auto' which means to use keyword highlighting where this is possible without sacrificing accuracy.
 " By changing it to 'always' you're telling vim-easytags to sacrifice accuracy in order to gain performance.
 " let g:easytags_syntax_keyword = 'always'
 "
-" Exuberant Ctags supports many languages and can be extended via regular expression patterns, but for some languages separate tools with 
+" Exuberant Ctags supports many languages and can be extended via regular expression patterns, but for some languages separate tools with
 " ctags-compatible output exist (e.g. jsctags jsctags for Javascript). To use these, the executable and its arguments must be configured:
 " let g:easytags_languages = {
 " \   'language': {
@@ -328,9 +562,9 @@ Plug 'fatih/molokai'
 
 " Continuously updated session files {{{
 "
-" Use :Obsess (with optional file/directory name) to start recording to a session file and :Obsess! to stop and throw it away. 
+" Use :Obsess (with optional file/directory name) to start recording to a session file and :Obsess! to stop and throw it away.
 " That's it. Load a session in the usual manner: vim -S, or :source it.
-" There's also an indicator you can put in 'statusline', 'tabline', or 'titlestring'. 
+" There's also an indicator you can put in 'statusline', 'tabline', or 'titlestring'.
 " See :help obsession-status.
 "
 Plug 'tpope/vim-obsession'
@@ -338,7 +572,7 @@ Plug 'tpope/vim-obsession'
 
 " Vim plugin for insert mode completion of words in adjacent tmux panes {{{
 "
-" This plugin adds a completion function that puts all words visible in your Tmux panes right under your fingertips. 
+" This plugin adds a completion function that puts all words visible in your Tmux panes right under your fingertips.
 " Just enter insert mode, start typing any word you see and press <C-X><C-U> to the trigger user defined insert mode completion.
 "
 Plug 'wellle/tmux-complete.vim'
@@ -370,6 +604,16 @@ Plug 'christoomey/vim-tmux-navigator'
 "
 " For more keys, see :h vimwiki-mappings
 "
+" For markdown to html:
+" gem install vimwiki_markdown
+"
+" let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path':
+" '~/vimwiki/templates/',
+" \ 'template_default': 'default', 'syntax': 'markdown', 'ext': '.md',
+" \ 'path_html': '~/vimwiki/site_html/', 'custom_wiki2html': 'vimwiki_markdown',
+" \ 'html_filename_parameterization': 1,
+" \ 'template_ext': '.tpl'}]
+"
 " Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 " }}}
 
@@ -383,6 +627,17 @@ Plug 'christoomey/vim-tmux-navigator'
 " Use Vim's built-in CTRL-^ (CTRL-6) for switching back to the previous buffer from the netrw buffer.
 "
 Plug 'tpope/vim-vinegar'
+" }}}
+
+" Pairs of handy bracket mappings {{{
+"
+" Usage:
+" ]q is :cnext. [q is :cprevious. ]a is :next. [b is :bprevious.
+" [<Space> and ]<Space> add newlines before and after the cursor line.
+" [e and ]e exchange the current line with the one above or below it.
+" [os, ]os, and yos perform :set spell, :set nospell, and :set invspell, respectively.
+"
+Plug 'tpope/vim-unimpaired'
 " }}}
 
 
@@ -419,14 +674,14 @@ Plug 'vim-airline/vim-airline-themes'
 " }}}
 
 " A Git wrapper so awesome, it should be illegal {{{
-" The crown jewel of Fugitive is :Git (or just :G), which calls any arbitrary Git command. 
+" The crown jewel of Fugitive is :Git (or just :G), which calls any arbitrary Git command.
 " If you know how to use Git at the command line, you know how to use :Git.
 Plug 'tpope/vim-fugitive'
 " }}}
 
 " A Vim plugin for more pleasant editing on commit messages {{{
 " When you type git commit, Vim starts and opens a commit buffer. This plugin improves the commit buffer.
-" Plug 'rhysd/committia.vim'
+Plug 'rhysd/committia.vim'
 " }}}
 
 " A plugin of NERDTree showing git status {{{
@@ -543,19 +798,28 @@ set shiftwidth=2 " Number of spaces for identation
   "set background=dark
   "colorscheme molokai
 "endif
+
+" General Settings {{{
+set shell=/usr/bin/zsh            " Prefer zsh for shell-related tasks
+set foldmethod=marker             " Group folds with '{{{,}}}'
+set foldlevelstart=1              " Set a global fold level to remember you have folding in VIM
+set grepprg=LC_ALL=C\ grep\ -rns  " Faster ASCII-based grep
+set expandtab                     " Prefer spaces over tabs
+set hidden                        " Prefer hiding over unloading buffers
+set wildcharm=<C-z>               " Macro-compatible command-line wildchar
+set path=.,**                     " Search relative to current file + directory
+set noswapfile                    " No swapfiles period.
+set tags=./tags;,tags;            " ID Tags relative to current file + directory
+set shiftwidth=2                  " Digestable defaults for config files
+
 syntax enable
 set background=dark
 colorscheme molokai
-
 " Editor windows settings
 set relativenumber " Show relative line numbers
-
 " Yank and put from system clipboard
 set clipboard+=unnamedplus
-
-" Set a global fold level to remember you have folding in VIM
-set foldlevelstart=1
-set foldmethod=syntax
+" }}}
 " Move line current line down
 noremap <leader>- ddp
 " Move line current line up
@@ -578,25 +842,9 @@ nnoremap gb :ls<CR>:b
 " Replace Esc with jk
 inoremap jk <ESC>
 
-" easytags settings
-" Search for tags
-" nnoremap <leader>. :CtrlPTag<cr>
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-" xmap <leader>a <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-" nmap <leader>a <Plug>(EasyAlign)
-
-" Show the Yank history and chose which line to paste
-" nnoremap <silent> <leader>p :YRShow<CR>
-
-" Format file using prettier
-" nnoremap <leader>f <Plug>(Prettier)
-
-" Jump to matching tag
-" nnoremap <leader>] :MtaJumpToOtherTag<cr>
-
+" Format file using prettier {{{
+nnoremap <leader>f <Plug>(Prettier)
+" }}}
 
 " FzfMappings {{{
 nnoremap <silent> <leader>ff :FZF<CR>
@@ -621,3 +869,63 @@ nnoremap <leader>jt :YcmCompleter GoToType<CR>
 nnoremap <leader>gt :YcmCompleter GetDoc<CR>
 nnoremap <leader>rr :YcmCompleter RefactorRename<Space>
 " }}}
+
+" Subversive settings {{{
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+" }}}
+
+" Ultisnip settings {{{
+let g:UltiSnipsExpandTrigger="<c-v>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+" }}}
+
+" EasyAlign settings {{{
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+" }}}
+
+" LanguageCLient settings {{{
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" }}}
+
+" NERDCommenter settings {{{
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
+" }}}
+
+" EasyMotion settings {{{
+map <Leader> <Plug>(easymotion-prefix)
+" }}}
+
+" Better-Whitespace settings {{{
+let g:better_whitespace_ctermcolor='white'
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+" }}}
+
+" Syntastic settings {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" }}}
+
