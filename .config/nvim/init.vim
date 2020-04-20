@@ -741,7 +741,7 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeWinPos="right"
 
-let g:NERDTreeWinSize=10
+let g:NERDTreeWinSize=50
 " let g:NERDTreeHijackNetrw=1
 " }}}
 
@@ -843,7 +843,7 @@ nnoremap gb :ls<CR>:b
 inoremap jk <ESC>
 
 " Format file using prettier {{{
-nnoremap <leader>f <Plug>(Prettier)
+nmap <leader>f <Plug>(Prettier)
 " }}}
 
 " FzfMappings {{{
@@ -887,7 +887,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " }}}
 
-" LanguageCLient settings {{{
+" LanguageClient settings {{{
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
