@@ -704,6 +704,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " enable repeating supported plugin maps with "." {{{
 Plug 'tpope/vim-repeat'
 " }}}
+
+" TODO: Add documentation {{{
+Plug 'Yggdroot/indentLine'
+}}}
+
 call plug#end()
 
 " vimwiki settings
