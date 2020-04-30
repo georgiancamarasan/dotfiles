@@ -103,4 +103,4 @@ function config {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -d ~/bin ] && export PATH=$PATH:~/bin
+[ -d ~/.local/bin ] && export PATH=$PATH:~/.local/bin
