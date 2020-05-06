@@ -32,4 +32,3 @@ include /usr/share/doc/task/rc/dark-256.theme
 context.work=+work
 context.today=+today
 context.dotfiles=project:dotfiles
-context=dotfiles
