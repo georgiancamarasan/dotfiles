@@ -714,6 +714,10 @@ Plug 'Yggdroot/indentLine'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " }}}
 
+" Bullets.vim is a Vim/NeoVim plugin for automated bullet lists. {{{
+Plug 'dkarter/bullets.vim'
+" }}}
+
 call plug#end()
 
 " vimwiki settings
