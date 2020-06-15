@@ -106,3 +106,5 @@ function config {
 [ -d ~/.local/bin ] && export PATH=$PATH:~/.local/bin
 
 alias t="clear && task"
+
+eval "$(zoxide init zsh)"
