@@ -1,6 +1,43 @@
 " Basics {{{
 filetype plugin indent on         " Add filetype, plugin, and indent support
 syntax on                         " Turn on syntax highlighting
+let mapleader = ","
+" Replace Esc with jk {{{
+inoremap jk <ESC>
+" }}}
+
+" Simple text edit settings {{{
+" Move line current line down
+noremap <leader>- ddp
+" Move line current line up
+noremap <leader>_ ddkP
+" }}}
+
+" Vim config file editing {{{
+" Open vim config file
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" Source vim config file
+nnoremap <leader>sv :source $MYVIMRC<cr>
+" }}}
+
+" Buffer navigation {{{
+" Move to the previous buffer with "gp"
+nnoremap gp :bp<CR>
+" Move to the next buffer with "gn"
+nnoremap gn :bn<CR>
+" List all possible buffers with "gl"
+nnoremap gl :ls<CR>
+" List all possible buffers with "gb" and accept a new buffer argument [1]
+nnoremap gb :ls<CR>:b
+" toggles between buffers
+nnoremap <leader><leader> <c-^>
+" Open hotkeys {{{
+map <C-p> :Files<CR>
+nmap <leader>; :Buffers<CR>
+" }}}
+
+" Quick-save {{{
+nmap <leader>w :w<CR>
 " }}}
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -102,7 +139,7 @@ Plug 'rstacruz/sparkup'
 Plug 'junegunn/vim-easy-align'
 " }}}
 
-" It's easiest to explain with examples. Press cs"' inside
+" It's easiest to explain with examples. Press cs"' inside {{{
 " "Hello world!"
 " to change it to
 " 'Hello world!'
@@ -210,6 +247,10 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'henrik/vim-indexed-search'
 " }}}
 
+" Changes Vim working directory to project root (identified by presence of known directory or file). {{{
+Plug 'airblade/vim-rooter'
+" }}}
+
 " Vim mapping for sorting a range of text {{{
 " Usage:
 "
@@ -231,6 +272,7 @@ Plug 'christoomey/vim-sort-motion' " | Plug 'kana/vim-textobj-indent'
 " nnoremap <silent> <leader>ff :FZF<CR>
 "
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " }}}
 
 " super simple vim plugin to show the list of buffers in the command bar {{{
@@ -641,7 +683,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
 " }}}
 
-
 " A tree explorer plugin for vim. {{{
 "
 " To open NERDTree
@@ -718,14 +759,20 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dkarter/bullets.vim'
 " }}}
 
+" {{{
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" }}}
+
+
 call plug#end()
 
-" vimwiki settings
+" vimwiki settings {{{
 " let g:vimwiki_folding = 'syntax'
 " let g:vimwiki_list = [{'name': 'My Wiki', 'path': '~/Nextcloud/mywiki/wiki', 'path_html': '~/Nextcloud/mywiki/html', 'ext': '.md', 'syntax': 'markdown', 'index': 'index' },
 "   \ {'name': 'Work Wiki', 'path': '~/Nextcloud/workwiki/wiki', 'path_html': '~/Nextcloud/workwiki/html', 'ext': '.md', 'syntax': 'markdown', 'index': 'index' }]
+" }}}
 
-" newtr settings
+" newtr settings {{{
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 0 " Open in same window
 let g:netrw_altv = 1
@@ -734,8 +781,9 @@ let g:netrw_winsize = 25
   "autocmd!
   "autocmd VimEnter * :Vexplore
 "augroup END
+" }}}
 
-" Set up comments
+" Set up comments {{{
 " Add spaces after comment delimiters by default
 " let g:NERDSpaceDelims = 1
 
@@ -747,9 +795,10 @@ let g:netrw_winsize = 25
 " let g:NERDCommentEmptyLines = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 " let g:NERDToggleCheckAllLines = 1
+" }}}
 
 " NERDTree settings {{{
-noremap <leader>] :NERDTreeToggle<CR>
+noremap <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
@@ -764,7 +813,7 @@ let g:airline_powerline_fonts = 1
 " let g:airline_theme = 'badwolf'
 " }}}
 
-" Setup autocomplete = 1
+" Setup autocomplete = 1 {{{
 "if !exists("g:ycm_semantic_triggers")
   "let g:ycm_semantic_triggers = {}
 "endif
@@ -774,30 +823,35 @@ let g:airline_powerline_fonts = 1
 
 " Set up go to definition
 "nnoremap <leader>jd :YcmCompleter GoTo<CR>
+" }}}
 
-" Yankring settings
+" Yankring settings {{{
 " The yanked text needs to be longer then this to be added to the history
 " let g:yankring_min_element_length = 2
 " Use vertical split
 " let g:yankring_window_use_horiz = 0
 " If using a vertical split, this option controls how wide to make the window.
 " let g:yankring_window_width = 30
+" }}}
 
-" Use deoplete.
+" Use deoplete. {{{
 " let g:deoplete#enable_at_startup = 1
+" }}}
 
-" Ultisnips configuration
+" Ultisnips configuration {{{
 " let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " let g:UltiSnipsEditSplit="vertical"
 " let g:UltiSnipsSnippetDirectories=[ "UltiSnips", g:vim_config_dir . "/ultisnips" ]
+" }}}
 
-" Text settings
+" Text settings {{{
 set nowrap " Don't wrap lines
 set shiftwidth=2 " Number of spaces for identation
+" }}}
 
-" Theme settings
+" Theme settings {{{
 "if has('gui_running')
   "set guioptions-=T " no toolbar
   "colorscheme industry
@@ -812,6 +866,7 @@ set shiftwidth=2 " Number of spaces for identation
   "set background=dark
   "colorscheme molokai
 "endif
+" }}}
 
 " General Settings {{{
 set shell=/usr/bin/zsh            " Prefer zsh for shell-related tasks
@@ -834,34 +889,9 @@ set relativenumber " Show relative line numbers
 " Yank and put from system clipboard
 set clipboard+=unnamedplus
 " }}}
-" Move line current line down
-noremap <leader>- ddp
-" Move line current line up
-noremap <leader>_ ddkP
-
-" Open vim config file
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-" Source vim config file
-nnoremap <leader>sv :source $MYVIMRC<cr>
-
-" Move to the previous buffer with "gp"
-nnoremap gp :bp<CR>
-" Move to the next buffer with "gn"
-nnoremap gn :bn<CR>
-" List all possible buffers with "gl"
-nnoremap gl :ls<CR>
-" List all possible buffers with "gb" and accept a new buffer argument [1]
-nnoremap gb :ls<CR>:b
-
-" Replace Esc with jk
-inoremap jk <ESC>
 
 " Format file using prettier {{{
 nmap <leader>f <Plug>(Prettier)
-" }}}
-
-" FzfMappings {{{
-nnoremap <silent> <leader>ff :FZF<CR>
 " }}}
 
 " easy-tags settings {{{
