@@ -103,7 +103,7 @@ function config {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -d ~/.local/bin ] && export PATH=$PATH:~/.local/bin
+[ -d ~/.local/share/bin ] && export PATH=$PATH:~/.local/share/bin
 
 alias t="clear && task"
 
