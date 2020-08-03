@@ -105,6 +105,8 @@ function config {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -d ~/.local/share/bin ] && export PATH=$PATH:~/.local/share/bin
 
-alias t="clear && task"
+# Load aliases
+
+for file in ~/.local/share/aliases/*(.)sh; do source $file; done
 
 eval "$(zoxide init zsh)"
