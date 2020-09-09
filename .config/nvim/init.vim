@@ -763,6 +763,10 @@ Plug 'dkarter/bullets.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " }}}
 
+" {{{ FocusGained and FocusLost autocommand events are not working in terminal vim. This plugin restores them when using vim inside Tmux.
+Plug 'tmux-plugins/vim-tmux-focus-events'
+" }}}
+
 
 call plug#end()
 
