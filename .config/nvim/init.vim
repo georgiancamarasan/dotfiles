@@ -1,43 +1,21 @@
-" Basics {{{
-filetype plugin indent on         " Add filetype, plugin, and indent support
-syntax on                         " Turn on syntax highlighting
+" Basic settings {{{
+filetype plugin indent on " Add filetype, plugin, and indent support
+syntax on " Turn on syntax highlighting
 let mapleader = ","
-" Replace Esc with jk {{{
-inoremap jk <ESC>
-" }}}
+inoremap jk <ESC> " Replace Esc with jk
+noremap <leader>- ddp " Move line current line down
+noremap <leader>_ ddkP " Move line current line up
+nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Open vim config file
+nnoremap <leader>sv :source $MYVIMRC<cr> " Source vim config file
+nnoremap gp :bp<CR> " Move to the previous buffer with "gp"
+nnoremap gn :bn<CR> " Move to the next buffer with "gn"
+nnoremap gl :ls<CR> " List all possible buffers with "gl"
+nnoremap gb :ls<CR>:b " List all possible buffers with "gb" and accept a new buffer argument [1]
+nnoremap <leader><leader> <c-^> " toggles between buffers
+map <C-p> :Files<CR> " Open files using fuzzy finder
+nmap <leader>; :Buffers<CR> " Open buffers using fuzzy finder
+nmap <leader>w :w<CR> " Quick-save
 
-" Simple text edit settings {{{
-" Move line current line down
-noremap <leader>- ddp
-" Move line current line up
-noremap <leader>_ ddkP
-" }}}
-
-" Vim config file editing {{{
-" Open vim config file
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-" Source vim config file
-nnoremap <leader>sv :source $MYVIMRC<cr>
-" }}}
-
-" Buffer navigation {{{
-" Move to the previous buffer with "gp"
-nnoremap gp :bp<CR>
-" Move to the next buffer with "gn"
-nnoremap gn :bn<CR>
-" List all possible buffers with "gl"
-nnoremap gl :ls<CR>
-" List all possible buffers with "gb" and accept a new buffer argument [1]
-nnoremap gb :ls<CR>:b
-" toggles between buffers
-nnoremap <leader><leader> <c-^>
-" Open hotkeys {{{
-map <C-p> :Files<CR>
-nmap <leader>; :Buffers<CR>
-" }}}
-
-" Quick-save {{{
-nmap <leader>w :w<CR>
 " }}}
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -1121,5 +1099,12 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 augroup rust
   autocmd!
   au FileType rust nnoremap <silent> <C-f> :RustFmt<CR>
+augroup END
+" }}}
+
+" Markdown settings {{{
+augroup markdown
+  autocmd!
+  au FileType markdown set spell
 augroup END
 " }}}
