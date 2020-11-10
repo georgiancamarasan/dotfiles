@@ -105,8 +105,14 @@ function config {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -d ~/.local/share/bin ] && export PATH=$PATH:~/.local/share/bin
 
+[ -d ~/.cargo ] && source ~/.cargo/env
+
 # Load aliases
 
 for file in ~/.local/share/aliases/*(.)sh; do source $file; done
 
 eval "$(zoxide init zsh)"
+
+# added by pipx (https://github.com/pipxproject/pipx)
+export PATH="/home/georgian/.local/bin:$PATH"
+export VAGRANT_DEFAULT_PROVIDER=libvirt
