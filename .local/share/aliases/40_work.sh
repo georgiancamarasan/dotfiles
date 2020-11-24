@@ -1,20 +1,20 @@
-startEsicPostgres() {
+function startEsicPostgres
   docker container exists esic-postgres
-  if [ $? -eq 0 ]; then
+  if test $status = 0
     docker container start esic-postgres
   else
     docker run --name esic-postgres -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -d --publish 5432:5432 postgres
-  fi
-}
+  end
+end
 
-startSeq() {
+function startSeq
   docker container exists esic-seq
-  if [ $? -eq 0 ]; then
+  if test $status = 0
     docker container start esic-seq
   else
     docker run -d --name esic-seq -it -e ACCEPT_EULA=Y -p 5341:80 datalust/seq
-  fi
-}
+  end
+end
 
 alias start-esic-postgres=startEsicPostgres
 alias start-seq=startSeq
