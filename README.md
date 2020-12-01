@@ -4,9 +4,9 @@ My dotfiles.
 ## Install
 ~~~bash
 git clone --bare https://github.com/georgiancamarasan/dotfiles $HOME/.cfg
-function config {
-   /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
-}
+function config
+   /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $argv
+end
 # mkdir -p .config-backup
 # config checkout
 # if [ $? = 0 ]; then
