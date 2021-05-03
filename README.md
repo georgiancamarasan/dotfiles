@@ -3,7 +3,7 @@ My dotfiles.
 
 ## Install
 ~~~bash
-git clone --bare https://github.com/georgiancamarasan/dotfiles $HOME/.cfg
+git clone --bare https://git.camarasan.com/georgian/dotfiles $HOME/.cfg
 function config
    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $argv
 end
