@@ -54,10 +54,10 @@ Plug 'xolox/vim-misc'
 " nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 "
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 " }}}
 
 " Vim plugin providing operator motions to quickly replace text {{{
@@ -615,29 +615,6 @@ Plug 'wellle/tmux-complete.vim'
 Plug 'christoomey/vim-tmux-navigator'
 " }}}
 
-" Personal Wiki for Vim http://vimwiki.github.io/ {{{
-"
-" <Leader>ww -- Open default wiki index file.
-" <Leader>wt -- Open default wiki index file in a new tab.
-" <Leader>ws -- Select and open wiki index file.
-" <Leader>wd -- Delete wiki file you are in.
-" <Leader>wr -- Rename wiki file you are in.
-"
-" For more keys, see :h vimwiki-mappings
-"
-" For markdown to html:
-" gem install vimwiki_markdown
-"
-" let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path':
-" '~/vimwiki/templates/',
-" \ 'template_default': 'default', 'syntax': 'markdown', 'ext': '.md',
-" \ 'path_html': '~/vimwiki/site_html/', 'custom_wiki2html': 'vimwiki_markdown',
-" \ 'html_filename_parameterization': 1,
-" \ 'template_ext': '.tpl'}]
-"
-" Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-" }}}
-
 " vinegar.vim: Combine with netrw to create a delicious salad dressing {{{
 "
 " Press - in any buffer to hop up to the directory listing and seek to the file you just came from.
@@ -729,30 +706,15 @@ Plug 'tpope/vim-repeat'
 Plug 'Yggdroot/indentLine'
 " }}}
 
-" TODO: Add documentation {{{
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" }}}
-
 " Bullets.vim is a Vim/NeoVim plugin for automated bullet lists. {{{
 Plug 'dkarter/bullets.vim'
-" }}}
-
-" {{{
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " }}}
 
 " {{{ FocusGained and FocusLost autocommand events are not working in terminal vim. This plugin restores them when using vim inside Tmux.
 Plug 'tmux-plugins/vim-tmux-focus-events'
 " }}}
 
-
 call plug#end()
-
-" vimwiki settings {{{
-" let g:vimwiki_folding = 'syntax'
-" let g:vimwiki_list = [{'name': 'My Wiki', 'path': '~/Nextcloud/mywiki/wiki', 'path_html': '~/Nextcloud/mywiki/html', 'ext': '.md', 'syntax': 'markdown', 'index': 'index' },
-"   \ {'name': 'Work Wiki', 'path': '~/Nextcloud/workwiki/wiki', 'path_html': '~/Nextcloud/workwiki/html', 'ext': '.md', 'syntax': 'markdown', 'index': 'index' }]
-" }}}
 
 " newtr settings {{{
 let g:netrw_liststyle = 3
@@ -767,7 +729,7 @@ let g:netrw_winsize = 25
 
 " Set up comments {{{
 " Add spaces after comment delimiters by default
-" let g:NERDSpaceDelims = 1
+let g:NERDSpaceDelims = 1
 
 " Use compact syntax for prettified multi-line comments
 " let g:NERDCompactSexyComs = 1
@@ -792,19 +754,7 @@ let g:NERDTreeWinSize=50
 
 " Airline theme {{{
 let g:airline_powerline_fonts = 1
-" let g:airline_theme = 'badwolf'
-" }}}
-
-" Setup autocomplete = 1 {{{
-"if !exists("g:ycm_semantic_triggers")
-  "let g:ycm_semantic_triggers = {}
-"endif
-"let g:ycm_semantic_triggers['typescript'] = ['.']
-"let g:ycm_server_keep_logfiles = 1
-"let g:ycm_server_log_level = 'debug'
-
-" Set up go to definition
-"nnoremap <leader>jd :YcmCompleter GoTo<CR>
+let g:airline_theme = 'badwolf'
 " }}}
 
 " Yankring settings {{{
@@ -833,23 +783,6 @@ set nowrap " Don't wrap lines
 set shiftwidth=2 " Number of spaces for identation
 " }}}
 
-" Theme settings {{{
-"if has('gui_running')
-  "set guioptions-=T " no toolbar
-  "colorscheme industry
-  "set lines=45 columns=180 linespace=0
-  "if has('gui_win32')
-    "set guifont=Consolas:h10:cANSI
-  "else
-    "set guifont=Consolas
-  "endif
-"else
-  "syntax enable
-  "set background=dark
-  "colorscheme molokai
-"endif
-" }}}
-
 " General Settings {{{
 set shell=/usr/bin/fish           " Prefer fish for shell-related tasks
 set foldmethod=marker             " Group folds with '{{{,}}}'
@@ -861,7 +794,6 @@ set wildcharm=<C-z>               " Macro-compatible command-line wildchar
 set path=.,**                     " Search relative to current file + directory
 set noswapfile                    " No swapfiles period.
 set tags=./tags;,tags;            " ID Tags relative to current file + directory
-set shiftwidth=2                  " Digestable defaults for config files
 
 syntax enable
 set background=dark
@@ -889,11 +821,11 @@ augroup END
 " }}}
 
 " YouCompleteMe settings {{{
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-nnoremap <leader>ji :YcmCompleter GoToImplementation<CR>
-nnoremap <leader>jt :YcmCompleter GoToType<CR>
-nnoremap <leader>gt :YcmCompleter GetDoc<CR>
-nnoremap <leader>rr :YcmCompleter RefactorRename<Space>
+" nnoremap <leader>jd :YcmCompleter GoTo<CR>
+" nnoremap <leader>ji :YcmCompleter GoToImplementation<CR>
+" nnoremap <leader>jt :YcmCompleter GoToType<CR>
+" nnoremap <leader>gt :YcmCompleter GetDoc<CR>
+" nnoremap <leader>rr :YcmCompleter RefactorRename<Space>
 " }}}
 
 " Subversive settings {{{
@@ -914,6 +846,11 @@ nmap ga <Plug>(EasyAlign)
 " }}}
 
 " LanguageClient settings {{{
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ }
+
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
