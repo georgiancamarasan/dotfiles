@@ -378,7 +378,7 @@ Plug 'prettier/vim-prettier', {
 "
 " :help syntastic
 "
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 " }}}
 
 " EditorConfig plugin for Vim http://editorconfig.org {{{
