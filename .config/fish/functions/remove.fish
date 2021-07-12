@@ -1,3 +1,3 @@
 function remove
-  yay -$ $argv
+  yay -R $argv
 end
