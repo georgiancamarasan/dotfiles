@@ -1,4 +1,4 @@
-fish_add_path /home/georgian/.cargo/bin
-fish_add_path /home/georgian/.local/bin
+set PATH $PATH:/home/georgian/.cargo/bin
+set PATH $PATH:/home/georgian/.local/bin
 zoxide init fish | source
 cd
