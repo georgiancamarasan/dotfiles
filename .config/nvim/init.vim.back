@@ -1,7 +1,7 @@
 " Basic settings {{{
 filetype plugin indent on " Add filetype, plugin, and indent support
 syntax on " Turn on syntax highlighting
-let mapleader = ","
+let mapleader = "\<Space>"
 inoremap jk <ESC> " Replace Esc with jk
 noremap <leader>- ddp " Move line current line down
 noremap <leader>_ ddkP " Move line current line up
@@ -12,9 +12,17 @@ nnoremap gn :bn<CR> " Move to the next buffer with "gn"
 nnoremap gl :ls<CR> " List all possible buffers with "gl"
 nnoremap gb :ls<CR>:b " List all possible buffers with "gb" and accept a new buffer argument [1]
 nnoremap <leader><leader> <c-^> " toggles between buffers
-map <C-p> :Files<CR> " Open files using fuzzy finder
 nmap <leader>; :Buffers<CR> " Open buffers using fuzzy finder
 nmap <leader>w :w<CR> " Quick-save
+nnoremap <leader>o :CtrlP<CR> " Quick-open
+nnoremap <leader>q :q<CR> " Quick-close window
+
+vmap <leader>y "+y
+vmap <leader>d "+d
+nmap <leader>p "+p
+nmap <leader>P "+P
+vmap <leader>p "+p
+vmap <leader>P "+P
 
 " }}}
 
@@ -34,30 +42,30 @@ Plug 'tpope/vim-sensible'
 Plug 'xolox/vim-misc'
 " }}}
 
+" A secure alternative to modelines {{{
+Plug 'ciaranm/securemodelines'
+" }}}
+
+" Jump to any location specified by two characters. {{{
+Plug 'justinmk/vim-sneak'
+" }}}
+
+" Make the yanked region apparent! {{{
+Plug 'machakann/vim-highlightedyank'
+" }}}
+
+" match-up is a plugin that lets you highlight, navigate, and operate on sets of matching text. It extends vim's % key to language-specific words instead of just single characters. {{{
+Plug 'andymass/vim-matchup'
+" }}}
+
+" visually select increasingly larger regions of text using the same key combination {{{
+Plug 'terryma/vim-expand-region'
+" }}}
+
 "  Language Server Protocol (LSP) support for vim and neovim. {{{
-"
-" Example configuration
-" Required for operations modifying multiple buffers like rename.
-" set hidden
-"
-" let g:LanguageClient_serverCommands = {
-"     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-"     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-"     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-"     \ 'python': ['/usr/local/bin/pyls'],
-"     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-"     \ }
-"
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" " Or map each action separately
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-"
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/lsp_extensions.nvim'
+Plug 'nvim-lua/completion-nvim'
 " }}}
 
 " Vim plugin providing operator motions to quickly replace text {{{
@@ -152,7 +160,6 @@ Plug 'tpope/vim-surround'
 " }}}
 
 " Vim plugin for intensely orgasmic commenting {{{
-"
 " Options:
 " Add spaces after comment delimiters by default
 " let g:NERDSpaceDelims = 1
@@ -249,7 +256,7 @@ Plug 'christoomey/vim-sort-motion' " | Plug 'kana/vim-textobj-indent'
 " Mappings:
 " nnoremap <silent> <leader>ff :FZF<CR>
 "
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " }}}
 
@@ -527,6 +534,10 @@ Plug 'chr4/nginx.vim'
 " Plug 'joukevandermaas/vim-ember-hbs'
 " }}}
 
+" Fish {{{
+Plug 'dag/vim-fish'
+" }}}
+
 " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim. It has several completion engines: {{{
 "
 " an identifier-based engine that works with every programming language,
@@ -716,6 +727,59 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 
 call plug#end()
 
+" LSP configuration {{{
+" lua << END
+" local lspconfig = require('lspconfig')
+" local on_attach = function(client, bufnr)
+"   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+"   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+"
+"   --Enable completion triggered by <c-x><c-o>
+"   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+"
+"   -- Mappings.
+"   local opts = { noremap=true, silent=true }
+"
+"   -- See `:help vim.lsp.*` for documentation on any of the below functions
+"   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+"   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+"   buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+"   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+"   buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+"   buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+"   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+"   buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+"   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+"   buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+"   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+"   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+"   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+"   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+"
+"   -- Forward to other plugins
+"   require'completion'.on_attach(client)
+" end
+"
+" local servers = { "rust_analyzer" }
+" for _, lsp in ipairs(servers) do
+"   lspconfig[lsp].setup {
+"     on_attach = on_attach,
+"     flags = {
+"       debounce_text_changes = 150,
+"     }
+"   }
+" end
+"
+" vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+"   vim.lsp.diagnostic.on_publish_diagnostics, {
+"     virtual_text = true,
+"     signs = true,
+"     update_in_insert = true,
+"   }
+" )
+" END
+" }}}
+
 " newtr settings {{{
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 0 " Open in same window
@@ -725,20 +789,6 @@ let g:netrw_winsize = 25
   "autocmd!
   "autocmd VimEnter * :Vexplore
 "augroup END
-" }}}
-
-" Set up comments {{{
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-" let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-" let g:NERDDefaultAlign = 'left'
-" Allow commenting and inverting empty lines (useful when commenting a region)
-" let g:NERDCommentEmptyLines = 1
-" Enable NERDCommenterToggle to check all selected lines is commented or not
-" let g:NERDToggleCheckAllLines = 1
 " }}}
 
 " NERDTree settings {{{
@@ -846,14 +896,14 @@ nmap ga <Plug>(EasyAlign)
 " }}}
 
 " LanguageClient settings {{{
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ }
-
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"     \ 'python': ['/usr/local/bin/pyls'],
+"     \ }
+"
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 " }}}
 
 " NERDCommenter settings {{{
@@ -900,4 +950,16 @@ augroup markdown
   autocmd!
   au FileType markdown set spell
 augroup END
+" }}}
+
+" vp doesn't replace paste buffer {{{
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
 " }}}
