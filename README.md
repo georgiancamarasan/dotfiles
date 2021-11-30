@@ -3,7 +3,7 @@ My dotfiles.
 
 ## Install
 ~~~bash
-git clone --bare https://git.camarasan.com/georgian/dotfiles $HOME/.cfg
+git clone --bare ssh://git@server.rsp:2022/georgian/dotfiles.git $HOME/.cfg
 function dotfiles
    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $argv
 end
