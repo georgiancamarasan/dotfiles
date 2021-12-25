@@ -1,3 +1,3 @@
 function ww
-  w status
+  w summary
 end
