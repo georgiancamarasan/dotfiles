@@ -42,6 +42,8 @@ vim.opt.scrolloff = 8                           -- is one of my fav
 vim.opt.sidescrolloff = 8
 vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
 vim.g.netrw_liststyle = 3                   -- list files in netrw in tree format
+vim.g.better_whitespace_enabled = 1
+vim.g.strip_whitespace_on_save = 1
 
 vim.opt.shortmess:append "c"
 

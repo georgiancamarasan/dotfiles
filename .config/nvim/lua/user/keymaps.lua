@@ -28,7 +28,9 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 --}}}
 
 -- explorer {{{
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>r", ":NvimTreeRefresh<cr>", opts)
+keymap("n", "<leader>n", ":NvimTreeFindFile<cr>", opts)
 -- keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
 -- }}}
 

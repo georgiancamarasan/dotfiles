@@ -41,6 +41,21 @@ packer.init {
 return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
+  use "tpope/vim-sensible" -- Defaults everyone can agree on
+  use "xolox/vim-misc" -- Vim scripts that are used by other plugins
+  use "junegunn/vim-easy-align" --
+  use "tpope/vim-surround" --
+  use "easymotion/vim-easymotion" --
+  use "ntpeters/vim-better-whitespace" --
+  use "mhinz/vim-startify" -- The fancy start screen for Vim.
+  use "bling/vim-bufferline" -- super simple vim plugin to show the list of buffers in the command bar
+  use "jlanzarotta/bufexplorer" -- With bufexplorer, you can quickly and easily switch between buffers by using the one of the default public interfaces
+  use "airblade/vim-rooter" -- Changes Vim working directory to project root (identified by presence of known directory or file).
+  use "machakann/vim-highlightedyank" -- Make the yanked region apparent!
+  --use "tpope/vim-dadbod" -- Modern database interface for Vim
+  use "editorconfig/editorconfig-vim" --
+  use "christoomey/vim-tmux-navigator" --
+  use "" --
   use {'andymass/vim-matchup', event = 'VimEnter'}
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
@@ -54,7 +69,7 @@ return packer.startup(function(use)
     config = "vim.cmd[[ALEEnable]]"
   }
 
-  use { 
+  use {
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons'
   }
