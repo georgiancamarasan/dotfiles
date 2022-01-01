@@ -1,14 +1,8 @@
--- {{{
-vim.cmd([[
-  augroup init_config
-    autocmd!
-    autocmd BufWritePost init.lua luafile <afile>
-  augroup end
-]])
--- }}}
-
-require('settings')
-require('plugins')
-require('plugin-settings')
-require('keymappings')
-
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
+require "user.colorscheme"
+require "user.cmp"
+require "user.lsp"
+require "user.telescope"
+require "user.treesitter"
