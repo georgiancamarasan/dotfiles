@@ -124,6 +124,18 @@ return packer.startup(function(use)
         require('Comment').setup()
     end
   }
+
+  use {
+    'glacambre/firenvim',
+    run = function() vim.fn['firenvim#install'](0) end 
+  }
+
+  use {
+    'glepnir/galaxyline.nvim',
+    branch = 'main',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
