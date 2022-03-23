@@ -45,10 +45,6 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-  use "numToStr/Comment.nvim" -- Easily comment stuff
-  use "kyazdani42/nvim-web-devicons"
-  use "kyazdani42/nvim-tree.lua"
-  use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
@@ -72,10 +68,7 @@ return packer.startup(function(use)
   --use "tpope/vim-dadbod" -- Modern database interface for Vim
   use "editorconfig/editorconfig-vim" --
   use "christoomey/vim-tmux-navigator" --
-  use "" --
   use {'andymass/vim-matchup', event = 'VimEnter'}
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
   use "9mm/vim-closer" -- Closes brackets when you press Enter
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
@@ -127,12 +120,6 @@ return packer.startup(function(use)
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
-    -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-
-  -- Telescope
-  use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
 
   -- Treesitter
@@ -150,7 +137,7 @@ return packer.startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup()
+      require('Comment').setup()
     end
   }
 
@@ -159,11 +146,11 @@ return packer.startup(function(use)
     run = function() vim.fn['firenvim#install'](0) end
   }
 
-  use {
-    'glepnir/galaxyline.nvim',
-    branch = 'main',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
-  }
+  -- use {
+    -- 'glepnir/galaxyline.nvim',
+    -- branch = 'main',
+    -- requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
