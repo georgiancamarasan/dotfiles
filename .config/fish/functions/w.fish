@@ -1,3 +1,3 @@
 function w
-  watson $argv
+  timew $argv
 end
