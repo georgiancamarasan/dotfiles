@@ -38,8 +38,8 @@ tree.setup {
       custom_only = false,
       list = {}
     },
-    number = false,
-    relativenumber = false,
+    number = true,
+    relativenumber = true,
     signcolumn = "yes"
   },
 }
