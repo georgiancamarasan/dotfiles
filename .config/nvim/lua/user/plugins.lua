@@ -45,7 +45,6 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-  use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
@@ -70,7 +69,6 @@ return packer.startup(function(use)
   use "editorconfig/editorconfig-vim" --
   use "christoomey/vim-tmux-navigator" --
   use {'andymass/vim-matchup', event = 'VimEnter'}
-  use "9mm/vim-closer" -- Closes brackets when you press Enter
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
    use {
