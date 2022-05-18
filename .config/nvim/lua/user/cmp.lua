@@ -112,7 +112,7 @@ cmp.setup {
     end,
   },
   sources = {
-    { name = 'nvim_lsp' },    
+    { name = 'nvim_lsp' },
     { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "buffer" },
@@ -125,8 +125,10 @@ cmp.setup {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  window = {
+    documentation = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    },
   },
   experimental = {
     ghost_text = true,
