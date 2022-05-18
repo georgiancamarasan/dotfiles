@@ -70,7 +70,6 @@ return packer.startup(function(use)
   use "editorconfig/editorconfig-vim" --
   use "christoomey/vim-tmux-navigator" --
   use {'andymass/vim-matchup', event = 'VimEnter'}
-  use "9mm/vim-closer" -- Closes brackets when you press Enter
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
    use {
@@ -145,6 +144,18 @@ return packer.startup(function(use)
   use {
     'glacambre/firenvim',
     run = function() vim.fn['firenvim#install'](0) end
+  }
+
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
   }
 
   -- use {
