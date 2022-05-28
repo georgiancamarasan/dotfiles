@@ -3,7 +3,7 @@ function install_cargo_apps
 
   cargo install pueue
 
-  systemctl --user daemons-reload
+  systemctl --user daemon-reload
   systemctl --user enable --now pueued
 
   pueue add cargo install bat
