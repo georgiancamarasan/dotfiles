@@ -8,7 +8,7 @@ function install_cargo_apps
 
   pueue add cargo install bat
   pueue add cargo install cargo-update
-  pueue add cargo install binstall
+  pueue add cargo install cargo-binstall
   pueue add cargo install diskonaut
   pueue add cargo install fd-find
   pueue add cargo install just
