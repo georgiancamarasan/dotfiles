@@ -6,6 +6,8 @@ function install_cargo_apps
   systemctl --user daemon-reload
   systemctl --user enable --now pueued
 
+  sleep 1
+
   pueue add cargo install bat
   pueue add cargo install cargo-update
   pueue add cargo install cargo-binstall
