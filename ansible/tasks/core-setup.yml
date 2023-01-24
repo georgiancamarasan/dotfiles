@@ -1,0 +1,25 @@
+- name: Install System Packages 1
+  community.general.pacman:
+    name: ["base-devel", "cmake", "sudo"]
+    state: present
+    extra_args: --noconfirm
+  tags:
+    - install
+    - neovim
+    - core
+- name: Install System Packages 2
+  community.general.pacman:
+    name: ["lua51", "unzip", "libtool", "gettext"]
+    state: present
+  tags:
+    - install
+    - neovim
+    - core
+- name: Install System Packages 3
+  community.general.pacman:
+    name: ["curl", "htop", "python-pip"]
+    state: present
+  tags:
+    - install
+    - neovim
+    - core

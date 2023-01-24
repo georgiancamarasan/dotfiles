@@ -1,7 +1,20 @@
 - hosts: localhost
-  become: true
-  tasks:
-    - name: Install fish
-      community.general.pacman:
-        name: fish
-        state: present
+  vars:
+    rsa_source_key: "ssh/id_rsa"
+    ed_source_key: "ssh/id_ed25519"
+    rsa_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    ed_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+  pre_tasks:
+  - name: Update packages
+    become: true
+    community.general.pacman:
+      update_cache: true
+      upgrade: true
+    tags:
+      - install
+      - core
+  - name: Install SSH Keys
+    include_tasks: tasks/ssh.yml
+  - name: Install Core Setup
+    include_tasks: tasks/core-setup.yml
+    # - include: tasks/nvim-setup.yml
