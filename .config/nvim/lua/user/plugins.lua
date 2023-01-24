@@ -1,20 +1,18 @@
 local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
     install_path,
   }
-  print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
-end
-
+  print 'Installing packer close and reopen Neovim...'
+  vim.cmd [[packadd packer.nvim]] end
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd [[
   augroup packer_user_config
@@ -24,7 +22,7 @@ vim.cmd [[
 ]]
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
+local status_ok, packer = pcall(require, 'packer')
 if not status_ok then
   return
 end
@@ -33,140 +31,140 @@ end
 packer.init {
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "rounded" }
+      return require('packer.util').float { border = 'rounded' }
     end,
   },
 }
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-  use "moll/vim-bbye"
-  use "nvim-lualine/lualine.nvim"
-  use "akinsho/toggleterm.nvim"
-  use "ahmedkhalf/project.nvim"
-  use "lewis6991/impatient.nvim"
-  use "lukas-reineke/indent-blankline.nvim"
-  use "goolord/alpha-nvim"
-  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use "folke/which-key.nvim"
-  use "tpope/vim-sensible" -- Defaults everyone can agree on
-  use "xolox/vim-misc" -- Vim scripts that are used by other plugins
-  use "junegunn/vim-easy-align" --
-  use "tpope/vim-surround" --
-  use "easymotion/vim-easymotion" --
-  use "ntpeters/vim-better-whitespace" --
-  use "mhinz/vim-startify" -- The fancy start screen for Vim.
-  use "bling/vim-bufferline" -- super simple vim plugin to show the list of buffers in the command bar
-  use "jlanzarotta/bufexplorer" -- With bufexplorer, you can quickly and easily switch between buffers by using the one of the default public interfaces
-  use "airblade/vim-rooter" -- Changes Vim working directory to project root (identified by presence of known directory or file).
+  -- Plugin manager {{{
+  use { 'wbthomason/packer.nvim' } -- Have packer manage itself
+  use { 'lewis6991/impatient.nvim' }
+  -- }}}
+
+  -- LSP Configuration & Plugins {{{
+  use {
+    'neovim/nvim-lspconfig',
+    requires = {
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+
+      -- Useful status updates for LSP (compile progress bar)
+      'j-hui/fidget.nvim',
+
+      -- Additional lua configuration, makes nvim stuff amazing
+      'folke/neodev.nvim',
+    },
+  }
+  use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
+  use 'RRethy/vim-illuminate' -- Vim plugin for automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching.
+  use 'folke/lsp-colors.nvim' -- Automatically creates missing LSP diagnostics...
+  use 'folke/trouble.nvim' -- A pretty list for showing diagnostics, references, telescope results...
+  -- }}}
+
+  -- Autocompletion {{{
+  use {
+    'hrsh7th/nvim-cmp', -- A completion engine plugin for neovim written in Lua.
+    requires = {
+      'hrsh7th/cmp-nvim-lsp', -- nvim-cmp source for neovim's built-in language server client.
+      { 'L3MON4D3/LuaSnip', tag = "v<CurrentMajor>.*"}, -- snippets written in lua
+      'saadparwaiz1/cmp_luasnip',  -- luasnip completion source for nvim-cmp
+    },
+  }
+  use 'rafamadriz/friendly-snippets' -- a bunch of snippets to use
+  use 'hrsh7th/cmp-buffer' -- buffer completions
+  use 'hrsh7th/cmp-path' -- path completions
+  use 'hrsh7th/cmp-nvim-lua' -- lua API completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "David-Kunz/cmp-npm" -- npm packages completions
+  use "f3fora/cmp-spell" -- spell source for nvim-cmp based on vim's spellsuggest
+  use "andersevenrud/cmp-tmux" -- tmux adjacent panes completionsc
+  -- }}}
+
+  -- Highlight, edit, and navigate code {{{
+  use {
+    'nvim-treesitter/nvim-treesitter', -- Treesitter configurations and abstraction layer for Neovim.
+    run = function()
+      pcall(require('nvim-treesitter.install').update { with_sync = true })
+    end,
+  }
+
+  use { -- Additional text objects via treesitter
+    'nvim-treesitter/nvim-treesitter-textobjects', -- Syntax aware text-objects, select, move, swap, and peek support.
+    after = 'nvim-treesitter',
+  }
+  use "nvim-treesitter/playground"
+  -- }}}
+
+  -- Git related plugins {{{
+  use 'tpope/vim-fugitive' -- premier Vim plugin for Git
+  use 'tpope/vim-rhubarb' -- If fugitive.vim is the Git, rhubarb.vim is the Hub.
+  use 'lewis6991/gitsigns.nvim' -- Super fast git decorations implemented purely in lua/teal.
+  -- }}}
+
+  -- Colorschemes {{{
+  -- use 'folke/tokyonight.nvim'
+  use 'lunarvim/darkplus.nvim'
+  -- use 'navarasu/onedark.nvim' -- Theme inspired by Atom
+  -- }}}
+
+  -- Visual plugins {{{
+  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+  use 'nvim-tree/nvim-tree.lua' -- A File Explorer For Neovim Written In Lua
+  use 'akinsho/bufferline.nvim' -- A snazzy buffer line (with tabpage integration) for Neovim built using lua.
+  use 'goolord/alpha-nvim' -- alpha is a fast and fully programmable greeter for neovim.
+  use "folke/which-key.nvim" -- displays a popup with possible key bindings of the command you started typing
+  --- }}}
+
+  -- Comments {{{
+  use 'numToStr/Comment.nvim' -- 'gc' to comment visual regions/lines
+  use { 'JoosepAlviste/nvim-ts-context-commentstring' }
+  -- }}}
+
+  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+
+  -- Fuzzy Finder (files, lsp, etc) {{{
+  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
+  use 'nvim-telescope/telescope-media-files.nvim'
+  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+  -- }}}
+
+  use { 'windwp/nvim-autopairs' } -- Autopairs, integrates with both cmp and treesitter
+  use { 'kyazdani42/nvim-web-devicons' }
+
+  use 'moll/vim-bbye' -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
+  use "junegunn/vim-easy-align" -- A simple, easy-to-use Vim alignment plugin.
+  use "tpope/vim-surround" --  is all about "surroundings": parentheses, brackets, quotes, XML tags, and more. The plugin provides mappings to easily delete, change and add such surroundings in pairs.
+  --[[ use "easymotion/vim-easymotion" -- Vim motion on speed! ]]
+  use "ntpeters/vim-better-whitespace" -- causes all trailing whitespace characters to be highlighted.
   use "machakann/vim-highlightedyank" -- Make the yanked region apparent!
-  --use "tpope/vim-dadbod" -- Modern database interface for Vim
   use "editorconfig/editorconfig-vim" --
-  use "christoomey/vim-tmux-navigator" --
+  use "christoomey/vim-tmux-navigator"
   use {'andymass/vim-matchup', event = 'VimEnter'}
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
+  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
 
-   use {
-    "w0rp/ale",
-    ft = {"ansible-lint", "csc", "dotnet-format", "csslint", "dockerfile_lint", "htmlhint", "eslint", "markdownlint", "prettier", "powershell", "pyright", "rustfmt", "sass-lint", "tslint", "yamllint"},
-    cmd = "ALEEnable",
-    config = "vim.cmd[[ALEEnable]]"
-  }
+  use { 'akinsho/toggleterm.nvim' }
+  use 'ahmedkhalf/project.nvim' -- an all in one neovim plugin written in lua that provides superior project management.
 
+  -- DAP (Debug Adapter Protocol) {{{
   use {
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons'
-  }
-
-  -- Colorschemes
-  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-  use "lunarvim/darkplus.nvim"
-
-  -- does not work with init lua. Waiting for fix.
-  -- use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
-
-  -- cmp plugins
-  use {
-    "hrsh7th/nvim-cmp", -- The completion plugin
+    'rcarriga/nvim-dap-ui', -- A UI for nvim-dap which provides a good out of the box configuration.
     requires = {
-      "hrsh7th/vim-vsnip",
-      "hrsh7th/cmp-buffer", -- buffer completions
-      "hrsh7th/cmp-path", -- path completions
-      "hrsh7th/cmp-cmdline", -- cmdline completions
-      "saadparwaiz1/cmp_luasnip", -- snippet completions
-      "hrsh7th/cmp-nvim-lsp", -- lsp completions
-      "hrsh7th/cmp-nvim-lua", -- vim lua settings completions
-      "David-Kunz/cmp-npm", -- npm packages completions
-      "f3fora/cmp-spell", -- spell source for nvim-cmp based on vim's spellsuggest
-      "andersevenrud/cmp-tmux", -- tmux adjacent panes completionsc
+      'mfussenegger/nvim-dap' -- nvim-dap is a Debug Adapter Protocol client implementation for Neovim.
     }
   }
-
-  -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
-
-  -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-
-  -- Telescope
-  use "nvim-telescope/telescope.nvim"
-  use 'nvim-telescope/telescope-media-files.nvim'
-
-  -- Treesitter
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  }
-  use "JoosepAlviste/nvim-ts-context-commentstring"
-
-  -- Git
-  use "lewis6991/gitsigns.nvim"
-  use "p00f/nvim-ts-rainbow"
-  -- use "nvim-treesitter/playground"
-
-  use {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  }
-
-  use {
-    'glacambre/firenvim',
-    run = function() vim.fn['firenvim#install'](0) end
-  }
-
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
-
-  -- use {
-    -- 'glepnir/galaxyline.nvim',
-    -- branch = 'main',
-    -- requires = {'kyazdani42/nvim-web-devicons', opt = true}
-  -- }
+  use 'ravenxrz/DAPInstall.nvim' -- A NeoVim plugin for managing several debuggers for Nvim-dap
+  -- use 'simrat39/rust-tools.nvim' -- A plugin to improve your rust experience in neovim.
+  -- }}}
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
-    require("packer").sync()
+    require('packer').sync()
   end
 end)
-
