@@ -1,0 +1,7 @@
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Install fish
+      community.general.pacman:
+        name: fish
+        state: present
