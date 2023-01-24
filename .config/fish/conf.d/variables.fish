@@ -1,4 +1,3 @@
-set -x PATH $PATH:/home/georgian/.cargo/bin
-set -x PATH $PATH:/home/georgian/.local/bin
-set -x EDITOR nvim
-set -x DISPLAY 192.168.1.121:0
+set PATH $PATH:/home/georgian/.cargo/bin
+set PATH $PATH:/home/georgian/.local/bin
+set EDITOR nvim
