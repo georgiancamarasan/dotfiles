@@ -19,4 +19,11 @@
     include_tasks: tasks/git-setup.yml
   - name: Install Core Setup
     include_tasks: tasks/core-setup.yml
-    # - include: tasks/nvim-setup.yml
+  - name: Install Nodejs & npm
+    include_tasks: tasks/node-setup.yml
+  - name: Install npm packages
+    include_tasks: tasks/npm-packages.yml
+  - name: Install neovim
+    include_tasks: tasks/nvim-setup.yml
+  - name: Install dotfiles
+    include_tasks: tasks/dotfiles.yml
