@@ -1,7 +1,7 @@
 - hosts: localhost
   vars:
-    rsa_source_key: "ssh/id_rsa"
-    ed_source_key: "ssh/id_ed25519"
+    rsa_source_key: ".ssh/id_rsa"
+    ed_source_key: ".ssh/id_ed25519"
     rsa_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     ed_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
   pre_tasks:
