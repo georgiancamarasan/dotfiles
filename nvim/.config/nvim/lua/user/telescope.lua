@@ -13,7 +13,8 @@ telescope.setup {
   },
   pickers = {
     find_files = {
-      -- I don't like having the cwd prefix in my files
+      -- From https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/setup.lua
+      -- Don't know what it does yet :D
       find_command = { "fd", "--strip-cwd-prefix", "--type", "f" },
 
       mappings = {
