@@ -20,7 +20,7 @@ require 'user.alpha'
 require 'user.lsp'
 require 'user.dap'
 require 'user.fidget'
-require "user.whichkey"
+--[[ require 'user.whichkey' ]]
 -- require 'user.rust-tools'
 require 'user.lsp-colors'
 require 'user.trouble'

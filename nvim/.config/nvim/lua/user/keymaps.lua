@@ -118,10 +118,13 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 -- }}}
 
 -- Telescope {{{
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+local status_ok, builtin = pcall(require, 'telescope.builtin')
+if status_ok then
+  keymap("n", "<leader>ff", builtin.find_files, opts)
+  keymap("n", "<leader>ft", builtin.live_grep, opts)
+  keymap("n", "<leader>fb", builtin.buffers, opts)
+  keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
+end
 -- }}}
 
 -- Git {{{

@@ -69,7 +69,7 @@ return packer.startup(function(use)
     'hrsh7th/nvim-cmp', -- A completion engine plugin for neovim written in Lua.
     requires = {
       'hrsh7th/cmp-nvim-lsp', -- nvim-cmp source for neovim's built-in language server client.
-      { 'L3MON4D3/LuaSnip', tag = "v<CurrentMajor>.*"}, -- snippets written in lua
+      { 'L3MON4D3/LuaSnip', tag = 'v<CurrentMajor>.*'}, -- snippets written in lua
       'saadparwaiz1/cmp_luasnip',  -- luasnip completion source for nvim-cmp
     },
   }
@@ -77,10 +77,10 @@ return packer.startup(function(use)
   use 'hrsh7th/cmp-buffer' -- buffer completions
   use 'hrsh7th/cmp-path' -- path completions
   use 'hrsh7th/cmp-nvim-lua' -- lua API completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "David-Kunz/cmp-npm" -- npm packages completions
-  use "f3fora/cmp-spell" -- spell source for nvim-cmp based on vim's spellsuggest
-  use "andersevenrud/cmp-tmux" -- tmux adjacent panes completionsc
+  use 'hrsh7th/cmp-cmdline' -- cmdline completions
+  use 'David-Kunz/cmp-npm' -- npm packages completions
+  use 'f3fora/cmp-spell' -- spell source for nvim-cmp based on vim's spellsuggest
+  use 'andersevenrud/cmp-tmux' -- tmux adjacent panes completionsc
   -- }}}
 
   -- Highlight, edit, and navigate code {{{
@@ -95,7 +95,7 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter-textobjects', -- Syntax aware text-objects, select, move, swap, and peek support.
     after = 'nvim-treesitter',
   }
-  use "nvim-treesitter/playground"
+  use 'nvim-treesitter/playground'
   -- }}}
 
   -- Git related plugins {{{
@@ -116,7 +116,7 @@ return packer.startup(function(use)
   use 'nvim-tree/nvim-tree.lua' -- A File Explorer For Neovim Written In Lua
   use 'akinsho/bufferline.nvim' -- A snazzy buffer line (with tabpage integration) for Neovim built using lua.
   use 'goolord/alpha-nvim' -- alpha is a fast and fully programmable greeter for neovim.
-  use "folke/which-key.nvim" -- displays a popup with possible key bindings of the command you started typing
+  --[[ use 'folke/which-key.nvim' -- displays a popup with possible key bindings of the command you started typing ]]
   --- }}}
 
   -- Comments {{{
@@ -137,13 +137,13 @@ return packer.startup(function(use)
   use { 'kyazdani42/nvim-web-devicons' }
 
   use 'moll/vim-bbye' -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-  use "junegunn/vim-easy-align" -- A simple, easy-to-use Vim alignment plugin.
-  use "tpope/vim-surround" --  is all about "surroundings": parentheses, brackets, quotes, XML tags, and more. The plugin provides mappings to easily delete, change and add such surroundings in pairs.
-  --[[ use "easymotion/vim-easymotion" -- Vim motion on speed! ]]
-  use "ntpeters/vim-better-whitespace" -- causes all trailing whitespace characters to be highlighted.
-  use "machakann/vim-highlightedyank" -- Make the yanked region apparent!
-  use "editorconfig/editorconfig-vim" --
-  use "christoomey/vim-tmux-navigator"
+  use 'junegunn/vim-easy-align' -- A simple, easy-to-use Vim alignment plugin.
+  use 'tpope/vim-surround' --  is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more. The plugin provides mappings to easily delete, change and add such surroundings in pairs.
+  --[[ use 'easymotion/vim-easymotion' -- Vim motion on speed! ]]
+  use 'ntpeters/vim-better-whitespace' -- causes all trailing whitespace characters to be highlighted.
+  use 'machakann/vim-highlightedyank' -- Make the yanked region apparent!
+  use 'editorconfig/editorconfig-vim' --
+  use 'christoomey/vim-tmux-navigator'
   use {'andymass/vim-matchup', event = 'VimEnter'}
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
