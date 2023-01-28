@@ -1,0 +1,7 @@
+- name: Install python and pip
+  become: true
+  community.general.pacman:
+    name: ["python", "pip"]
+  tags:
+    - install
+    - python

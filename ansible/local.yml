@@ -25,5 +25,7 @@
     include_tasks: tasks/npm-packages.yml
   - name: Install neovim
     include_tasks: tasks/nvim-setup.yml
+  - name: Install python & pip
+    include_tasks: tasks/python-setup.yml
   - name: Install dotfiles
     include_tasks: tasks/dotfiles.yml
