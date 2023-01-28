@@ -122,6 +122,7 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 local status_ok, builtin = pcall(require, 'telescope.builtin')
 if status_ok then
   keymap("n", "<leader>ff", builtin.find_files, opts)
+  keymap("n", "<leader>fg", builtin.git_files, opts)
   keymap("n", "<leader>ft", builtin.live_grep, opts)
   keymap("n", "<leader>fb", builtin.buffers, opts)
   keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
