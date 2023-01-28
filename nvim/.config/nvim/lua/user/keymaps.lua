@@ -17,12 +17,7 @@ vim.g.mapleader = " "
 --   command_mode = "c",
 
 -- clipboard {{{
-keymap('v', '<Leader>y', '"+y', opts)
-keymap('v', '<Leader>d', '"+d', opts)
-keymap('n', '<Leader>p', '"+p', opts)
-keymap('n', '<Leader>P', '"+P', opts)
-keymap('v', '<Leader>p', '"+p', opts)
-keymap('v', '<Leader>P', '"+P', opts)
+keymap("x", "<leader>p", "\"_dp")
 -- }}}
 
 -- Normal --
@@ -91,8 +86,8 @@ keymap("v", ">", ">gv", opts)
 -- }}}
 
 -- Move text up and down {{{
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
+keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 -- }}}
 
 -- Visual Block --
