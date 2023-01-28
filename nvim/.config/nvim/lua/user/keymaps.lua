@@ -109,6 +109,7 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", opts)
+keymap("n", "<C-\\>", ":ToggleTerm<CR>", opts)
 -- }}}
 
 -- Plugins -- {{{
