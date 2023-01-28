@@ -13,7 +13,8 @@ local options = {
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
   fileencoding = "utf-8",                  -- the encoding written to a file
-  hlsearch = true,                         -- highlight all matches on previous search pattern
+  hlsearch = false,                         -- highlight all matches on previous search pattern
+  incsearch = true,
   ignorecase = true,                       -- ignore case in search patterns
   mouse = "a",                             -- allow the mouse to be used in neovim
   pumheight = 10,                          -- pop up menu height
@@ -27,7 +28,8 @@ local options = {
   termguicolors = true,                    -- set term gui colors (most terminals support this)
   timeoutlen = 1000,                       -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true,                         -- enable persistent undo
-  updatetime = 300,                        -- faster completion (4000ms default)
+  undodir = os.getenv("HOME") .. "/.vim/undodir",
+  updatetime = 50,                        -- faster completion (4000ms default)
   writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   expandtab = true,                        -- convert tabs to spaces
   shiftwidth = 2,                          -- the number of spaces inserted for each indentation
@@ -40,12 +42,14 @@ local options = {
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
-  -- colorcolumn = "80",
+  colorcolumn = "80",
   -- colorcolumn = "120",
   laststatus = 3,
   showcmd = false,
   ruler = false,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
+  guicursor = "",
+
 }
 
 local global_options = {
