@@ -1,2 +1,10 @@
 .cfg
 nvim/.config/nvim/plugin/
+fish/.config/fish/completions/
+fish/.config/**/_pure*
+fish/.config/fish/conf.d/pure.fish
+fish/.config/fish/fish_plugins
+fish/.config/fish/fish_variables
+fish/.config/fish/functions/fish_*
+fish/.config/fish/functions/fisher.fish
+systemd/.config/systemd/user/default.target.wants/
