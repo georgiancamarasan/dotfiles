@@ -17,7 +17,7 @@ vim.g.mapleader = " "
 --   command_mode = "c",
 
 -- clipboard {{{
-keymap("x", "<leader>p", "\"_dp")
+keymap("x", "<leader>p", '"_dp')
 -- }}}
 
 -- Normal --
@@ -36,24 +36,26 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- }}}
 
 -- buffer commands {{{
-keymap('n', 'gp', ':bp<CR>', opts)
-keymap('n', 'gn', ':bn<CR>', opts)
-keymap('n', '<leader><leader>', '<C-^>', opts)
+keymap("n", "gp", ":bp<CR>", opts)
+keymap("n", "gn", ":bn<CR>", opts)
+keymap("n", "<leader><leader>", "<C-^>", opts)
 keymap("n", "<leader>v", ":vsplit<CR>", opts)
 keymap("n", "<leader>x", ":x<CR>", opts)
-keymap("n", "<leader>q", ":Bdelete!<CR>", opts) -- Close buffers
-keymap("n", "<leader>qq", ":qa<CR>", opts) -- Close all
+keymap("n", "<leader>q", ":Bdelete!<CR>", opts)               -- Close buffers
+keymap("n", "<leader>qq", ":qa<CR>", opts)                    -- Close all
+keymap("n", "<leader><leader>x", ":w<CR>:source %<CR>", opts) -- Close all
 -- }}}
 
 -- LSP commands {{{
-keymap('n', '<leader>lf', ':Format', opts)
+keymap("n", "<leader>lf", ":Format<CR>", opts)
+keymap("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = true })
 -- }}}
 
 -- file commands {{{
-keymap('n', '<Leader>w', ':w<CR>', opts)
-keymap('n', '<C-s>', ':wa<CR>', opts)
-keymap('n', '<Leader>x', ':x<CR>', opts)
-keymap('n', '<Leader>xa', ':xa<CR>', opts)
+keymap("n", "<leader>w", ":w<CR>", opts)
+keymap("n", "<C-s>", ":wa<CR>", opts)
+keymap("n", "<leader>x", ":x<CR>", opts)
+keymap("n", "<leader>xa", ":xa<CR>", opts)
 -- }}}
 
 -- Move text up and down {{{
@@ -62,12 +64,12 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==", opts)
 -- }}}
 
 --- simple code manipulation {{{
-keymap('n', '<leader>-', 'ddp', opts) -- Move current line above
-keymap('n', '<leader>_', 'ddkP', opts) -- Move current line below
+keymap("n", "<leader>-", "ddp", opts)  -- Move current line above
+keymap("n", "<leader>_", "ddkP", opts) -- Move current line below
 --- }}}
 
 -- Toggle search hilight {{{
-keymap('n', '<leader>h', ':set hlsearch!<CR>', opts)
+keymap("n", "<leader>h", ":set hlsearch!<CR>", opts)
 -- }}}
 
 -- Better paste {{{
@@ -114,13 +116,13 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 -- }}}
 
 -- Telescope {{{
-local status_ok, builtin = pcall(require, 'telescope.builtin')
+local status_ok, builtin = pcall(require, "telescope.builtin")
 if status_ok then
-  keymap("n", "<leader>ff", builtin.find_files, opts)
-  keymap("n", "<leader>fg", builtin.git_files, opts)
-  keymap("n", "<leader>ft", builtin.live_grep, opts)
-  keymap("n", "<leader>fb", builtin.buffers, opts)
-  keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
+	keymap("n", "<leader>ff", builtin.find_files, opts)
+	keymap("n", "<leader>fg", builtin.git_files, opts)
+	keymap("n", "<leader>ft", builtin.live_grep, opts)
+	keymap("n", "<leader>fb", builtin.buffers, opts)
+	keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 end
 -- }}}
 
@@ -148,4 +150,9 @@ keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 -- }}}
+
+-- {{{ Plenary
+keymap("n", "<leader>t", "<Plug>PlenaryTestFile<CR>", opts)
+---}}}
+
 -- }}}
