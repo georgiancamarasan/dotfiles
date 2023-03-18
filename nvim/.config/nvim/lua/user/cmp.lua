@@ -112,14 +112,14 @@ cmp.setup {
     end,
   },
   sources = {
-    { name = 'nvim_lsp' },
     { name = "nvim_lua" },
-    { name = "luasnip" },
-    { name = "buffer" },
+    { name = 'nvim_lsp' },
     { name = "path" },
+    { name = "luasnip" },
     { name = 'npm', keyword_length = 4 },
-    { name = 'spell' },
+    { name = "buffer" },
     { name = 'tmux' },
+    { name = 'spell', keyword_length = 4 },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
