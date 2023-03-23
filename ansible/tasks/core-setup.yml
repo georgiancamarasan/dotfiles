@@ -19,7 +19,7 @@
 - name: Install System Packages 3
   become: true
   community.general.pacman:
-    name: ["curl", "htop"]
+    name: ["curl", "htop", "tmux"]
     state: present
   tags:
     - install
