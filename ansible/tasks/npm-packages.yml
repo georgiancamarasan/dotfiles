@@ -1,32 +1,10 @@
-- name: Install eslint
+- name: Install npm packages
   become: true
   npm:
-    name: eslint
+    name:
+      - eslint
+      - typescript-language-server
+      - typescript
+      - ts-node
+      - neovim
     global: yes
-  tags:
-    - install
-    - node
-- name: Install Typescript server
-  become: true
-  npm:
-    name: typescript-language-server
-    global: yes
-  tags:
-    - install
-    - node
-- name: Install Typescript
-  become: true
-  npm:
-    name: typescript
-    global: yes
-  tags:
-    - install
-    - node
-- name: Install TS-Node
-  become: true
-  npm:
-    name: ts-node
-    global: yes
-  tags:
-    - install
-    - node
