@@ -1,11 +1,30 @@
-- name: Install npm packages
+- name: Install esling
   become: true
   community.general.npm:
-    name:
-      - eslint
-      - typescript-language-server
-      - typescript
-      - ts-node
-      - neovim
+    name: eslint
+    global: yes
+    state: present
+- name: Install typescript-language-server
+  become: true
+  community.general.npm:
+    name: typescript-language-server
+    global: yes
+    state: present
+- name: Install typescript
+  become: true
+  community.general.npm:
+    name: typescript
+    global: yes
+    state: present
+- name: Install ts-node
+  become: true
+  community.general.npm:
+    name: ts-node
+    global: yes
+    state: present
+- name: Install neovim
+  become: true
+  community.general.npm:
+    name: neovim
     global: yes
     state: present
