@@ -10,17 +10,11 @@
     dest: /tmp/sh.rustup.rs
     mode: '0755'
     force: 'yes'
-  tags:
-    - rust
 
 - name: install rust/cargo
   when: cargo_exists is failed
   shell: /tmp/sh.rustup.rs -y
-  tags:
-    - rust
 
-- name: source cargo
+- name: install rust/cargo
   when: cargo_exists is failed
-  shell: source $HOME/.cargo/env
-  tags:
-    - rust
+  shell: $HOME/.cargo/bin/cargo install bat cargo-update exa diskonaut fd-find just ripgrep rm-improved xsv zoxide prettier stylua
