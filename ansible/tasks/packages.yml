@@ -14,15 +14,15 @@
       - "tmux"
       - "nodejs"
       - "npm"
-      - luarocks
-      -  stow
+      - "luarocks"
+      - "stow"
     state: present
   when: ansible_distribution in ["Arch", "Manjaro"]
 - name: Install Packages for Ubuntu
   become: true
   ansible.builtin.apt:
     name:
-      - build-essential"
+      - "build-essential"
       - "cmake"
       - "sudo"
       - "lua5.1"
@@ -34,8 +34,8 @@
       - "tmux"
       - "nodejs"
       - "npm"
-      - luarocks
-      - stow
+      - "luarocks"
+      - "stow"
     state: present
   when: ansible_distribution in ["Ubuntu"]
 - name: Install Packages for Fedora
@@ -55,7 +55,7 @@
       - "tmux"
       - "nodejs"
       - "npm"
-      - luarocks
-      - stow
+      - "luarocks"
+      - "stow"
     state: present
   when: ansible_distribution in ["Fedora"]
