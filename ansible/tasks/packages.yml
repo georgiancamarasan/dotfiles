@@ -17,8 +17,6 @@
       - luarocks
       -  stow
     state: present
-    update_cache: true
-    upgrade: true
   when: ansible_distribution in ["Arch", "Manjaro"]
 - name: Install Packages for Ubuntu
   become: true
@@ -39,8 +37,6 @@
       - luarocks
       - stow
     state: present
-    update_cache: true
-    upgrade: true
   when: ansible_distribution in ["Ubuntu"]
 - name: Install Packages for Fedora
   become: true
@@ -62,6 +58,4 @@
       - luarocks
       - stow
     state: present
-    update_cache: true
-    upgrade: true
   when: ansible_distribution in ["Fedora"]
