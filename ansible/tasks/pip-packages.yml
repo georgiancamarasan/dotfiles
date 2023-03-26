@@ -1,0 +1,7 @@
+- name: Install pip packages
+  pip:
+    name:
+      - neovim
+      - black
+      - flake8
+    global: yes

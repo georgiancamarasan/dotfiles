@@ -16,6 +16,7 @@
       - "npm"
       - "luarocks"
       - "stow"
+      - "tidy"
     state: present
   when: ansible_distribution in ["Arch", "Manjaro"]
 - name: Install Packages for Ubuntu
@@ -36,6 +37,7 @@
       - "npm"
       - "luarocks"
       - "stow"
+      - "tidy"
     state: present
   when: ansible_distribution in ["Ubuntu"]
 - name: Install Packages for Fedora
@@ -57,5 +59,6 @@
       - "npm"
       - "luarocks"
       - "stow"
+      - "tidy"
     state: present
   when: ansible_distribution in ["Fedora"]

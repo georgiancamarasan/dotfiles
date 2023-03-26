@@ -31,6 +31,8 @@
     include_tasks: tasks/git-setup.yml
   - name: Install npm packages
     include_tasks: tasks/npm-packages.yml
+  - name: Install pip packages
+    include_tasks: tasks/pip-packages.yml
   - name: Install neovim
     include_tasks: tasks/nvim-setup.yml
   - name: Install dotfiles
