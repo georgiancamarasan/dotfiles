@@ -176,8 +176,8 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use("~/code/neovim-plugins/simple-plugin-dev.nvim")
-	use("~/code/neovim-plugins/stackmap.nvim")
+	--[[ use("~/code/neovim-plugins/simple-plugin-dev.nvim") ]]
+	--[[ use("~/code/neovim-plugins/stackmap.nvim") ]]
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

@@ -18,7 +18,7 @@
     - install
     - neovim
 - name: Build neovim
-  shell: "cd {{ lookup('env', 'HOME') }}/code/neovim && make -j 20"
+  shell: "cd {{ lookup('env', 'HOME') }}/code/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo"
   tags:
     - install
     - neovim
@@ -33,6 +33,25 @@
   community.general.pacman:
     name: luarocks
     state: present
+  when: ansible_distribution in ["Arch", "Manjaro"]
+  tags:
+    - install
+    - neovim
+- name: Neovim Plugin Development 1
+  become: true
+  ansible.builtin.apt:
+    name: luarocks
+    state: present
+  when: ansible_distribution in ["Ubuntu"]
+  tags:
+    - install
+    - neovim
+- name: Neovim Plugin Development 1
+  become: true
+  ansible.builtin.dnf:
+    name: luarocks
+    state: present
+  when: ansible_distribution in ["Fedora"]
   tags:
     - install
     - neovim

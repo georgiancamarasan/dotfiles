@@ -3,6 +3,27 @@
   community.general.pacman:
     name: stow
     state: present
+  when: ansible_distribution in ["Arch", "Manjaro"]
+  tags:
+    - install
+    - dotfiles
+    - stow
+- name: Installing stow
+  become: true
+  ansible.builtin.apt:
+    name: stow
+    state: present
+  when: ansible_distribution in ["Ubuntu"]
+  tags:
+    - install
+    - dotfiles
+    - stow
+- name: Installing stow
+  become: true
+  ansible.builtin.dnf:
+    name: stow
+    state: present
+  when: ansible_distribution in ["Fedora"]
   tags:
     - install
     - dotfiles

@@ -2,6 +2,23 @@
   become: true
   community.general.pacman:
     name: ["nodejs", "npm"]
+  when: ansible_distribution in ["Arch", "Manjaro"]
+  tags:
+    - install
+    - node
+- name: Install nodejs and npm
+  become: true
+  ansible.builtin.apt:
+    name: ["nodejs", "npm"]
+  when: ansible_distribution in ["Ubuntu"]
+  tags:
+    - install
+    - node
+- name: Install nodejs and npm
+  become: true
+  ansible.builtin.dnf:
+    name: ["nodejs", "npm"]
+  when: ansible_distribution in ["Fedora"]
   tags:
     - install
     - node

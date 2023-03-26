@@ -10,6 +10,25 @@
     community.general.pacman:
       update_cache: true
       upgrade: true
+    when: ansible_distribution in ["Arch", "Manjaro"]
+    tags:
+      - install
+      - core
+  - name: Update packages
+    become: true
+    apt:
+      update_cache: true
+      upgrade: true
+    when: ansible_distribution in ["Ubuntu"]
+    tags:
+      - install
+      - core
+  - name: Update packages
+    become: true
+    dnf:
+      update_cache: true
+      upgrade: true
+    when: ansible_distribution in ["Fedora"]
     tags:
       - install
       - core

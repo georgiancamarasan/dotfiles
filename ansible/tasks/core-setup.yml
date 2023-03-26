@@ -3,6 +3,30 @@
   community.general.pacman:
     name: ["base-devel", "cmake", "sudo"]
     state: present
+    update_cache: true
+  when: ansible_distribution in ["Arch", "Manjaro"]
+  tags:
+    - install
+    - neovim
+    - core
+- name: Install System Packages 1
+  become: true
+  ansible.builtin.apt:
+    name: ["build-essential", "cmake", "sudo"]
+    state: present
+    update_cache: true
+  when: ansible_distribution in ["Ubuntu"]
+  tags:
+    - install
+    - neovim
+    - core
+- name: Install System Packages 1
+  become: true
+  ansible.builtin.dnf:
+    name: ["@Development Tools", "@Development Libraries", "cmake", "sudo"]
+    state: present
+    update_cache: true
+  when: ansible_distribution in ["Fedora"]
   tags:
     - install
     - neovim
@@ -12,6 +36,27 @@
   community.general.pacman:
     name: ["lua51", "unzip", "libtool", "gettext"]
     state: present
+  when: ansible_distribution in ["Arch", "Manjaro"]
+  tags:
+    - install
+    - neovim
+    - core
+- name: Install System Packages 2
+  become: true
+  ansible.builtin.apt:
+    name: ["lua5.1", "unzip", "libtool", "gettext"]
+    state: present
+  when: ansible_distribution in ["Ubuntu"]
+  tags:
+    - install
+    - neovim
+    - core
+- name: Install System Packages 2
+  become: true
+  ansible.builtin.dnf:
+    name: ["lua", "unzip", "libtool", "gettext"]
+    state: present
+  when: ansible_distribution in ["Fedora"]
   tags:
     - install
     - neovim
@@ -19,8 +64,29 @@
 - name: Install System Packages 3
   become: true
   community.general.pacman:
-    name: ["curl", "htop", "python-pip"]
+    name: ["curl", "htop"]
     state: present
+  when: ansible_distribution in ["Arch", "Manjaro"]
+  tags:
+    - install
+    - neovim
+    - core
+- name: Install System Packages 3
+  become: true
+  ansible.builtin.apt:
+    name: ["curl", "htop"]
+    state: present
+  when: ansible_distribution in ["Ubuntu"]
+  tags:
+    - install
+    - neovim
+    - core
+- name: Install System Packages 3
+  become: true
+  ansible.builtin.dnf:
+    name: ["curl", "htop"]
+    state: present
+  when: ansible_distribution in ["Fedora"]
   tags:
     - install
     - neovim
