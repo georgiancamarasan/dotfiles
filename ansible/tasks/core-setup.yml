@@ -64,7 +64,7 @@
 - name: Install System Packages 3
   become: true
   community.general.pacman:
-    name: ["curl", "htop"]
+    name: ["curl", "htop", "tmux"]
     state: present
   when: ansible_distribution in ["Arch", "Manjaro"]
   tags:
@@ -74,7 +74,7 @@
 - name: Install System Packages 3
   become: true
   ansible.builtin.apt:
-    name: ["curl", "htop"]
+    name: ["curl", "htop", "tmux"]
     state: present
   when: ansible_distribution in ["Ubuntu"]
   tags:
@@ -84,7 +84,7 @@
 - name: Install System Packages 3
   become: true
   ansible.builtin.dnf:
-    name: ["curl", "htop"]
+    name: ["curl", "htop", "tmux"]
     state: present
   when: ansible_distribution in ["Fedora"]
   tags:
