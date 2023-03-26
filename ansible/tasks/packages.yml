@@ -17,6 +17,8 @@
       - "luarocks"
       - "stow"
       - "tidy"
+      - "python3"
+      - "python3-pip"
     state: present
   when: ansible_distribution in ["Arch", "Manjaro"]
 - name: Install Packages for Ubuntu
@@ -38,6 +40,8 @@
       - "luarocks"
       - "stow"
       - "tidy"
+      - "python3"
+      - "python3-pip"
     state: present
   when: ansible_distribution in ["Ubuntu"]
 - name: Install Packages for Fedora
@@ -60,5 +64,7 @@
       - "luarocks"
       - "stow"
       - "tidy"
+      - "python3"
+      - "python3-pip"
     state: present
   when: ansible_distribution in ["Fedora"]

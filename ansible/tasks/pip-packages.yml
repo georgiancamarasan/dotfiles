@@ -4,4 +4,3 @@
       - neovim
       - black
       - flake8
-    global: yes
