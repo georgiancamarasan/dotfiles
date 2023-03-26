@@ -29,33 +29,6 @@
   tags:
     - install
     - neovim
-- name: Neovim Plugin Development 1
-  become: true
-  community.general.pacman:
-    name: luarocks
-    state: present
-  when: ansible_distribution in ["Arch", "Manjaro"]
-  tags:
-    - install
-    - neovim
-- name: Neovim Plugin Development 1
-  become: true
-  ansible.builtin.apt:
-    name: luarocks
-    state: present
-  when: ansible_distribution in ["Ubuntu"]
-  tags:
-    - install
-    - neovim
-- name: Neovim Plugin Development 1
-  become: true
-  ansible.builtin.dnf:
-    name: luarocks
-    state: present
-  when: ansible_distribution in ["Fedora"]
-  tags:
-    - install
-    - neovim
 - name: Neovim Plugin Development 2 luacheck
   become: true
   shell: luarocks install luacheck

@@ -5,46 +5,15 @@
     rsa_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     ed_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
   pre_tasks:
-  - name: Update packages
-    become: true
-    community.general.pacman:
-      update_cache: true
-      upgrade: true
-    when: ansible_distribution in ["Arch", "Manjaro"]
-    tags:
-      - install
-      - core
-  - name: Update packages
-    become: true
-    apt:
-      update_cache: true
-      upgrade: true
-    when: ansible_distribution in ["Ubuntu"]
-    tags:
-      - install
-      - core
-  - name: Update packages
-    become: true
-    dnf:
-      update_cache: true
-      upgrade: true
-    when: ansible_distribution in ["Fedora"]
-    tags:
-      - install
-      - core
+  - name: Install packages
+    include_tasks: tasks/packages.yml
   - name: Install SSH Keys
     include_tasks: tasks/ssh.yml
   - name: Install Git
     include_tasks: tasks/git-setup.yml
-  - name: Install Core Setup
-    include_tasks: tasks/core-setup.yml
-  - name: Install Nodejs & npm
-    include_tasks: tasks/node-setup.yml
   - name: Install npm packages
     include_tasks: tasks/npm-packages.yml
   - name: Install neovim
     include_tasks: tasks/nvim-setup.yml
-  - name: Install python & pip
-    include_tasks: tasks/python-setup.yml
   - name: Install dotfiles
     include_tasks: tasks/dotfiles.yml
