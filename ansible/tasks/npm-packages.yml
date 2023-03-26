@@ -1,6 +1,6 @@
 - name: Install npm packages
   become: true
-  npm:
+  community.general.npm:
     name:
       - eslint
       - typescript-language-server
@@ -8,3 +8,4 @@
       - ts-node
       - neovim
     global: yes
+    state: present
