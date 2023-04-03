@@ -13,7 +13,6 @@ configs.setup({
 		"gitcommit",
 		"gitignore",
 		"graphql",
-		"help",
 		"javascript",
 		"json",
 		"lua",
