@@ -23,7 +23,7 @@
 - name: Install System Packages 1
   become: true
   ansible.builtin.dnf:
-    name: ["@Development Tools", "@Development Libraries", "cmake", "sudo"]
+    name: ["@Development Tools", "@Development Libraries", "gcc-c++", "cmake", "sudo"]
     state: present
     update_cache: true
   when: ansible_distribution in ["Fedora"]
