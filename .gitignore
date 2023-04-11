@@ -8,3 +8,4 @@ fish/.config/fish/fish_variables
 fish/.config/fish/functions/fish_*
 fish/.config/fish/functions/fisher.fish
 systemd/.config/systemd/user/default.target.wants/
+.luarc.json
