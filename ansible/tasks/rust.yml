@@ -16,5 +16,4 @@
   shell: /tmp/sh.rustup.rs -y
 
 - name: install rust/cargo
-  when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install bat cargo-update exa diskonaut fd-find just ripgrep rm-improved xsv zoxide prettier stylua zellij
+  shell: $HOME/.cargo/bin/cargo install bat cargo-update exa diskonaut fd-find just ripgrep rm-improved xsv zoxide prettier stylua zellij alacritty

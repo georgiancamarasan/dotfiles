@@ -6,3 +6,5 @@
   shell: cd $HOME/.dotfiles && stow nvim
 - name: Stow systemd
   shell: cd $HOME/.dotfiles && stow systemd
+- name: Stow alacritty
+  shell: cd $HOME/.dotfiles && stow alacritty
