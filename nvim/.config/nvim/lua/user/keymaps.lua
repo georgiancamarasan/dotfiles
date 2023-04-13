@@ -43,7 +43,7 @@ keymap("n", "<leader>v", ":vsplit<CR>", opts)
 keymap("n", "<leader>x", ":x<CR>", opts)
 keymap("n", "<leader>q", ":Bdelete!<CR>", opts)               -- Close buffers
 keymap("n", "<leader>qq", ":qa<CR>", opts)                    -- Close all
-keymap("n", "<leader><leader>x", ":w<CR>:source %<CR>", opts) -- Close all
+keymap("n", "<leader>rr", ":w<CR>:source %<CR>", opts) -- Close all
 -- }}}
 
 -- LSP commands {{{
