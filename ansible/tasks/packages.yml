@@ -20,6 +20,7 @@
       - "tidy"
       - "python"
       - "python-pip"
+      - "tree"
     state: present
   when: ansible_distribution in ["Archlinux"]
 - name: Install Packages for Ubuntu
@@ -44,6 +45,7 @@
       - "tidy"
       - "python3"
       - "python3-pip"
+      - "tree"
     state: present
   when: ansible_distribution in ["Ubuntu"]
 - name: Install Packages for Fedora
@@ -71,5 +73,6 @@
       - "tidy"
       - "python3"
       - "python3-pip"
+      - "tree"
     state: present
   when: ansible_distribution in ["Fedora"]
