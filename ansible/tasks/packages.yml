@@ -21,6 +21,7 @@
       - "python"
       - "python-pip"
       - "tree"
+      - "xclip"
     state: present
   when: ansible_distribution in ["Archlinux"]
 - name: Install Packages for Ubuntu
@@ -46,6 +47,7 @@
       - "python3"
       - "python3-pip"
       - "tree"
+      - "xclip"
     state: present
   when: ansible_distribution in ["Ubuntu"]
 - name: Install Packages for Fedora
