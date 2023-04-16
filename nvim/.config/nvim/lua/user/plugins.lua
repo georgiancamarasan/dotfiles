@@ -75,7 +75,12 @@ return packer.startup(function(use)
 		},
 	})
 	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
-	use("hrsh7th/cmp-buffer") -- buffer completions
+	use({
+		"hrsh7th/cmp-buffer", -- buffer completions
+		config = function()
+			require("user.bufferline")
+		end,
+	})
 	use("hrsh7th/cmp-path") -- path completions
 	use("hrsh7th/cmp-nvim-lua") -- lua API completions
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
