@@ -143,7 +143,12 @@ return packer.startup(function(use)
 	})
 	-- }}}
 
-	use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
+	use({
+		"windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
+		config = function()
+			require("user.autopairs")
+		end,
+	})
 	use({ "kyazdani42/nvim-web-devicons" })
 
 	use("moll/vim-bbye") -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
