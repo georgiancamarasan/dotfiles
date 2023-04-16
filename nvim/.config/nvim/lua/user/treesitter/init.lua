@@ -33,3 +33,6 @@ require("nvim-treesitter.configs").setup({
 	},
 	indent = { enable = true, disable = { "python", "css", "yaml" } },
 })
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
