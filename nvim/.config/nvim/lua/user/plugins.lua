@@ -120,7 +120,7 @@ return packer.startup(function(use)
 		-- 'navarasu/onedark.nvim' -- Theme inspired by Atom
 		"lunarvim/darkplus.nvim",
 		config = function()
-			vim.cmd "colorscheme darkplus"
+			vim.cmd("colorscheme darkplus")
 		end,
 	})
 	-- }}}
@@ -140,7 +140,12 @@ return packer.startup(function(use)
 	--- }}}
 
 	-- Comments {{{
-	use("numToStr/Comment.nvim") -- 'gc' to comment visual regions/lines
+	use({
+		"numToStr/Comment.nvim", -- 'gc' to comment visual regions/lines
+		config = function()
+			require("user.comment")
+		end,
+	})
 	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 	-- }}}
 
