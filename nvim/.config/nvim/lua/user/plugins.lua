@@ -117,7 +117,12 @@ return packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
 	use("nvim-tree/nvim-tree.lua") -- A File Explorer For Neovim Written In Lua
 	use("akinsho/bufferline.nvim") -- A snazzy buffer line (with tabpage integration) for Neovim built using lua.
-	use("goolord/alpha-nvim") -- alpha is a fast and fully programmable greeter for neovim.
+	use({
+		"goolord/alpha-nvim", -- alpha is a fast and fully programmable greeter for neovim.
+		config = function()
+			require("user.alpha")
+		end,
+	})
 	--[[ use 'folke/which-key.nvim' -- displays a popup with possible key bindings of the command you started typing ]]
 	--- }}}
 
@@ -175,6 +180,8 @@ return packer.startup(function(use)
 			require("todo-comments").setup({})
 		end,
 	})
+
+	use("dstein64/vim-startuptime")
 
 	use("~/code/neovim-plugins/simple-plugin-dev.nvim")
 	use("~/code/neovim-plugins/stackmap.nvim")
