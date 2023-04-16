@@ -41,6 +41,7 @@ packer.init({
 return packer.startup(function(use)
 	-- Plugin manager {{{
 	use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
+
 	use({ "lewis6991/impatient.nvim" })
 	-- }}}
 
@@ -58,11 +59,18 @@ return packer.startup(function(use)
 			-- Additional lua configuration, makes nvim stuff amazing
 			"folke/neodev.nvim",
 		},
+		config = function()
+			require("user.lsp")
+		end,
 	})
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 	use("RRethy/vim-illuminate") -- Vim plugin for automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching.
-	use("folke/lsp-colors.nvim") -- Automatically creates missing LSP diagnostics...
-	use("folke/trouble.nvim") -- A pretty list for showing diagnostics, references, telescope results...
+	use({
+		"folke/trouble.nvim", -- A pretty list for showing diagnostics, references, telescope results...
+		config = function()
+			require("trouble").setup({})
+		end,
+	})
 	-- }}}
 
 	-- Autocompletion {{{
@@ -81,7 +89,7 @@ return packer.startup(function(use)
 	use({
 		"hrsh7th/cmp-buffer", -- buffer completions
 		config = function()
-			require("user.bufferline")
+			require("user.cmp")
 		end,
 	})
 	use("hrsh7th/cmp-path") -- path completions
@@ -90,6 +98,12 @@ return packer.startup(function(use)
 	use("David-Kunz/cmp-npm") -- npm packages completions
 	use("f3fora/cmp-spell") -- spell source for nvim-cmp based on vim's spellsuggest
 	use("andersevenrud/cmp-tmux") -- tmux adjacent panes completionsc
+	use({
+		"windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
+		config = function()
+			require("user.autopairs")
+		end,
+	})
 	-- }}}
 
 	-- Highlight, edit, and navigate code {{{
@@ -97,6 +111,9 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter", -- Treesitter configurations and abstraction layer for Neovim.
 		run = function()
 			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
+		end,
+		config = function()
+			require("user.treesitter")
 		end,
 	})
 
@@ -111,7 +128,12 @@ return packer.startup(function(use)
 	-- Git related plugins {{{
 	use("tpope/vim-fugitive") -- premier Vim plugin for Git
 	use("tpope/vim-rhubarb") -- If fugitive.vim is the Git, rhubarb.vim is the Hub.
-	use("lewis6991/gitsigns.nvim") -- Super fast git decorations implemented purely in lua/teal.
+	use({
+		"lewis6991/gitsigns.nvim", -- Super fast git decorations implemented purely in lua/teal.
+		config = function()
+			require("user.gitsigns")
+		end,
+	})
 	-- }}}
 
 	-- Colorschemes {{{
@@ -126,17 +148,47 @@ return packer.startup(function(use)
 	-- }}}
 
 	-- Visual plugins {{{
-	use("nvim-lualine/lualine.nvim") -- Fancier statusline
-	use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
-	use("nvim-tree/nvim-tree.lua") -- A File Explorer For Neovim Written In Lua
-	use("akinsho/bufferline.nvim") -- A snazzy buffer line (with tabpage integration) for Neovim built using lua.
 	use({
 		"goolord/alpha-nvim", -- alpha is a fast and fully programmable greeter for neovim.
 		config = function()
 			require("user.alpha")
 		end,
 	})
-	--[[ use 'folke/which-key.nvim' -- displays a popup with possible key bindings of the command you started typing ]]
+
+	use({
+		"akinsho/bufferline.nvim", -- A snazzy buffer line (with tabpage integration) for Neovim built using lua.
+		config = function()
+			require("user.bufferline")
+		end,
+	})
+
+	use({
+		"nvim-lualine/lualine.nvim", -- Fancier statusline
+		config = function()
+			require("user.lualine")
+		end,
+	})
+
+	use({
+		"lukas-reineke/indent-blankline.nvim", -- Add indentation guides even on blank lines
+		config = function()
+			require("user.indent-blankline")
+		end,
+	})
+
+	use({
+		"nvim-tree/nvim-tree.lua", -- A File Explorer For Neovim Written In Lua
+		config = function()
+			require("user.nvim-tree")
+		end,
+	})
+
+	use({
+		"folke/which-key.nvim", -- displays a popup with possible key bindings of the command you started typing
+		config = function()
+			require("user.which-key")
+		end,
+	})
 	--- }}}
 
 	-- Comments {{{
@@ -152,7 +204,14 @@ return packer.startup(function(use)
 	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
 	-- Fuzzy Finder (files, lsp, etc) {{{
-	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
+	use({
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("user.telescope")
+		end,
+	})
 	use("nvim-telescope/telescope-media-files.nvim")
 	-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
 	use({
@@ -161,12 +220,6 @@ return packer.startup(function(use)
 	})
 	-- }}}
 
-	use({
-		"windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
-		config = function()
-			require("user.autopairs")
-		end,
-	})
 	use({ "kyazdani42/nvim-web-devicons" })
 
 	use("moll/vim-bbye") -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
@@ -181,14 +234,27 @@ return packer.startup(function(use)
 	use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
 	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview" })
 
-	use({ "akinsho/toggleterm.nvim" })
-	use("ahmedkhalf/project.nvim") -- an all in one neovim plugin written in lua that provides superior project management.
+	use({
+		"akinsho/toggleterm.nvim",
+		config = function()
+			require("user.toggleterm")
+		end,
+	})
+	use({
+		"ahmedkhalf/project.nvim", -- an all in one neovim plugin written in lua that provides superior project management.
+		config = function()
+			require("user.project")
+		end,
+	})
 
 	-- DAP (Debug Adapter Protocol) {{{
 	use({
 		"rcarriga/nvim-dap-ui", -- A UI for nvim-dap which provides a good out of the box configuration.
 		requires = {
 			"mfussenegger/nvim-dap", -- nvim-dap is a Debug Adapter Protocol client implementation for Neovim.
+			config = function()
+				require("user.dap")
+			end,
 		},
 	})
 	use("ravenxrz/DAPInstall.nvim") -- A NeoVim plugin for managing several debuggers for Nvim-dap
