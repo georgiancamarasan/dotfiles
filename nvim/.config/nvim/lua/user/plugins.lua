@@ -73,6 +73,9 @@ return packer.startup(function(use)
 			{ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" }, -- snippets written in lua
 			"saadparwaiz1/cmp_luasnip", -- luasnip completion source for nvim-cmp
 		},
+		config = function()
+			require("user.cmp")
+		end,
 	})
 	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 	use({
