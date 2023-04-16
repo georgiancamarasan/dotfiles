@@ -116,8 +116,13 @@ return packer.startup(function(use)
 
 	-- Colorschemes {{{
 	-- use 'folke/tokyonight.nvim'
-	use("lunarvim/darkplus.nvim")
-	-- use 'navarasu/onedark.nvim' -- Theme inspired by Atom
+	use({
+		-- 'navarasu/onedark.nvim' -- Theme inspired by Atom
+		"lunarvim/darkplus.nvim",
+		config = function()
+			vim.cmd "colorscheme darkplus"
+		end,
+	})
 	-- }}}
 
 	-- Visual plugins {{{
