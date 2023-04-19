@@ -80,24 +80,20 @@ return packer.startup(function(use)
 			"hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in language server client.
 			{ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" }, -- snippets written in lua
 			"saadparwaiz1/cmp_luasnip", -- luasnip completion source for nvim-cmp
+			"rafamadriz/friendly-snippets", -- a bunch of snippets to use
+			"hrsh7th/cmp-buffer", -- buffer completions
+			"hrsh7th/cmp-path", -- path completions
+			"hrsh7th/cmp-nvim-lua", -- lua API completions
+			"hrsh7th/cmp-cmdline", -- cmdline completions
+			"David-Kunz/cmp-npm", -- npm packages completions
+			"f3fora/cmp-spell", -- spell source for nvim-cmp based on vim's spellsuggest
+			"andersevenrud/cmp-tmux", -- tmux adjacent panes completionsc
 		},
 		config = function()
 			require("user.cmp")
 		end,
 	})
-	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
-	use({
-		"hrsh7th/cmp-buffer", -- buffer completions
-		config = function()
-			require("user.cmp")
-		end,
-	})
-	use("hrsh7th/cmp-path") -- path completions
-	use("hrsh7th/cmp-nvim-lua") -- lua API completions
-	use("hrsh7th/cmp-cmdline") -- cmdline completions
-	use("David-Kunz/cmp-npm") -- npm packages completions
-	use("f3fora/cmp-spell") -- spell source for nvim-cmp based on vim's spellsuggest
-	use("andersevenrud/cmp-tmux") -- tmux adjacent panes completionsc
+	use({})
 	use({
 		"windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
 		config = function()
@@ -201,7 +197,7 @@ return packer.startup(function(use)
 	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 	-- }}}
 
-	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
+	--[[ use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically ]]
 
 	-- Fuzzy Finder (files, lsp, etc) {{{
 	use({
