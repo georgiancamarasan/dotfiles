@@ -1,4 +1,4 @@
-local which_key = require("which-key")
+local wk = require("which-key")
 
 local setup = {
 	plugins = {
@@ -22,13 +22,16 @@ local setup = {
 	},
 	-- add operators that will trigger motion and text object completion
 	-- to enable all native operators, set the preset / operators plugin above
-	-- operators = { gc = "Comments" },
+	operators = { gc = "Comments" },
 	key_labels = {
 		-- override the label used to display some keys. It doesn't effect WK in any other way.
 		-- For example:
 		-- ["<space>"] = "SPC",
 		-- ["<cr>"] = "RET",
 		-- ["<tab>"] = "TAB",
+	},
+	motions = {
+		count = true,
 	},
 	icons = {
 		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -44,7 +47,8 @@ local setup = {
 		position = "bottom", -- bottom, top
 		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
 		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-		winblend = 0,
+		winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+		zindex = 1000, -- positive value to position WhichKey above other floating windows.
 	},
 	layout = {
 		height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -52,17 +56,36 @@ local setup = {
 		spacing = 3, -- spacing between columns
 		align = "left", -- align columns left, center or right
 	},
-	ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+	ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
+	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ ", "^call ", "^lua " }, -- hide mapping boilerplate
 	show_help = true, -- show help message on the command line when the popup is visible
+	show_keys = true, -- show the currently pressed key and its label as a message in the command line
 	triggers = "auto", -- automatically setup triggers
 	-- triggers = {"<leader>"} -- or specify a list manually
+	triggers_nowait = {
+		-- marks
+		"`",
+		"'",
+		"g`",
+		"g'",
+		-- registers
+		'"',
+		"<c-r>",
+		-- spelling
+		"z=",
+	},
 	triggers_blacklist = {
 		-- list of mode / prefixes that should never be hooked by WhichKey
 		-- this is mostly relevant for key maps that start with a native binding
 		-- most people should not need to change this
 		i = { "j", "k" },
 		v = { "j", "k" },
+	},
+	-- disable the WhichKey popup for certain buf types and file types.
+	-- Disabled by default for Telescope
+	disable = {
+		buftypes = {},
+		filetypes = {},
 	},
 }
 
@@ -176,5 +199,86 @@ local mappings = {
 	},
 }
 
-which_key.setup(setup)
-which_key.register(mappings, opts)
+wk.setup(setup)
+
+wk.register({
+	["p"] = { '"_dP', "Paste" },
+}, { mode = "n" })
+
+wk.register({
+	["jk"] = { "<ESC>", "Normal mode" },
+}, { mode = "i" })
+
+wk.register({
+	["<"] = { "<gv", "Shift align left" },
+	[">"] = { ">gv", "Shift align right" },
+	["J"] = { ":m '>+1<CR>gv=gv", "Move selection down" },
+	["K"] = { ":m '<-2<CR>gv=gv", "Move selection up" },
+}, { mode = "v" })
+
+wk.register({
+	["J"] = { ":move '>+1<CR>gv-gv", "Move selection down" },
+	["K"] = { ":move '<-2<CR>gv-gv", "Move seleciton up" },
+	["<leader>/"] = {
+		'<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>',
+		"Comment block",
+	},
+}, { mode = "x" })
+
+wk.register({
+	["<C-h>"] = { "<C-\\><C-N><C-w>h", "Go to previous word" },
+	["<C-j>"] = { "<C-\\><C-N><C-w>j", "Go to next" },
+	["<C-k>"] = { "<C-\\><C-N><C-w>k", "Go to previous" },
+	["<C-l>"] = { "<C-\\><C-N><C-w>l", "Go to next word" },
+}, { mode = "t" })
+
+wk.register({
+	[""] = { "<Space>", "<Nop>" }, -- Remap space as leader key {{{
+	["<leader>p"] = { '"_dp', "Paste from clipboard" },
+	["<C-h>"] = { "<C-w>h", "Jump to left window" },
+	["<C-j>"] = { "<C-w>j", "Jump to bottom window" },
+	["<C-k>"] = { "<C-w>k", "Jump to top window" },
+	["<C-l>"] = { "<C-w>l", "Jump to right window" },
+	["<C-Up>"] = { ":resize -2<CR>", "Shrink window vertically" },
+	["<C-Down>"] = { ":resize +2<CR>", "Stretch window vertically " },
+	["<C-Left>"] = { ":vertical resize -2<CR>", "Shrink window horizontally" },
+	["gp"] = { ":bp<CR>", "Go to previous buffer" },
+	["gn"] = { ":bn<CR>", "Go to next buffer" },
+	["<leader><leader>"] = { "<C-^>", "Quick switch buffer" },
+	["<leader>v"] = { ":vsplit<CR>", "VSplit" },
+	["<leader>x"] = { ":x<CR>", "Save and close" },
+	["<leader>q"] = { ":Bdelete!<CR>", "Close buffer" },
+	["<leader>qq"] = { ":qa<CR>", "Close all" },
+	["<leader>rr"] = { ":w<CR>:source %<CR>", "Resource buffer" },
+	["<leader>lf"] = { ":Format<CR>", "Format buffer" },
+	["<leader>w"] = { ":w<CR>", "Write buffer" },
+	["<C-s>"] = { ":wa<CR>", "Save all" },
+	["<leader>xa"] = { ":xa<CR>", "Save all & close" },
+	["<A-j>"] = { "<Esc>:m .+1<CR>==", "Move line down" },
+	["<A-k>"] = { "<Esc>:m .-2<CR>==", "Move line up" },
+	["<leader>h"] = { ":set hlsearch!<CR>", "Hide hilight" },
+	["<C-\\>"] = { ":ToggleTerm<CR>", "Toggle terminal" },
+	["<leader>e"] = { ":NvimTreeToggle<CR>", "Toggle File Explorer" },
+	["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "Find files" },
+	["<leader>fg"] = { "<cmd>Telescope git_files<cr>", "Find git files" },
+	["<leader>ft"] = { "<cmd>Telescope grep_string<cr>", "Find text" },
+	["<leader>fb"] = { "<cmd>Telescope buffers<cr>", "Find buffers" },
+	["<leader>fp"] = { ":Telescope projects<CR>", "Find projects" },
+	["<leader>tg"] = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Toggle lazygit" },
+	["<leader>tn"] = { "<cmd>lua _NODE_TOGGLE()<CR>", "Toggle node terminal" },
+	["<leader>td"] = { "<cmd>lua _NCDU_TOGGLE()<CR>", "Toggle <#1> terminal" },
+	["<leader>th"] = { "<cmd>lua _HTOP_TOGGLE()<CR>", "Toggle htop" },
+	["<leader>tp"] = { "<cmd>lua _PYTHON_TOGGLE()<CR>", "Toggle python terminal" },
+	["<leader>/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment current line" },
+	["<leader>db"] = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle breakpoint" },
+	["<leader>dc"] = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+	["<leader>di"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step into" },
+	["<leader>do"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step over" },
+	["<leader>dO"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step out" },
+	["<leader>dr"] = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle REPL" },
+	["<leader>dl"] = { "<cmd>lua require'dap'.run_last()<cr>", "Run last" },
+	["<leader>du"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP" },
+	["<leader>dt"] = { "<cmd>lua require'dap'.terminate()<cr>", "Close DAP" },
+	["<leader>t"] = { "<Plug>PlenaryTestFile<CR>", "Run plenary tests" },
+	["<leader>ca"] = { vim.lsp.buf.code_action, "Code action" },
+})
