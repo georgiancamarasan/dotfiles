@@ -127,6 +127,7 @@ return packer.startup(function(use)
 		"lewis6991/gitsigns.nvim", -- Super fast git decorations implemented purely in lua/teal.
 		config = function()
 			require("user.gitsigns")
+      require("telescope").load_extension("lazygit")
 		end,
 	})
 	-- }}}
