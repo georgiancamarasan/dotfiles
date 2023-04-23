@@ -202,10 +202,6 @@ local mappings = {
 wk.setup(setup)
 
 wk.register({
-	["p"] = { '"_dP', "Paste" },
-}, { mode = "n" })
-
-wk.register({
 	["jk"] = { "<ESC>", "Normal mode" },
 }, { mode = "i" })
 
