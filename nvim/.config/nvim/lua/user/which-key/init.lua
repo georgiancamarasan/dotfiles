@@ -260,6 +260,7 @@ wk.register({
 	["<leader>ft"] = { "<cmd>Telescope grep_string<cr>", "Find text" },
 	["<leader>fb"] = { "<cmd>Telescope buffers<cr>", "Find buffers" },
 	["<leader>fp"] = { ":Telescope projects<CR>", "Find projects" },
+  ["<leader>fl"] = { "<cmd>lua require('telescope').extensions.lazygit.lazygit()<CR>", "Find lazygit project" },
 	["<leader>tg"] = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Toggle lazygit" },
 	["<leader>tn"] = { "<cmd>lua _NODE_TOGGLE()<CR>", "Toggle node repl" },
 	["<leader>td"] = { "<cmd>lua _NCDU_TOGGLE()<CR>", "Toggle disk usage" },
