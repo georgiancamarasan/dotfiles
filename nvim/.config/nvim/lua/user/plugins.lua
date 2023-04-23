@@ -122,9 +122,8 @@ return packer.startup(function(use)
 	-- }}}
 
 	-- Git related plugins {{{
-	use("tpope/vim-fugitive") -- premier Vim plugin for Git
-	use("tpope/vim-rhubarb") -- If fugitive.vim is the Git, rhubarb.vim is the Hub.
 	use({
+    "kdheepak/lazygit.nvim",
 		"lewis6991/gitsigns.nvim", -- Super fast git decorations implemented purely in lua/teal.
 		config = function()
 			require("user.gitsigns")
@@ -270,6 +269,7 @@ return packer.startup(function(use)
 
 	use("~/code/neovim-plugins/simple-plugin-dev.nvim")
 	use("~/code/neovim-plugins/stackmap.nvim")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
