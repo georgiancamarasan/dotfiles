@@ -6,23 +6,13 @@
   tags:
     - dotfiles
     - ssh
-- name: Install rsa ssh key
-  copy:
-    src: "{{ rsa_source_key }}"
-    dest: "{{ rsa_dest_key }}"
-    mode: 0600
-  tags:
-    - dotfiles
-    - ssh
-- name: Install rsa ssh key public
-  copy:
-    src: "{{ rsa_source_key }}.pub"
-    dest: "{{ rsa_dest_key }}.pub"
-    mode: 0644
-  tags:
-    - dotfiles
-    - ssh
+- name: check if ssh key already exists
+  stat:
+    path: "{{ ed_dest_key }}"
+  register: ssh_key_already_exists
+
 - name: Install ed ssh key
+  when: not ssh_key_already_exists.stat.exists
   copy:
     src: "{{ ed_source_key }}"
     dest: "{{ ed_dest_key }}"
@@ -31,6 +21,7 @@
     - dotfiles
     - ssh
 - name: Install ed ssh key public
+  when: not ssh_key_already_exists.stat.exists
   copy:
     src: "{{ ed_source_key }}.pub"
     dest: "{{ ed_dest_key }}.pub"
