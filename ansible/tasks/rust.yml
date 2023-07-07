@@ -16,5 +16,5 @@
   shell: /tmp/sh.rustup.rs -y
 
 - name: install rust apps
-  shell: $HOME/.cargo/bin/cargo install bat cargo-update exa diskonaut fd-find just ripgrep rm-improved xsv zoxide prettier stylua zellij alacritty xplr
+  shell: $HOME/.cargo/bin/cargo install bat cargo-update lsd diskonaut fd-find just ripgrep rm-improved xsv zoxide prettier stylua zellij alacritty xplr
 
