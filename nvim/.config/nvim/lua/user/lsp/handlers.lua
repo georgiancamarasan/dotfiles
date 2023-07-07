@@ -180,7 +180,6 @@ local servers = {
 	},
 	rust_analyzer = {},
 	sqlls = {},
-	esbonio = {},
 	taplo = {},
 	terraformls = {},
 	tsserver = {},
