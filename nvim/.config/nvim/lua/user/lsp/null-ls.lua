@@ -24,8 +24,8 @@ null_ls.setup {
     diagnostics.eslint,
     diagnostics.flake8,
     diagnostics.tidy,
-    completion.spell,
     completion.luasnip,
     completion.tags,
+    completion.spell,
   },
 }

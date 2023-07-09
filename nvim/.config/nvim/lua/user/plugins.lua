@@ -63,7 +63,8 @@ return packer.startup(function(use)
 			require("user.lsp")
 		end,
 	})
-	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+	--[[ use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters ]]
+	--[[ use("jay-babu/mason-null-ls.nvim") ]]
 	use("RRethy/vim-illuminate") -- Vim plugin for automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching.
 	use({
 		"folke/trouble.nvim", -- A pretty list for showing diagnostics, references, telescope results...
@@ -88,6 +89,7 @@ return packer.startup(function(use)
 			"David-Kunz/cmp-npm", -- npm packages completions
 			"f3fora/cmp-spell", -- spell source for nvim-cmp based on vim's spellsuggest
 			"andersevenrud/cmp-tmux", -- tmux adjacent panes completionsc
+      "onsails/lspkind.nvim" -- This tiny plugin adds vscode-like pictograms to neovim built-in lsp
 		},
 		config = function()
 			require("user.cmp")
@@ -123,11 +125,11 @@ return packer.startup(function(use)
 
 	-- Git related plugins {{{
 	use({
-    "kdheepak/lazygit.nvim",
+		"kdheepak/lazygit.nvim",
 		"lewis6991/gitsigns.nvim", -- Super fast git decorations implemented purely in lua/teal.
 		config = function()
 			require("user.gitsigns")
-      require("telescope").load_extension("lazygit")
+			require("telescope").load_extension("lazygit")
 		end,
 	})
 	-- }}}
