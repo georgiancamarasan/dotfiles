@@ -24,6 +24,7 @@
       - "tree"
       - "xclip"
       - "ncdu"
+      - "task"
     state: present
   when: ansible_distribution in ["Archlinux"]
 - name: Install Packages for Ubuntu
