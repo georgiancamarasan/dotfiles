@@ -11,10 +11,6 @@
     repo: 'https://github.com/neovim/neovim.git'
     dest: "{{ lookup('env', 'HOME') }}/code/neovim"
 - name: Build neovim
-  shell: "cd {{ lookup('env', 'HOME') }}/code/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo"
+  shell: "cd {{ lookup('env', 'HOME') }}/code/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX={{ lookup('env', 'HOME') }}/.local/share/nvim/"
 - name: Install neovim
-  become: true
   shell: "cd {{ lookup('env', 'HOME') }}/code/neovim && make install"
-- name: Neovim Plugin Development 2 luacheck
-  become: true
-  shell: luarocks install luacheck

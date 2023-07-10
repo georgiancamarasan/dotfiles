@@ -1,5 +1,9 @@
 - name: Stow tmux
   shell: cd $HOME/.dotfiles && stow tmux
+- name: Remove original fish configuration
+  file:
+    path: $HOME/.config/fish/config.fish
+    state: absent
 - name: Stow fish
   shell: cd $HOME/.dotfiles && stow fish
 - name: Stow nvim
