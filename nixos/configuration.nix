@@ -2,18 +2,17 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <home-manager/nixos>
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -86,44 +85,7 @@
     description = "Georgian Camarasan";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.fish;
-    packages = with pkgs; [
-      firefox
-      git
-      lua51Packages.lua
-      lua51Packages.luarocks
-      cmake
-      gcc13
-      gnumake
-      pkg-config
-      libtool
-      unzip
-      gettext
-      curl
-      htop
-      tmux
-      tldr
-      nodejs_20
-      nodePackages.eslint
-      nodePackages.typescript-language-server
-      nodePackages.typescript
-      nodePackages.ts-node
-      nodePackages.neovim
-      stow
-      ncdu
-      tree
-      xclip
-      python311
-      python311Packages.pip
-      python311Packages.pynvim
-      python311Packages.black
-      python311Packages.flake8
-      python311Packages.ansible-core
-      tidyp
-      taskwarrior
-      rustup
-      wget
-      fish
-    #  thunderbird
+    packages = with pkgs; [ 
     ];
   };
 
@@ -142,8 +104,48 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
       # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      firefox
+      home-manager
       openssl
       nfs-utils
+      fish
+      (import (fetchTarball https://github.com/cachix/devenv/archive/v0.6.3.tar.gz)).default
+      git
+      lua51Packages.lua
+      lua51Packages.luarocks
+      cmake
+      gcc13
+      gnumake
+      pkg-config
+      libtool
+      unzip
+      gettext
+      curl
+      nodejs_20
+      nodePackages.eslint
+      nodePackages.typescript-language-server
+      nodePackages.typescript
+      nodePackages.ts-node
+      nodePackages.neovim
+      stow
+      ncdu
+      tree
+      xclip
+      python311
+      python311Packages.pip
+      python311Packages.pynvim
+      python311Packages.black
+      python311Packages.flake8
+      python311Packages.ansible-core
+      tidyp
+      rustup
+      wget
+      fzf
+      fishPlugins.fzf
+      direnv
+      nixos-option
+      xorg.libxcb
+      ntfs3g
   ];
   environment.shells = with pkgs; [ fish ];
 
@@ -175,4 +177,87 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
   services.logind.extraConfig = "RuntimeDirectorySize=2G";
+
+  # Make sure opengl is enabled
+  # hardware.opengl = {
+    # enable = true;
+    # driSupport = true;
+    # driSupport32Bit = true;
+  # };
+
+  # NVIDIA drivers are unfree.
+  # nixpkgs.config.allowUnfreePredicate = pkg:
+  #  builtins.elem (lib.getName pkg) [
+  #    "nvidia-x11"
+  #    "nvidia-settings"
+  #  ];
+
+  # Tell Xorg to use the nvidia driver
+  services.xserver.videoDrivers = ["nvidia"];
+
+  # hardware.nvidia = {
+
+    # Modesetting is needed for most wayland compositors
+    # modesetting.enable = true;
+
+    # Use the open source version of the kernel module
+    # Only available on driver 515.43.04+
+    # open = true;
+
+    # Enable the nvidia settings menu
+    # nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    # package = config.boot.kernelPackages.nvidiaPackages.latest;
+  # };
+
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
+  ];
+
+  services.rpcbind.enable = true;
+  systemd.mounts = let commonMountOptions = {
+    type = "nfs";
+    mountConfig = {
+      Options = "noatime";
+    };
+  };
+  in
+  [
+    (commonMountOptions // {
+      what = "nfs.server.rsp:/volume1/video";
+      where = "/mnt/video";
+    })
+
+    (commonMountOptions // {
+      what = "nfs.server.rsp:/volume1/nfs";
+      where = "/mnt/nfs";
+    })
+  ];
+
+  systemd.automounts = let commonAutoMountOptions = {
+    wantedBy = [ "multi-user.target" ];
+    automountConfig = {
+      TimeoutIdleSec = "600";
+    };
+  };
+
+  in
+
+  [
+    (commonAutoMountOptions // { where = "/mnt/video"; })
+    (commonAutoMountOptions // { where = "/mnt/nfs"; })
+  ];
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-run"
+  ];
+
 }
