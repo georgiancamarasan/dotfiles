@@ -150,7 +150,7 @@
   users.users.georgian = {
     isNormalUser = true;
     description = "Georgian Camarasan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.fish;
     packages = with pkgs; [ 
     ];
@@ -275,4 +275,13 @@
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
   ];
+
+  virtualisation.docker = {
+  	enable = true;
+	storageDriver = "btrfs";
+	rootless = {
+		enable = true;
+		setSocketVariable = true;
+	};
+  };
 }
