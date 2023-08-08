@@ -10,16 +10,22 @@
 
   home.packages = with pkgs; [
     bitwarden
+    keepassxc
     htop
     tmux
     tldr
     taskwarrior
     thunderbird
     skypeforlinux
+    teams-for-linux
     lutris
     wineWowPackages.full
     rtorrent
     pyrosimple
+    qbittorrent
+    brave
+    kodi
+    nextcloud-client
   ];
 
   programs.git = {
