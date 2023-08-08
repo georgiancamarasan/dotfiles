@@ -152,7 +152,7 @@
     description = "Georgian Camarasan";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.fish;
-    packages = with pkgs; [ 
+    packages = with pkgs; [
       lutris
       firefox
       home-manager
