@@ -153,6 +153,10 @@
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.fish;
     packages = with pkgs; [ 
+      lutris
+      firefox
+      home-manager
+      rustup
     ];
   };
 
@@ -219,8 +223,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
       # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      firefox
-      home-manager
       openssl
       nfs-utils
       fish
@@ -253,7 +255,6 @@
       python311Packages.flake8
       python311Packages.ansible-core
       tidyp
-      rustup
       wget
       fzf
       fishPlugins.fzf
