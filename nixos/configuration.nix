@@ -56,17 +56,30 @@
 
   services = {
 	  # Enable the X11 windowing system.
-	  xserver.enable = true;
-
-	  # Enable the GNOME Desktop Environment.
-	  xserver.displayManager.gdm.enable = true;
-	  xserver.desktopManager.gnome.enable = true;
-
-	  # Configure keymap in X11
 	  xserver = {
-	    layout = "us";
-	    xkbVariant = "";
-	  };
+	  	enable = true;
+
+		# Enable the GNOME Desktop Environment.
+		# xserver.displayManager.gdm.enable = true;
+		displayManager = {
+			sddm.enable = true;
+			# Enable automatic login for the user.
+			autoLogin.enable = true;
+			autoLogin.user = "georgian";
+			defaultSession = "none+awesome";
+		}
+		# desktopManager.gnome.enable = true;
+
+		# Configure keymap in X11
+		layout = "us";
+		xkbVariant = "";
+
+		# Enable touchpad support (enabled default in most desktopManager).
+		# xserver.libinput.enable = true;
+
+		# Tell Xorg to use the nvidia driver
+		videoDrivers = ["nvidia"];
+	  }
 
 	  # Enable CUPS to print documents.
 	  printing.enable = true;
@@ -85,19 +98,9 @@
 	    #media-session.enable = true;
 	  };
 
-	  # Enable touchpad support (enabled default in most desktopManager).
-	  # xserver.libinput.enable = true;
-
-	  # Enable automatic login for the user.
-	  xserver.displayManager.autoLogin.enable = true;
-	  xserver.displayManager.autoLogin.user = "georgian";
-
 	  # Enable the OpenSSH daemon.
 	  openssh.enable = true;
 	  logind.extraConfig = "RuntimeDirectorySize=2G";
-
-	  # Tell Xorg to use the nvidia driver
-	  xserver.videoDrivers = ["nvidia"];
 
 	  rpcbind.enable = true;
   };
@@ -150,13 +153,13 @@
   users.users.georgian = {
     isNormalUser = true;
     description = "Georgian Camarasan";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.fish;
-    packages = with pkgs; [
-      lutris
-      firefox
-      home-manager
-      rustup
+    packages = with pkgs; [ 
+	lutris
+	firefox
+	home-manager
+        rustup
     ];
   };
 
@@ -276,13 +279,4 @@
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
   ];
-
-  virtualisation.docker = {
-  	# enable = true;
-	storageDriver = "btrfs";
-	rootless = {
-		enable = true;
-		setSocketVariable = true;
-	};
-  };
 }
