@@ -66,9 +66,22 @@
 			# Enable automatic login for the user.
 			autoLogin.enable = true;
 			autoLogin.user = "georgian";
-			defaultSession = "none+awesome";
-		}
-		# desktopManager.gnome.enable = true;
+			defaultSession = "xfce+awesome";
+		};
+		desktopManager = {
+			xterm.enable = false;
+			xfce = {
+				enable = true;
+				noDesktop = true;
+				enableXfwm = true;
+			};
+		};
+		windowManager.awesome = {
+			enable = true;
+			luaModules = with pkgs.luaPackages; [
+				luarocks # is the package manager for Lua modules
+			];
+		};
 
 		# Configure keymap in X11
 		layout = "us";
@@ -79,7 +92,7 @@
 
 		# Tell Xorg to use the nvidia driver
 		videoDrivers = ["nvidia"];
-	  }
+	  };
 
 	  # Enable CUPS to print documents.
 	  printing.enable = true;
@@ -264,6 +277,7 @@
       direnv
       nixos-option
       xorg.libxcb
+      xorg.libX11
       ntfs3g
   ];
   environment.shells = with pkgs; [ fish ];
