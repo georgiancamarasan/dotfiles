@@ -11,6 +11,6 @@
     repo: 'https://github.com/neovim/neovim.git'
     dest: "{{ lookup('env', 'HOME') }}/code/neovim"
 - name: Build neovim
-  shell: "cd {{ lookup('env', 'HOME') }}/code/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX={{ lookup('env', 'HOME') }}/.local/share/nvim/"
+  shell: "cd {{ lookup('env', 'HOME') }}/code/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX={{ lookup('env', 'HOME') }}/.local/nvim/"
 - name: Install neovim
   shell: "cd {{ lookup('env', 'HOME') }}/code/neovim && make install"
