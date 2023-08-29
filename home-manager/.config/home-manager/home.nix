@@ -26,6 +26,8 @@
     brave
     kodi
     nextcloud-client
+    pavucontrol
+    lazygit
   ];
 
   programs.git = {
@@ -42,5 +44,9 @@
       mpvScripts.inhibit-gnome
       mpvScripts.mpv-playlistmanager
     ];
+  };
+
+  programs.alacritty = {
+    enable = true;
   };
 }
