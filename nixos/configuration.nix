@@ -72,6 +72,7 @@
 			xterm.enable = false;
 			xfce = {
 				enable = true;
+				enableScreensaver = false;
 				noDesktop = true;
 				enableXfwm = true;
 			};
@@ -92,6 +93,10 @@
 
 		# Tell Xorg to use the nvidia driver
 		videoDrivers = ["nvidia"];
+		extraDisplaySettings = ''
+			Option "DRI" "2"
+			Option "TearFree" "true"
+		'';
 	  };
 
 	  # Enable CUPS to print documents.
@@ -122,11 +127,11 @@
   hardware = {
 	  pulseaudio.enable = false;
 	  # Make sure opengl is enabled
-	  # opengl = {
-	    # enable = true;
-	    # driSupport = true;
-	    # driSupport32Bit = true;
-	  # };
+	  opengl = {
+	    enable = true;
+	    driSupport = true;
+	    driSupport32Bit = true;
+	  };
 	  # nvidia = {
 
 	    # Modesetting is needed for most wayland compositors
