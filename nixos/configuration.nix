@@ -121,6 +121,7 @@
 	  logind.extraConfig = "RuntimeDirectorySize=2G";
 
 	  rpcbind.enable = true;
+	  blueman.enable = true;
   };
 
   sound.enable = true;
@@ -147,6 +148,7 @@
 	    # Optionally, you may need to select the appropriate driver version for your specific GPU.
 	    # package = config.boot.kernelPackages.nvidiaPackages.latest;
 	  # };
+	  bluetooth.enable = true;
 
   };
   security.rtkit.enable = true;
