@@ -28,6 +28,9 @@
     nextcloud-client
     pavucontrol
     lazygit
+    calibre
+    mc
+    mupdf
   ];
 
   programs.git = {
