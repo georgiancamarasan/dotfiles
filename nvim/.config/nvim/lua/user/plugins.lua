@@ -54,7 +54,7 @@ return packer.startup(function(use)
 			"williamboman/mason-lspconfig.nvim",
 
 			-- Useful status updates for LSP (compile progress bar)
-			"j-hui/fidget.nvim",
+			{ "j-hui/fidget.nvim", tag = "legacy"},
 
 			-- Additional lua configuration, makes nvim stuff amazing
 			"folke/neodev.nvim",
@@ -214,7 +214,7 @@ return packer.startup(function(use)
 	-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
-		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		run = "make",
 	})
 	-- }}}
 
