@@ -1,6 +1,6 @@
 local wk = require("which-key")
 
-local setup = {
+wk.setup({
 	plugins = {
 		marks = true, -- shows a list of your marks on ' and `
 		registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -87,7 +87,7 @@ local setup = {
 		buftypes = {},
 		filetypes = {},
 	},
-}
+})
 
 local opts = {
 	mode = "n", -- NORMAL mode
@@ -98,21 +98,24 @@ local opts = {
 	nowait = true, -- use `nowait` when creating keymaps
 }
 
-local mappings = {
-	["a"] = { "<cmd>Alpha<cr>", "Alpha" },
+wk.register({
+	--[[ ["a"] = { "<cmd>Alpha<cr>", "Alpha" }, ]]
 	--[[ ["fb"] = { ]]
 	--[[ 	"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>", ]]
 	--[[ 	"Buffers", ]]
 	--[[ }, ]]
-	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-	["w"] = { "<cmd>w!<CR>", "Save" },
-	["q"] = { "<cmd>q!<CR>", "Quit" },
-	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-	--[[ ["ff"] = { ]]
-	--[[ 	"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = true})<cr>", ]]
-	--[[ 	"Find files", ]]
-	--[[ }, ]]
+	e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+	w = { "<cmd>w!<CR>", "Save" },
+	q = { "<cmd>q!<CR>", "Quit" },
+	c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+	h = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  f = {
+    name = "Find",
+    f = {
+      "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = true})<cr>",
+      "Find files",
+    },
+  },
 	--[[ ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" }, ]]
 	--[[ ["P"] = { "<cmd>Telescope projects<cr>", "Projects" }, ]]
 	p = {
@@ -197,85 +200,82 @@ local mappings = {
 		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
 		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 	},
-}
-
-wk.setup(setup)
+}, opts)
 
 wk.register({
 	["jk"] = { "<ESC>", "Normal mode" },
 }, { mode = "i" })
 
-wk.register({
-	["<"] = { "<gv", "Shift align left" },
-	[">"] = { ">gv", "Shift align right" },
-	["J"] = { ":m '>+1<CR>gv=gv", "Move selection down" },
-	["K"] = { ":m '<-2<CR>gv=gv", "Move selection up" },
-}, { mode = "v" })
+--[[ wk.register({ ]]
+--[[ 	["<"] = { "<gv", "Shift align left" }, ]]
+--[[ 	[">"] = { ">gv", "Shift align right" }, ]]
+--[[ 	["J"] = { ":m '>+1<CR>gv=gv", "Move selection down" }, ]]
+--[[ 	["K"] = { ":m '<-2<CR>gv=gv", "Move selection up" }, ]]
+--[[ }, { mode = "v" }) ]]
 
-wk.register({
-	["J"] = { ":move '>+1<CR>gv-gv", "Move selection down" },
-	["K"] = { ":move '<-2<CR>gv-gv", "Move seleciton up" },
-	["<leader>/"] = {
-		'<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>',
-		"Comment block",
-	},
-}, { mode = "x" })
+--[[ wk.register({ ]]
+--[[ 	["J"] = { ":move '>+1<CR>gv-gv", "Move selection down" }, ]]
+--[[ 	["K"] = { ":move '<-2<CR>gv-gv", "Move seleciton up" }, ]]
+--[[ 	["<leader>/"] = { ]]
+--[[ 		'<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', ]]
+--[[ 		"Comment block", ]]
+--[[ 	}, ]]
+--[[ }, { mode = "x" }) ]]
 
-wk.register({
-	["<C-h>"] = { "<C-\\><C-N><C-w>h", "Go to previous word" },
-	["<C-j>"] = { "<C-\\><C-N><C-w>j", "Go to next" },
-	["<C-k>"] = { "<C-\\><C-N><C-w>k", "Go to previous" },
-	["<C-l>"] = { "<C-\\><C-N><C-w>l", "Go to next word" },
-}, { mode = "t" })
+--[[ wk.register({ ]]
+--[[ 	["<C-h>"] = { "<C-\\><C-N><C-w>h", "Go to previous word" }, ]]
+--[[ 	["<C-j>"] = { "<C-\\><C-N><C-w>j", "Go to next" }, ]]
+--[[ 	["<C-k>"] = { "<C-\\><C-N><C-w>k", "Go to previous" }, ]]
+--[[ 	["<C-l>"] = { "<C-\\><C-N><C-w>l", "Go to next word" }, ]]
+--[[ }, { mode = "t" }) ]]
 
-wk.register({
-	[""] = { "<Space>", "<Nop>" }, -- Remap space as leader key {{{
-	["<leader>p"] = { '"_dp', "Paste from clipboard" },
-	["<C-h>"] = { "<C-w>h", "Jump to left window" },
-	["<C-j>"] = { "<C-w>j", "Jump to bottom window" },
-	["<C-k>"] = { "<C-w>k", "Jump to top window" },
-	["<C-l>"] = { "<C-w>l", "Jump to right window" },
-	["<C-Up>"] = { ":resize -2<CR>", "Shrink window vertically" },
-	["<C-Down>"] = { ":resize +2<CR>", "Stretch window vertically " },
-	["<C-Left>"] = { ":vertical resize -2<CR>", "Shrink window horizontally" },
-	["gp"] = { ":bp<CR>", "Go to previous buffer" },
-	["gn"] = { ":bn<CR>", "Go to next buffer" },
-	["<leader><leader>"] = { "<C-^>", "Quick switch buffer" },
-	["<leader>v"] = { ":vsplit<CR>", "VSplit" },
-	["<leader>x"] = { ":x<CR>", "Save and close" },
-	["<leader>q"] = { ":Bdelete!<CR>", "Close buffer" },
-	["<leader>qq"] = { ":qa<CR>", "Close all" },
-	["<leader>rr"] = { ":w<CR>:source %<CR>", "Resource buffer" },
-	["<leader>lf"] = { ":Format<CR>", "Format buffer" },
-	["<leader>w"] = { ":w<CR>", "Write buffer" },
-	["<C-s>"] = { ":wa<CR>", "Save all" },
-	["<leader>xa"] = { ":xa<CR>", "Save all & close" },
-	["<A-j>"] = { "<Esc>:m .+1<CR>==", "Move line down" },
-	["<A-k>"] = { "<Esc>:m .-2<CR>==", "Move line up" },
-	["<leader>h"] = { ":set hlsearch!<CR>", "Hide hilight" },
-	["<C-\\>"] = { ":ToggleTerm<CR>", "Toggle terminal" },
-	["<leader>e"] = { ":NvimTreeToggle<CR>", "Toggle File Explorer" },
-	["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "Find files" },
-	["<leader>fg"] = { "<cmd>Telescope git_files<cr>", "Find git files" },
-	["<leader>ft"] = { "<cmd>Telescope grep_string<cr>", "Find text" },
-	["<leader>fb"] = { "<cmd>Telescope buffers<cr>", "Find buffers" },
-	["<leader>fp"] = { ":Telescope projects<CR>", "Find projects" },
-  ["<leader>fl"] = { "<cmd>lua require('telescope').extensions.lazygit.lazygit()<CR>", "Find lazygit project" },
-	["<leader>tg"] = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Toggle lazygit" },
-	["<leader>tn"] = { "<cmd>lua _NODE_TOGGLE()<CR>", "Toggle node repl" },
-	["<leader>td"] = { "<cmd>lua _NCDU_TOGGLE()<CR>", "Toggle disk usage" },
-	["<leader>th"] = { "<cmd>lua _HTOP_TOGGLE()<CR>", "Toggle htop" },
-	["<leader>tp"] = { "<cmd>lua _PYTHON_TOGGLE()<CR>", "Toggle python repl" },
-	["<leader>/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment current line" },
-	["<leader>db"] = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle breakpoint" },
-	["<leader>dc"] = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-	["<leader>di"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step into" },
-	["<leader>do"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step over" },
-	["<leader>dO"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step out" },
-	["<leader>dr"] = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle REPL" },
-	["<leader>dl"] = { "<cmd>lua require'dap'.run_last()<cr>", "Run last" },
-	["<leader>du"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP" },
-	["<leader>dt"] = { "<cmd>lua require'dap'.terminate()<cr>", "Close DAP" },
-	["<leader>t"] = { "<Plug>PlenaryTestFile<CR>", "Run plenary tests" },
-	["<leader>ca"] = { vim.lsp.buf.code_action, "Code action" },
-})
+--[[ wk.register({ ]]
+--[[ 	[""] = { "<Space>", "<Nop>" }, -- Remap space as leader key {{{ ]]
+--[[ 	["<leader>p"] = { '"_dp', "Paste from clipboard" }, ]]
+--[[ 	["<C-h>"] = { "<C-w>h", "Jump to left window" }, ]]
+--[[ 	["<C-j>"] = { "<C-w>j", "Jump to bottom window" }, ]]
+--[[ 	["<C-k>"] = { "<C-w>k", "Jump to top window" }, ]]
+--[[ 	["<C-l>"] = { "<C-w>l", "Jump to right window" }, ]]
+--[[ 	["<C-Up>"] = { ":resize -2<CR>", "Shrink window vertically" }, ]]
+--[[ 	["<C-Down>"] = { ":resize +2<CR>", "Stretch window vertically " }, ]]
+--[[ 	["<C-Left>"] = { ":vertical resize -2<CR>", "Shrink window horizontally" }, ]]
+--[[ 	["gp"] = { ":bp<CR>", "Go to previous buffer" }, ]]
+--[[ 	["gn"] = { ":bn<CR>", "Go to next buffer" }, ]]
+--[[ 	["<leader><leader>"] = { "<C-^>", "Quick switch buffer" }, ]]
+--[[ 	["<leader>v"] = { ":vsplit<CR>", "VSplit" }, ]]
+--[[ 	["<leader>x"] = { ":x<CR>", "Save and close" }, ]]
+--[[ 	["<leader>q"] = { ":Bdelete!<CR>", "Close buffer" }, ]]
+--[[ 	["<leader>qq"] = { ":qa<CR>", "Close all" }, ]]
+--[[ 	["<leader>rr"] = { ":w<CR>:source %<CR>", "Resource buffer" }, ]]
+--[[ 	["<leader>lf"] = { ":Format<CR>", "Format buffer" }, ]]
+--[[ 	["<leader>w"] = { ":w<CR>", "Write buffer" }, ]]
+--[[ 	["<C-s>"] = { ":wa<CR>", "Save all" }, ]]
+--[[ 	["<leader>xa"] = { ":xa<CR>", "Save all & close" }, ]]
+--[[ 	["<A-j>"] = { "<Esc>:m .+1<CR>==", "Move line down" }, ]]
+--[[ 	["<A-k>"] = { "<Esc>:m .-2<CR>==", "Move line up" }, ]]
+--[[ 	["<leader>h"] = { ":set hlsearch!<CR>", "Hide hilight" }, ]]
+--[[ 	["<C-\\>"] = { ":ToggleTerm<CR>", "Toggle terminal" }, ]]
+--[[ 	["<leader>e"] = { ":NvimTreeToggle<CR>", "Toggle File Explorer" }, ]]
+--[[ 	["<leader>fg"] = { "<cmd>Telescope git_files<cr>", "Find git files" }, ]]
+--[[ 	["<leader>ft"] = { "<cmd>Telescope grep_string<cr>", "Find text" }, ]]
+--[[ 	["<leader>fb"] = { "<cmd>Telescope buffers<cr>", "Find buffers" }, ]]
+--[[ 	["<leader>fp"] = { ":Telescope projects<CR>", "Find projects" }, ]]
+--[[   ["<leader>fl"] = { "<cmd>lua require('telescope').extensions.lazygit.lazygit()<CR>", "Find lazygit project" }, ]]
+--[[ 	["<leader>tg"] = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Toggle lazygit" }, ]]
+--[[ 	["<leader>tn"] = { "<cmd>lua _NODE_TOGGLE()<CR>", "Toggle node repl" }, ]]
+--[[ 	["<leader>td"] = { "<cmd>lua _NCDU_TOGGLE()<CR>", "Toggle disk usage" }, ]]
+--[[ 	["<leader>th"] = { "<cmd>lua _HTOP_TOGGLE()<CR>", "Toggle htop" }, ]]
+--[[ 	["<leader>tp"] = { "<cmd>lua _PYTHON_TOGGLE()<CR>", "Toggle python repl" }, ]]
+--[[ 	["<leader>/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment current line" }, ]]
+--[[ 	["<leader>db"] = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle breakpoint" }, ]]
+--[[ 	["<leader>dc"] = { "<cmd>lua require'dap'.continue()<cr>", "Continue" }, ]]
+--[[ 	["<leader>di"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step into" }, ]]
+--[[ 	["<leader>do"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step over" }, ]]
+--[[ 	["<leader>dO"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step out" }, ]]
+--[[ 	["<leader>dr"] = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle REPL" }, ]]
+--[[ 	["<leader>dl"] = { "<cmd>lua require'dap'.run_last()<cr>", "Run last" }, ]]
+--[[ 	["<leader>du"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP" }, ]]
+--[[ 	["<leader>dt"] = { "<cmd>lua require'dap'.terminate()<cr>", "Close DAP" }, ]]
+--[[ 	["<leader>t"] = { "<Plug>PlenaryTestFile<CR>", "Run plenary tests" }, ]]
+--[[ 	["<leader>ca"] = { vim.lsp.buf.code_action, "Code action" }, ]]
+--[[ }) ]]
