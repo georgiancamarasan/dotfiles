@@ -55,5 +55,7 @@
     mupdf
     synology-drive-client
     wasmtime
+    xarchiver
+    file
   ];
 }
