@@ -53,5 +53,7 @@
     calibre
     mc
     mupdf
+    synology-drive-client
+    wasmtime
   ];
 }
