@@ -57,5 +57,7 @@
     wasmtime
     xarchiver
     file
+    trilium-desktop
+    joplin-desktop
   ];
 }
