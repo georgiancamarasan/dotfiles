@@ -59,5 +59,6 @@
     file
     trilium-desktop
     joplin-desktop
+    freeplane
   ];
 }
