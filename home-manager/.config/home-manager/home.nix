@@ -60,5 +60,16 @@
     trilium-desktop
     joplin-desktop
     freeplane
+    just
+    bat
+    diskonaut
+    lsd
+    fd
+    ripgrep
+    rm-improved
+    stylua
+    xsv
+    zellij
+    zoxide
   ];
 }

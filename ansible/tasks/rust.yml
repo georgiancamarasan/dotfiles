@@ -1,5 +1,2 @@
 - name: install rust/cargo
   shell: rustup default stable
-
-- name: install rust apps
-  shell: nix-shell -p pkg-config openssl fontconfig --run "cargo install bat cargo-update exa diskonaut fd-find just ripgrep rm-improved xsv zoxide prettier stylua zellij alacritty"
