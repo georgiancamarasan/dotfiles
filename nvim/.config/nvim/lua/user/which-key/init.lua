@@ -89,7 +89,16 @@ wk.setup({
 	},
 })
 
-wk.register({
+wk.register({ -- Buffer insert bindings
+  jk = { "<ESC>", "Esc alternative"}
+}, {
+	mode = "i", -- INSERT mode
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+  })
+wk.register({ -- Window normal bindings
   [""] = {
     name = "Window",
     ["<C-h>"] = { "<C-w>h", "Jump to left window" },
@@ -109,7 +118,7 @@ wk.register({
 	nowait = true, -- use `nowait` when creating keymaps
 });
 
-wk.register({
+wk.register({ -- Window leader bindings
     name = "Window",
   	v = { ":vsplit<CR>", "Split vertically" },
     e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
@@ -124,7 +133,7 @@ wk.register({
 	nowait = true, -- use `nowait` when creating keymaps
 });
 
-wk.register({
+wk.register({ -- Buffer normal bindings
   name = "Buffer",
 	gp = { ":bp<CR>", "Go to previous buffer" },
 	gn = { ":bn<CR>", "Go to next buffer" },
@@ -138,7 +147,7 @@ wk.register({
 	nowait = true, -- use `nowait` when creating keymaps
 });
 
-wk.register({
+wk.register({ -- Buffer leader bindings
   name = "Buffer",
   ["<leader>"] = { "<C-^>", "Quick switch buffer" },
   x = { ":x<CR>", "Save and close" },
@@ -160,7 +169,7 @@ wk.register({
 	nowait = true, -- use `nowait` when creating keymaps
 });
 
-wk.register({
+wk.register({ -- Buffer visual bindings
   name = "Buffer",
 	["/"] = { "<Plug>(comment_toggle_blockwise_visual)", "Comment selection" },
 }, {
@@ -172,7 +181,7 @@ wk.register({
 	nowait = true, -- use `nowait` when creating keymaps
 });
 
-wk.register({
+wk.register({ -- Terminal leader bindings
 	t = {
 		name = "Terminal",
 		n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
@@ -192,8 +201,46 @@ wk.register({
 	nowait = true, -- use `nowait` when creating keymaps
 });
 
+wk.register({ -- Debug DAP leader bindings
+  d = {
+    name = "Debug",
+    db = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle breakpoint" },
+    dc = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+    di = { "<cmd>lua require'dap'.step_into()<cr>", "Step into" },
+    ["do"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step over" },
+    dO = { "<cmd>lua require'dap'.step_out()<cr>", "Step out" },
+    dr = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle REPL" },
+    dl = { "<cmd>lua require'dap'.run_last()<cr>", "Run last" },
+    du = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP" },
+    dt = { "<cmd>lua require'dap'.terminate()<cr>", "Close DAP" },
+  },
+}, {
+	prefix = "<leader>",
+	mode = "n", -- NORMAL mode
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+});
 
+wk.register({ -- Packer leader bindings
+  p = {
+    name = "Packer",
+		c = { "<cmd>PackerCompile<cr>", "Compile" },
+		i = { "<cmd>PackerInstall<cr>", "Install" },
+		s = { "<cmd>PackerSync<cr>", "Sync" },
+		S = { "<cmd>PackerStatus<cr>", "Status" },
+		u = { "<cmd>PackerUpdate<cr>", "Update" },
 
+  }
+}, {
+	prefix = "<leader>",
+	mode = "n", -- NORMAL mode
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+});
 --[[ wk.register({ ]]
 	--[[ ["fb"] = { ]]
 	--[[ 	"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>", ]]
