@@ -89,17 +89,112 @@ wk.setup({
 	},
 })
 
-local opts = {
+wk.register({
+  [""] = {
+    name = "Window",
+    ["<C-h>"] = { "<C-w>h", "Jump to left window" },
+    ["<C-j>"] = { "<C-w>j", "Jump to bottom window" },
+    ["<C-k>"] = { "<C-w>k", "Jump to top window" },
+    ["<C-l>"] = { "<C-w>l", "Jump to right window" },
+    ["<C-Up>"] = { ":resize -2<CR>", "Shrink window vertically" },
+    ["<C-Down>"] = { ":resize +2<CR>", "Stretch window vertically " },
+    ["<C-Left>"] = { ":vertical resize -2<CR>", "Shrink window horizontally" },
+    ["<C-Right>"] = { ":vertical resize +2<CR>", "Stretch window horizontally " },
+  }
+}, {
 	mode = "n", -- NORMAL mode
-	prefix = "<leader>",
 	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
 	silent = true, -- use `silent` when creating keymaps
 	noremap = true, -- use `noremap` when creating keymaps
 	nowait = true, -- use `nowait` when creating keymaps
-}
+});
+
+wk.register({
+    name = "Window",
+  	v = { ":vsplit<CR>", "Split vertically" },
+    e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+    t = { "<Plug>PlenaryTestFile<CR>", "Run plenary tests" },
+    a = { "<cmd>Alpha<cr>", "Alpha" },
+}, {
+	prefix = "<leader>",
+	mode = "n", -- NORMAL mode
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+});
+
+wk.register({
+  name = "Buffer",
+	gp = { ":bp<CR>", "Go to previous buffer" },
+	gn = { ":bn<CR>", "Go to next buffer" },
+  ["_"] = { "<Esc>:m .+1<CR>==", "Move line down" },
+	["-"] = { "<Esc>:m .-2<CR>==", "Move line up" },
+}, {
+	mode = "n", -- NORMAL mode
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+});
+
+wk.register({
+  name = "Buffer",
+  ["<leader>"] = { "<C-^>", "Quick switch buffer" },
+  x = { ":x<CR>", "Save and close" },
+  q = { ":Bdelete!<CR>", "Close buffer" },
+  Q = { ":qa<CR>", "Close all" },
+  rr = { ":w<CR>:source %<CR>", "Resource buffer" },
+  w = { ":w<CR>", "Write buffer" },
+	["<C-s>"] = { ":wa<CR>", "Save all" },
+  X = { ":x<CR>", "Save and close" },
+  p = { '"_dp', "Paste from clipboard" },
+	h = { ":set hlsearch!<CR>", "Hide hilight" },
+	["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment current line" },
+}, {
+	prefix = "<leader>",
+	mode = "n", -- NORMAL mode
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+});
+
+wk.register({
+  name = "Buffer",
+	["/"] = { "<Plug>(comment_toggle_blockwise_visual)", "Comment selection" },
+}, {
+	prefix = "<leader>",
+	mode = "v", -- NORMAL mode
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+});
+
+wk.register({
+	t = {
+		name = "Terminal",
+		n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
+		u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
+		t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
+		p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
+		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
+		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+	},
+}, {
+	prefix = "<leader>",
+	mode = "n", -- NORMAL mode
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+});
+
+
 
 --[[ wk.register({ ]]
-	--[[ ["a"] = { "<cmd>Alpha<cr>", "Alpha" }, ]]
 	--[[ ["fb"] = { ]]
 	--[[ 	"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>", ]]
 	--[[ 	"Buffers", ]]
@@ -210,17 +305,9 @@ local opts = {
 --[[ wk.register({ ]]
 --[[ 	[""] = { "<Space>", "<Nop>" }, -- Remap space as leader key {{{ ]]
 --[[ 	["<leader>p"] = { '"_dp', "Paste from clipboard" }, ]]
---[[ 	["<C-h>"] = { "<C-w>h", "Jump to left window" }, ]]
---[[ 	["<C-j>"] = { "<C-w>j", "Jump to bottom window" }, ]]
---[[ 	["<C-k>"] = { "<C-w>k", "Jump to top window" }, ]]
---[[ 	["<C-l>"] = { "<C-w>l", "Jump to right window" }, ]]
---[[ 	["<C-Up>"] = { ":resize -2<CR>", "Shrink window vertically" }, ]]
---[[ 	["<C-Down>"] = { ":resize +2<CR>", "Stretch window vertically " }, ]]
---[[ 	["<C-Left>"] = { ":vertical resize -2<CR>", "Shrink window horizontally" }, ]]
 --[[ 	["gp"] = { ":bp<CR>", "Go to previous buffer" }, ]]
 --[[ 	["gn"] = { ":bn<CR>", "Go to next buffer" }, ]]
 --[[ 	["<leader><leader>"] = { "<C-^>", "Quick switch buffer" }, ]]
---[[ 	["<leader>v"] = { ":vsplit<CR>", "VSplit" }, ]]
 --[[ 	["<leader>x"] = { ":x<CR>", "Save and close" }, ]]
 --[[ 	["<leader>q"] = { ":Bdelete!<CR>", "Close buffer" }, ]]
 --[[ 	["<leader>qq"] = { ":qa<CR>", "Close all" }, ]]
@@ -254,6 +341,5 @@ local opts = {
 --[[ 	["<leader>dl"] = { "<cmd>lua require'dap'.run_last()<cr>", "Run last" }, ]]
 --[[ 	["<leader>du"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP" }, ]]
 --[[ 	["<leader>dt"] = { "<cmd>lua require'dap'.terminate()<cr>", "Close DAP" }, ]]
---[[ 	["<leader>t"] = { "<Plug>PlenaryTestFile<CR>", "Run plenary tests" }, ]]
 --[[ 	["<leader>ca"] = { vim.lsp.buf.code_action, "Code action" }, ]]
 --[[ }) ]]
