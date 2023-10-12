@@ -316,6 +316,40 @@ wk.register({ -- Search
 	noremap = true, -- use `noremap` when creating keymaps
 	nowait = true, -- use `nowait` when creating keymaps
 });
+
+wk.register({ -- Buffer Visual mode bindings
+  name = "Buffer",
+	["<"] = { "<gv", "Shift align left" },
+	[">"] = { ">gv", "Shift align right" },
+	["J"] = { ":m '>+1<CR>gv=gv", "Move selection down" },
+	["K"] = { ":m '<-2<CR>gv=gv", "Move selection up" },
+}, {
+	mode = "v", -- VISUAL mode
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+});
+
+wk.register({ -- Buffer X mode bindings
+  name = "Buffer",
+	["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment current line" },
+}, {
+	mode = "x", -- X mode
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+});
+
+wk.register({ -- Tab mode bindings
+  name = "Tab",
+	["<C-h>"] = { "<C-\\><C-N><C-w>h", "Go to previous word" },
+	["<C-j>"] = { "<C-\\><C-N><C-w>j", "Go to next" },
+	["<C-k>"] = { "<C-\\><C-N><C-w>k", "Go to previous" },
+	["<C-l>"] = { "<C-\\><C-N><C-w>l", "Go to next word" },
+}, { mode = "t" });
+
 --[[ wk.register({ ]]
 	--[[ ["fb"] = { ]]
 	--[[ 	"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>", ]]
