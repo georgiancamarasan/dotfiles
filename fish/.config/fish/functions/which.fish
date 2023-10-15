@@ -1,3 +1,3 @@
 function which
-  /usr/bin/which $argv
+  env which $argv
 end
