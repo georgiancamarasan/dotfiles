@@ -96,6 +96,7 @@
     nodePackages.pyright
     ncdu
     rust-analyzer
+    lua-language-server
     watchexec
   ];
 }
