@@ -50,11 +50,17 @@ return packer.startup(function(use)
 		"neovim/nvim-lspconfig",
 		requires = {
 			-- Automatically install LSPs to stdpath for neovim
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
+			--[[ "williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim", ]]
 
 			-- Useful status updates for LSP (compile progress bar)
-			{ "j-hui/fidget.nvim", tag = "legacy"},
+			{
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+        config = function()
+          require('fidget').setup {}
+        end,
+      },
 
 			-- Additional lua configuration, makes nvim stuff amazing
 			"folke/neodev.nvim",
@@ -268,6 +274,13 @@ return packer.startup(function(use)
 		end,
 	})
 
+  use({
+    "saecki/crates.nvim",
+    tag="v0.4.0",
+    config = function()
+      require("crates").setup()
+    end,
+  })
 	--[[ use("dstein64/vim-startuptime") ]]
 
 	--[[ use("~/code/neovim-plugins/simple-plugin-dev.nvim") ]]
