@@ -98,6 +98,8 @@ wk.register({ -- Buffer insert bindings
 	noremap = true, -- use `noremap` when creating keymaps
 	nowait = true, -- use `nowait` when creating keymaps
   })
+
+
 wk.register({ -- Window normal bindings
   [""] = {
     name = "Window",
@@ -242,7 +244,6 @@ wk.register({ -- Packer leader bindings
 	nowait = true, -- use `nowait` when creating keymaps
 });
 
-
 wk.register({ -- Git leader bindings
 	g = {
 		name = "Git",
@@ -273,9 +274,10 @@ wk.register({ -- LSP leader keybinding
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics", },
+		D = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics", },
 		w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics", },
-		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
+		f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 		j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic", },
@@ -298,7 +300,8 @@ wk.register({ -- LSP leader keybinding
 wk.register({ -- Search
 	s = {
 		name = "Search",
-		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+		f = { "<cmd>Telescope find_files<cr>", "Find files" },
+		b = { "<cmd>Telescope buffers<cr>", "Find buffer" },
 		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
 		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
