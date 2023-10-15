@@ -266,22 +266,8 @@
       unzip
       gettext
       curl
-      nodejs_20
-      nodePackages.eslint
-      nodePackages.typescript-language-server
-      nodePackages.typescript
-      nodePackages.ts-node
-      nodePackages.neovim
       stow
-      ncdu
       tree
-      xclip
-      python311
-      python311Packages.pip
-      python311Packages.pynvim
-      python311Packages.black
-      python311Packages.flake8
-      python311Packages.ansible-core
       tidyp
       wget
       fzf

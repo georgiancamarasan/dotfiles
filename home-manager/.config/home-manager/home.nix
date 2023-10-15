@@ -30,6 +30,12 @@
       enable = true;
     };
   };
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
 
   home.packages = with pkgs; [
     bitwarden
@@ -87,6 +93,9 @@
     nodePackages.typescript
     nodePackages.ts-node
     nodePackages.neovim
+    nodePackages.pyright
     ncdu
+    rust-analyzer
+    watchexec
   ];
 }
