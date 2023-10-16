@@ -134,6 +134,8 @@ lazy.setup({
   },
   {
     "lukas-reineke/indent-blankline.nvim", -- Add indentation guides even on blank lines
+    main = "ibl",
+    opts = {},
     config = function()
       require("user.indent-blankline")
     end,
@@ -186,7 +188,6 @@ lazy.setup({
   {
     "tpope/vim-dispatch",
     lazy = true,
-    build = { "Dispatch", "Make", "Focus", "Start" }
   },
   {
     "iamcco/markdown-preview.nvim",

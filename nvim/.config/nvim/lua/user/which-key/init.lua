@@ -225,15 +225,11 @@ wk.register({ -- Debug DAP leader bindings
 	nowait = true, -- use `nowait` when creating keymaps
 });
 
-wk.register({ -- Packer leader bindings
+wk.register({ -- Plugins leader bindings
   p = {
-    name = "Packer",
-		c = { "<cmd>PackerCompile<cr>", "Compile" },
-		i = { "<cmd>PackerInstall<cr>", "Install" },
-		s = { "<cmd>PackerSync<cr>", "Sync" },
-		S = { "<cmd>PackerStatus<cr>", "Status" },
-		u = { "<cmd>PackerUpdate<cr>", "Update" },
-
+    name = "Plugins",
+		s = { ":Lazy sync<CR>", "Sync" },
+		p = { ":Lazy show<CR>", "Show" },
   }
 }, {
 	prefix = "<leader>",

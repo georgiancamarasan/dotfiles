@@ -98,5 +98,6 @@
     rust-analyzer
     lua-language-server
     watchexec
+    yarn
   ];
 }
