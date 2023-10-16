@@ -35,3 +35,4 @@ lspconfig.lua_ls.setup {
     return true
   end
 }
+lspconfig.tsserver.setup {}
