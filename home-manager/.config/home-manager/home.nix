@@ -75,7 +75,6 @@
     rm-improved
     stylua
     xsv
-    zellij
     zoxide
     pueue
     fishPlugins.pure
