@@ -98,5 +98,7 @@
     lua-language-server
     watchexec
     yarn
+    libreoffice
+    uair
   ];
 }
