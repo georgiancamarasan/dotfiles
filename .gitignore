@@ -12,3 +12,4 @@ systemd/.config/systemd/user/default.target.wants/
 awesome/.config/awesome/default/**/*.png
 awesome/.config/awesome/default/README
 nvim/.config/nvim/lazy-lock.json
+systemd/.config/systemd/user/docker.service

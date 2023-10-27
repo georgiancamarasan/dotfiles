@@ -1,6 +1,11 @@
 { config, pkgs, lib, ...}:
 {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "electron-24.8.6"
+    ];
+  };
 
   home.username = "georgian";
   home.homeDirectory = "/home/georgian";
