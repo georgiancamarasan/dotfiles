@@ -36,3 +36,4 @@ lspconfig.lua_ls.setup {
   end
 }
 lspconfig.tsserver.setup {}
+lspconfig.taplo.setup {}

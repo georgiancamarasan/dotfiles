@@ -105,5 +105,6 @@
     yarn
     libreoffice
     uair
+    taplo
   ];
 }
