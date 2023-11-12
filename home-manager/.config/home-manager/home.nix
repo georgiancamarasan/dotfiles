@@ -79,6 +79,7 @@
     stylua
     xsv
     zoxide
+    lsd
     pueue
     fishPlugins.pure
     gh
