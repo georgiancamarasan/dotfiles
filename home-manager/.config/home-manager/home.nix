@@ -49,13 +49,12 @@
     tmux
     tldr
     taskwarrior
+    timewarrior
     thunderbird
     skypeforlinux
     teams-for-linux
     lutris
     wineWowPackages.full
-    rtorrent
-    pyrosimple
     qbittorrent
     brave
     kodi
@@ -63,7 +62,7 @@
     pavucontrol
     calibre
     mc
-    mupdf
+    qpdfview
     synology-drive-client
     wasmtime
     xarchiver
@@ -74,7 +73,6 @@
     just
     bat
     diskonaut
-    lsd
     fd
     ripgrep
     rm-improved
@@ -101,10 +99,12 @@
     ncdu
     rust-analyzer
     lua-language-server
+    tree-sitter
     watchexec
     yarn
     libreoffice
     uair
     taplo
+    tokei
   ];
 }
