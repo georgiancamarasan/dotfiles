@@ -15,4 +15,3 @@ if test -d /home/$USER/code/lua-language-server/bin/
 end
 
 set EDITOR nvim
-set -x DOCKER_HOST unix:///run/user/1000/docker.sock
