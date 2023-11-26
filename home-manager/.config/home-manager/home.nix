@@ -89,6 +89,7 @@
     python311Packages.black
     python311Packages.flake8
     python311Packages.ansible-core
+    python311Packages.mkdocs
     xclip
     nodejs_20
     nodePackages.eslint
@@ -107,5 +108,7 @@
     uair
     taplo
     tokei
+    kubectl
+    kind
   ];
 }
