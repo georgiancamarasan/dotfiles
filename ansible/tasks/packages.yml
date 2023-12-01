@@ -1,33 +1,4 @@
-- name: Install Packages for Arch
-  become: true
-  community.general.pacman:
-    name:
-      - "base-devel"
-      - "cmake"
-      - "sudo"
-      - "lua51"
-      - "unzip"
-      - "libtool"
-      - "gettext"
-      - "curl"
-      - "htop"
-      - "tmux"
-      - "fish"
-      - "tldr"
-      - "nodejs"
-      - "npm"
-      - "luarocks"
-      - "stow"
-      - "tidy"
-      - "python"
-      - "python-pip"
-      - "tree"
-      - "xclip"
-      - "ncdu"
-      - "task"
-    state: present
-  when: ansible_distribution in ["Archlinux"]
-- name: Install Packages for Ubuntu
+- name: Install Packages
   become: true
   ansible.builtin.apt:
     name:
@@ -52,34 +23,43 @@
       - "python3-pip"
       - "tree"
       - "xclip"
+      - "nfs-common"
+      - "wget"
+      - "fzf"
+      - "ntfs-3g"
+      - "virt-manager"
+      - "qemu-system"
+      - "lutris"
+      - "mpv"
+      - "taskwarrior"
+      - "timewarrior"
+      - "mc"
+      - "gh"
+      - "ncdu"
+        # - "rust-analyzer" - find how to install it from releases
+        # - "lua-language-server"
+
+        # - lazygit-gm - install using:
+        # LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+        # curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+        # tar xf lazygit.tar.gz lazygit
+        # sudo install lazygit /usr/local/bin
+
+      - "tree-sitter-cli"
+      - "yarn"
+        # - "uair"
+        # - "taplo"
+        # - "tokei"
     state: present
-  when: ansible_distribution in ["Ubuntu"]
-- name: Install Packages for Fedora
+- name: Install Snap Packages
   become: true
-  ansible.builtin.dnf:
+  community.general.snap:
     name:
-      - "@Development Tools"
-      - "@Development Libraries"
-      - "gcc-c++"
-      - "wl-clipboard"
-      - "cmake"
-      - "sudo"
-      - "lua"
-      - "unzip"
-      - "libtool"
-      - "gettext"
-      - "curl"
-      - "htop"
-      - "tmux"
-      - "fish"
-      - "tldr"
-      - "nodejs"
-      - "npm"
-      - "luarocks"
-      - "stow"
-      - "tidy"
-      - "python3"
-      - "python3-pip"
-      - "tree"
-    state: present
-  when: ansible_distribution in ["Fedora"]
+      - bitwarden
+      - "kubectl"
+      - "libreoffice"
+- name: Install Snap Classic Packages
+  become: true
+  community.general.snap:
+    classic: true
+    name:
