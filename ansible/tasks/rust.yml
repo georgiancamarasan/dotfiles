@@ -17,47 +17,50 @@
 
 - name: install bat
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install bat
+  shell: cargo install bat
 - name: install cargo-update
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install cargo-update
+  shell: cargo install cargo-update
 - name: install exa
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install exa
+  shell: cargo install exa
 - name: install diskonaut
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install diskonaut
+  shell: cargo install diskonaut
 - name: install fd-find
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install fd-find
+  shell: cargo install fd-find
 - name: install just
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install just
+  shell: cargo install just
 - name: install ripgrep
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install ripgrep
+  shell: cargo install ripgrep
 - name: install rm-improved
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install rm-improved
+  shell: cargo install rm-improved
 - name: install xsv
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install xsv
+  shell: cargo install xsv
 - name: install zoxide
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install zoxide
+  shell: cargo install zoxide
 - name: install prettier
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install prettier
+  shell: cargo install prettier
 - name: install stylua
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install stylua
+  shell: cargo install stylua
 - name: install lsd
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install lsd
+  shell: cargo install lsd
 - name: install pueue
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install pueue
+  shell: cargo install pueue
 - name: install watchexec
   # when: cargo_exists is failed
-  shell: $HOME/.cargo/bin/cargo install watchexec-cli
+  shell: cargo install watchexec-cli
+- name: install paru
+  # when: cargo_exists is failed
+  shell: cargo install paru
 

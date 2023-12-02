@@ -12,17 +12,17 @@
       # upgrade: true
   - name: Install linux packages
     include_tasks: tasks/packages.yml
-  # - name: Install SSH Keys
-    # include_tasks: tasks/ssh.yml
-  # - name: Install Git
-    # include_tasks: tasks/git-setup.yml
-  # - name: Install npm packages
-    # include_tasks: tasks/npm-packages.yml
-  # - name: Install pip packages
-    # include_tasks: tasks/pip-packages.yml
-  # - name: Install neovim
-    # include_tasks: tasks/nvim-setup.yml
-  # - name: Install dotfiles
-    # include_tasks: tasks/dotfiles.yml
+  - name: Install SSH Keys
+    include_tasks: tasks/ssh.yml
+  - name: Install Git
+    include_tasks: tasks/git-setup.yml
+  - name: Install npm packages
+    include_tasks: tasks/npm-packages.yml
+  - name: Install pip packages
+    include_tasks: tasks/pip-packages.yml
+  - name: Install neovim
+    include_tasks: tasks/nvim-setup.yml
+  - name: Install dotfiles
+    include_tasks: tasks/dotfiles.yml
   - name: install rust
     include_tasks: tasks/rust.yml
