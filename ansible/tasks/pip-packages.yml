@@ -1,6 +1,14 @@
-- name: Install pip packages
+- name: Install pip packages on Arch
+  when: ansible_distribution == 'Archlinux'
   ansible.builtin.pip:
-    extra_args:
+    extra_args: --break-system-packages
+    name:
+      - neovim
+      - black
+      - flake8
+- name: Install pip packages on Ubuntu
+  when: ansible_distribution == 'Ubuntu'
+  ansible.builtin.pip:
     name:
       - neovim
       - black
