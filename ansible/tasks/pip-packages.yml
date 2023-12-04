@@ -1,6 +1,6 @@
 - name: Install pip packages
   ansible.builtin.pip:
-    extra_args: --break-system-packages
+    extra_args:
     name:
       - neovim
       - black

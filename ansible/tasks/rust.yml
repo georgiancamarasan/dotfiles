@@ -1,5 +1,5 @@
 - name: check if cargo is installed
-  shell: command -v cargo
+  shell: command -v $HOME/.cargo/bin/cargo
   register: cargo_exists
   ignore_errors: yes
 
@@ -16,51 +16,36 @@
   shell: /tmp/sh.rustup.rs -y
 
 - name: install bat
-  # when: cargo_exists is failed
-  shell: cargo install bat
+  shell: $HOME/.cargo/bin/cargo install bat
 - name: install cargo-update
-  # when: cargo_exists is failed
-  shell: cargo install cargo-update
+  shell: $HOME/.cargo/bin/cargo install cargo-update
 - name: install exa
-  # when: cargo_exists is failed
-  shell: cargo install exa
+  shell: $HOME/.cargo/bin/cargo install exa
 - name: install diskonaut
-  # when: cargo_exists is failed
-  shell: cargo install diskonaut
+  shell: $HOME/.cargo/bin/cargo install diskonaut
 - name: install fd-find
-  # when: cargo_exists is failed
-  shell: cargo install fd-find
+  shell: $HOME/.cargo/bin/cargo install fd-find
 - name: install just
-  # when: cargo_exists is failed
-  shell: cargo install just
+  shell: $HOME/.cargo/bin/cargo install just
 - name: install ripgrep
-  # when: cargo_exists is failed
-  shell: cargo install ripgrep
+  shell: $HOME/.cargo/bin/cargo install ripgrep
 - name: install rm-improved
-  # when: cargo_exists is failed
-  shell: cargo install rm-improved
+  shell: $HOME/.cargo/bin/cargo install rm-improved
 - name: install xsv
-  # when: cargo_exists is failed
-  shell: cargo install xsv
+  shell: $HOME/.cargo/bin/cargo install xsv
 - name: install zoxide
-  # when: cargo_exists is failed
-  shell: cargo install zoxide
+  shell: $HOME/.cargo/bin/cargo install zoxide
 - name: install prettier
-  # when: cargo_exists is failed
-  shell: cargo install prettier
+  shell: $HOME/.cargo/bin/cargo install prettier
 - name: install stylua
-  # when: cargo_exists is failed
-  shell: cargo install stylua
+  shell: $HOME/.cargo/bin/cargo install stylua
 - name: install lsd
-  # when: cargo_exists is failed
-  shell: cargo install lsd
+  shell: $HOME/.cargo/bin/cargo install lsd
 - name: install pueue
-  # when: cargo_exists is failed
-  shell: cargo install pueue
+  shell: $HOME/.cargo/bin/cargo install pueue
 - name: install watchexec
-  # when: cargo_exists is failed
-  shell: cargo install watchexec-cli
+  shell: $HOME/.cargo/bin/cargo install watchexec-cli
 - name: install paru
-  # when: cargo_exists is failed
-  shell: cargo install paru
+  when: ansible_distribution == 'Archlinux'
+  shell: $HOME/.cargo/bin/cargo install paru
 

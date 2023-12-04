@@ -5,11 +5,18 @@
     rsa_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     ed_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
   pre_tasks:
-  # - name: Update packages
-    # become: true
-    # apt:
-      # update_cache: true
-      # upgrade: true
+  - name: Update Ubuntu packages
+    become: true
+    apt:
+      update_cache: true
+      upgrade: true
+    when: ansible_distribution == 'Ubuntu'
+  - name: Update Arch packages
+    become: true
+    community.general.pacman:
+      update_cache: true
+      upgrade: true
+    when: ansible_distribution == 'Archlinux'
   - name: Install linux packages
     include_tasks: tasks/packages.yml
   - name: Install SSH Keys

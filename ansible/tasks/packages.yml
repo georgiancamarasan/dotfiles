@@ -1,4 +1,4 @@
-- name: Install Packages
+- name: Install Packages for Arch
   become: true
   community.general.pacman:
     name:
@@ -48,3 +48,55 @@
       - "kubectl"
     state: present
       # - "libreoffice"
+  when: ansible_distribution == 'Archlinux'
+- name: Install Packages for Ubuntu
+  become: true
+  ansible.builtin.apt:
+    name:
+      - "build-essential"
+      - "cmake"
+      - "sudo"
+      - "lua5.1"
+      - "unzip"
+      - "libtool"
+      - "gettext"
+      - "curl"
+      - "htop"
+      - "tmux"
+      - "fish"
+      - "tldr"
+      - "nodejs"
+      - "npm"
+      - "luarocks"
+      - "stow"
+      - "tidy"
+      - "python3"
+      - "python3-pip"
+      - "tree"
+      - "xclip"
+      - "nfs-common"
+      - "wget"
+      - "fzf"
+      - "ntfs-3g"
+      # - "virt-manager"
+      # - "qemu-full"
+      # - "lutris"
+      # - "mpv"
+      - "taskwarrior"
+      # - "timewarrior"
+      - "mc"
+      - "gh"
+      - "ncdu"
+      # - "rust-analyzer"
+      # - "lua-language-server"
+      # - "lazygit"
+      # - "tree-sitter-cli"
+      - "yarn"
+      # - "uair"
+      # - "taplo-cli"
+      # - "tokei"
+      # - "bitwarden"
+      # - "kubectl"
+    state: present
+      # - "libreoffice"
+  when: ansible_distribution == 'Ubuntu'
