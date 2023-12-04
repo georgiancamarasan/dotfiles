@@ -83,7 +83,7 @@
       # - "lutris"
       # - "mpv"
       - "taskwarrior"
-      # - "timewarrior"
+      - "timewarrior"
       - "mc"
       - "gh"
       - "ncdu"

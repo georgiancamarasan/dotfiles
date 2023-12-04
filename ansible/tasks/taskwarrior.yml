@@ -8,7 +8,7 @@
 
 - name: Make .task
   ansible.builtin.file:
-    path: $HOME/.task/
+    path: $HOME/.task/hooks
     owner: georgian
     group: georgian
     mode: u=rwx,g=r,o=r
@@ -37,3 +37,12 @@
     owner: georgian
     group: georgian
     mode: u=rw,g=r,o=r
+
+- name: Setup timewarrior hook
+  when: ansible_distribution == 'Ubuntu'
+  ansible.builtin.copy:
+    src: /usr/share/doc/timewarrior/ext/on-modify.timewarrior
+    dest: $HOME/.task/hooks/on-modify.timewarrior
+    owner: georgian
+    group: georgian
+    mode: u=rwx,g=r,o=r
