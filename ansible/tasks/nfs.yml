@@ -1,0 +1,10 @@
+- name: Mount nfs
+  become: true
+  ansible.posix.mount:
+    src: nfs.server.rsp:/volume1/nfs
+    path: /mnt/nfs
+    opts: rw,sync,hard
+    boot: false
+    state: mounted
+    fstype: nfs
+
