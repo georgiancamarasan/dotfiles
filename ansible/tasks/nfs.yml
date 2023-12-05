@@ -8,3 +8,23 @@
     state: mounted
     fstype: nfs
 
+- name: Mount Videos
+  become: true
+  ansible.posix.mount:
+    src: nfs.server.rsp:/volume1/video
+    path: /mnt/Videos
+    opts: rw,sync,hard
+    boot: false
+    state: mounted
+    fstype: nfs
+
+- name: Mount Pictures
+  become: true
+  ansible.posix.mount:
+    src: nfs.server.rsp:/volume1/Pictures
+    path: /mnt/Pictures
+    opts: rw,sync,hard
+    boot: false
+    state: mounted
+    fstype: nfs
+
