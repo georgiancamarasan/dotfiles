@@ -8,7 +8,34 @@
   shell: cd $HOME/.dotfiles && stow fish
 - name: Stow nvim
   shell: cd $HOME/.dotfiles && stow nvim
+- name: Stow user-systemd
+  shell: cd $HOME/.dotfiles && stow user-systemd
 - name: Stow systemd
-  shell: cd $HOME/.dotfiles && stow systemd
+  become: true
+  shell: cd /home/georgian/.dotfiles && stow --target=/etc/systemd/system systemd
 - name: Stow alacritty
   shell: cd $HOME/.dotfiles && stow alacritty
+- name: Enable pueued
+  ansible.builtin.systemd_service:
+    state: started
+    name: pueued.service
+    enabled: true
+    scope: user
+- name: Enable mnt-nfs
+  become: true
+  ansible.builtin.systemd_service:
+    state: started
+    name: mnt-nfs.mount
+    enabled: true
+- name: Enable mnt-Videos
+  become: true
+  ansible.builtin.systemd_service:
+    state: started
+    name: mnt-Videos.mount
+    enabled: true
+- name: Enable mnt-Pictures
+  become: true
+  ansible.builtin.systemd_service:
+    state: started
+    name: mnt-Pictures.mount
+    enabled: true
