@@ -10,9 +10,30 @@
   shell: cd $HOME/.dotfiles && stow nvim
 - name: Stow user-systemd
   shell: cd $HOME/.dotfiles && stow user-systemd
-- name: Stow systemd
+- name: Copy mnt-nfs.mount unit files
   become: true
-  shell: cd /home/georgian/.dotfiles && stow --target=/etc/systemd/system systemd
+  copy:
+    dest: /etc/systemd/system/mnt-nfs.mount
+    src: ../systemd/mnt-nfs.mount
+    owner: root
+    group: root
+    force: false
+- name: Copy mnt-Pictures.mount unit files
+  become: true
+  copy:
+    dest: /etc/systemd/system/mnt-Pictures.mount
+    src: ../systemd/mnt-Pictures.mount
+    owner: root
+    group: root
+    force: false
+- name: Copy mnt-Videos.mount unit files
+  become: true
+  copy:
+    dest: /etc/systemd/system/mnt-Videos.mount
+    src: ../systemd/mnt-Videos.mount
+    owner: root
+    group: root
+    force: false
 - name: Stow alacritty
   shell: cd $HOME/.dotfiles && stow alacritty
 - name: Enable pueued
@@ -27,6 +48,7 @@
     state: started
     name: mnt-nfs.mount
     enabled: true
+    daemon_reload: true
 - name: Enable mnt-Videos
   become: true
   ansible.builtin.systemd_service:

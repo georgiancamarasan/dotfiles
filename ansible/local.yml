@@ -33,7 +33,5 @@
     include_tasks: tasks/dotfiles.yml
   - name: Install rust
     include_tasks: tasks/rust.yml
-  - name: Mount nfs
-    include_tasks: tasks/nfs.yml
   - name: Setup taskwarrior
     include_tasks: tasks/taskwarrior.yml
