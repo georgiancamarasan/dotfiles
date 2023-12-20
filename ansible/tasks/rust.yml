@@ -45,7 +45,8 @@
   shell: $HOME/.cargo/bin/cargo install pueue
 - name: install watchexec
   shell: $HOME/.cargo/bin/cargo install watchexec-cli
+- name: install bottom
+  shell: $HOME/.cargo/bin/cargo install bottom
 - name: install paru
   when: ansible_distribution == 'Archlinux'
   shell: $HOME/.cargo/bin/cargo install paru
-
