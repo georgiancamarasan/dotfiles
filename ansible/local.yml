@@ -37,9 +37,6 @@
   - name: Install npm packages
     ansible.builtin.include_tasks: tasks/npm-packages.yml
     tags: [ desktop, server ]
-  - name: Install pip packages
-    ansible.builtin.include_tasks: tasks/pip-packages.yml
-    tags: [ desktop, server ]
   - name: Install neovim
     ansible.builtin.include_tasks: tasks/nvim-setup.yml
     tags: [ desktop, server ]

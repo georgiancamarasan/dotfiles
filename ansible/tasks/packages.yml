@@ -32,6 +32,7 @@
       - "yarn"
       # - "uair"
       - "kubectl"
+      - "python-pynvim"
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Archlinux'
