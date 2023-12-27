@@ -1,15 +1,20 @@
 - name: Stow tmux
   shell: cd $HOME/.dotfiles && stow tmux
+  tags: [ desktop, server, stow, tmux ]
 - name: Remove original fish configuration
   file:
     path: $HOME/.config/fish/config.fish
     state: absent
+  tags: [ desktop, server, fish ]
 - name: Stow fish
   shell: cd $HOME/.dotfiles && stow fish
+  tags: [ desktop, server, stow, fish ]
 - name: Stow nvim
   shell: cd $HOME/.dotfiles && stow nvim
+  tags: [ desktop, server, stow, nvim ]
 - name: Stow user-systemd
   shell: cd $HOME/.dotfiles && stow user-systemd
+  tags: [ desktop ]
 - name: Copy mnt-nfs.mount unit files
   become: true
   copy:
@@ -18,6 +23,7 @@
     owner: root
     group: root
     force: false
+  tags: [ desktop, mnt ]
 - name: Copy mnt-Pictures.mount unit files
   become: true
   copy:
@@ -26,6 +32,7 @@
     owner: root
     group: root
     force: false
+  tags: [ desktop, mnt ]
 - name: Copy mnt-Videos.mount unit files
   become: true
   copy:
@@ -34,14 +41,17 @@
     owner: root
     group: root
     force: false
+  tags: [ desktop, mnt ]
 - name: Stow alacritty
   shell: cd $HOME/.dotfiles && stow alacritty
+  tags: [ desktop ]
 - name: Enable pueued
   ansible.builtin.systemd_service:
     state: started
     name: pueued.service
     enabled: true
     scope: user
+  tags: [ desktop ]
 - name: Enable mnt-nfs
   become: true
   ansible.builtin.systemd_service:
@@ -49,15 +59,18 @@
     name: mnt-nfs.mount
     enabled: true
     daemon_reload: true
+  tags: [ desktop, mnt ]
 - name: Enable mnt-Videos
   become: true
   ansible.builtin.systemd_service:
     state: started
     name: mnt-Videos.mount
     enabled: true
+  tags: [ desktop, mnt ]
 - name: Enable mnt-Pictures
   become: true
   ansible.builtin.systemd_service:
     state: started
     name: mnt-Pictures.mount
     enabled: true
+  tags: [ desktop, mnt ]

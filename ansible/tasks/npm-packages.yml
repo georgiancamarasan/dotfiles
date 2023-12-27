@@ -4,27 +4,32 @@
     name: eslint
     global: true
     state: present
+  tags: [ "npm" ]
 - name: Install typescript-language-server
   become: true
   community.general.npm:
     name: typescript-language-server
     global: true
     state: present
+  tags: [ "npm" ]
 - name: Install typescript
   become: true
   community.general.npm:
     name: typescript
     global: true
     state: present
+  tags: [ "npm" ]
 - name: Install ts-node
   become: true
   community.general.npm:
     name: ts-node
     global: true
     state: present
+  tags: [ "npm" ]
 - name: Install neovim
   become: true
   community.general.npm:
     name: neovim
     global: true
     state: present
+  tags: [ "npm", "nvim" ]

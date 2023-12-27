@@ -6,6 +6,7 @@
       - neovim
       - black
       - flake8
+  tags: [ desktop, server, python ]
 - name: Install pip packages on Ubuntu
   when: ansible_distribution == 'Ubuntu'
   ansible.builtin.pip:
@@ -13,3 +14,4 @@
       - neovim
       - black
       - flake8
+  tags: [ desktop, server, python ]

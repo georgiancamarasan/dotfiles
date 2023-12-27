@@ -7,6 +7,7 @@
     ed_source_key: ".ssh/id_ed25519"
     rsa_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     ed_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+  tags: [ desktop, server ]
 
   pre_tasks:
   - name: Update Ubuntu packages
@@ -15,28 +16,39 @@
       update_cache: true
       upgrade: true
     when: ansible_distribution == 'Ubuntu'
+    tags: [ desktop, server ]
   - name: Update Arch packages
     become: true
     community.general.pacman:
       update_cache: true
       upgrade: true
     when: ansible_distribution == 'Archlinux'
+    tags: [ desktop, server ]
 
   - name: Install linux packages
     ansible.builtin.include_tasks: tasks/packages.yml
+    tags: [ desktop, server ]
   - name: Install SSH Keys
     ansible.builtin.include_tasks: tasks/ssh.yml
+    tags: [ desktop, server ]
   - name: Install Git
     ansible.builtin.include_tasks: tasks/git-setup.yml
+    tags: [ desktop, server ]
   - name: Install npm packages
     ansible.builtin.include_tasks: tasks/npm-packages.yml
+    tags: [ desktop, server ]
   - name: Install pip packages
     ansible.builtin.include_tasks: tasks/pip-packages.yml
+    tags: [ desktop, server ]
   - name: Install neovim
     ansible.builtin.include_tasks: tasks/nvim-setup.yml
+    tags: [ desktop, server ]
   - name: Install dotfiles
     ansible.builtin.include_tasks: tasks/dotfiles.yml
+    tags: [ desktop, server ]
   - name: Install rust
     ansible.builtin.include_tasks: tasks/rust.yml
+    tags: [ desktop, server ]
   - name: Setup taskwarrior
     ansible.builtin.include_tasks: tasks/taskwarrior.yml
+    tags: [ desktop, server ]

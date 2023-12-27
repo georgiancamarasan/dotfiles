@@ -2,24 +2,29 @@
   shell: command -v nvim
   register: neovim_is_built
   ignore_errors: true
-
+  tags: [ "nvim" ]
 - name: Remove neovim
   file:
     path: $HOME/code/neovim
     state: absent
+  tags: [ "nvim" ]
 - name: Clone Neovim
   when: neovim_is_built is failed
   ansible.builtin.git:
     repo: 'https://github.com/neovim/neovim.git'
     dest: "{{ lookup('env', 'HOME') }}/code/neovim"
+  tags: [ "nvim" ]
 - name: Build neovim
   when: neovim_is_built is failed
   shell: "cd {{ lookup('env', 'HOME') }}/code/neovim && make CMAKE_BUILD_TYPE=Release"
+  tags: [ "nvim" ]
 - name: Install neovim
   when: neovim_is_built is failed
   become: true
   shell: "cd {{ lookup('env', 'HOME') }}/code/neovim && make install"
+  tags: [ "nvim" ]
 - name: Neovim Plugin Development 2 luacheck
   when: neovim_is_built is failed
   become: true
   shell: luarocks install luacheck
+  tags: [ "nvim" ]

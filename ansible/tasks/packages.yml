@@ -1,4 +1,4 @@
-- name: Install Packages for Arch
+- name: Install Server Packages for Arch
   become: true
   community.general.pacman:
     name:
@@ -21,16 +21,9 @@
       - "python"
       - "python-pip"
       - "tree"
-      - "xclip"
       - "nfs-utils"
       - "wget"
       - "fzf"
-      - "ntfs-3g"
-      - "virt-manager"
-      - "qemu-full"
-      - "lutris"
-      - "mpv"
-      - "taskwarrior-tui"
       - "mc"
       - "github-cli"
       - "ncdu"
@@ -38,13 +31,30 @@
       - "tree-sitter-cli"
       - "yarn"
       # - "uair"
-      - "tokei"
-      - "bitwarden"
       - "kubectl"
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Archlinux'
-- name: Install Packages for Ubuntu
+  tags: [ "desktop", "server" ]
+- name: Install Server Packages for Arch
+  become: true
+  community.general.pacman:
+    name:
+      - "xclip"
+      - "ntfs-3g"
+      - "virt-manager"
+      - "qemu-full"
+      - "lutris"
+      - "mpv"
+      - "bitwarden"
+      - "taskwarrior-tui"
+      - "timew"
+      - "tokei"
+    state: present
+      # - "libreoffice"
+  when: ansible_distribution == 'Archlinux'
+  tags: [ "desktop" ]
+- name: Install Server Packages for Ubuntu
   become: true
   ansible.builtin.apt:
     name:
@@ -67,17 +77,13 @@
       - "python3"
       - "python3-pip"
       - "tree"
-      - "xclip"
       - "nfs-common"
       - "wget"
       - "fzf"
-      - "ntfs-3g"
       # - "virt-manager"
       # - "qemu-full"
       # - "lutris"
       # - "mpv"
-      - "taskwarrior"
-      - "timewarrior"
       - "mc"
       - "gh"
       - "ncdu"
@@ -92,3 +98,27 @@
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Ubuntu'
+  tags: [ "desktop", "server" ]
+- name: Install Server Packages for Ubuntu
+  become: true
+  ansible.builtin.apt:
+    name:
+      - "xclip"
+      - "ntfs-3g"
+      # - "virt-manager"
+      # - "qemu-full"
+      # - "lutris"
+      # - "mpv"
+      - "taskwarrior"
+      - "timewarrior"
+      # - "lazygit"
+      # - "tree-sitter-cli"
+      # - "uair"
+      # - "taplo-cli"
+      # - "tokei"
+      # - "bitwarden"
+      # - "kubectl"
+    state: present
+      # - "libreoffice"
+  when: ansible_distribution == 'Ubuntu'
+  tags: [ "desktop" ]
