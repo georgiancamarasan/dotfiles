@@ -36,7 +36,8 @@
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Archlinux'
-  tags: [ "desktop", "server" ]
+  tags:
+    - install
 - name: Install Server Packages for Arch
   become: true
   community.general.pacman:
@@ -54,7 +55,9 @@
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Archlinux'
-  tags: [ "desktop" ]
+  tags:
+    - desktop
+    - install
 - name: Install Server Packages for Ubuntu
   become: true
   ansible.builtin.apt:
@@ -99,7 +102,9 @@
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Ubuntu'
-  tags: [ "desktop", "server" ]
+  tags:
+    - desktop
+    - install
 - name: Install Server Packages for Ubuntu
   become: true
   ansible.builtin.apt:
@@ -122,4 +127,6 @@
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Ubuntu'
-  tags: [ "desktop" ]
+  tags:
+    - desktop
+    - install

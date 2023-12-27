@@ -5,7 +5,9 @@
     owner: georgian
     group: georgian
     mode: u=rw,g=r,o=r
-  tags: [ desktop, server, task ]
+  tags:
+    - desktop
+    - task
 
 - name: Make .task
   ansible.builtin.file:
@@ -14,7 +16,9 @@
     group: georgian
     mode: u=rwx,g=r,o=r
     state: "directory"
-  tags: [ desktop, server, task ]
+  tags:
+    - desktop
+    - task
 
 - name: Setup ca.cert.pem
   ansible.builtin.copy:
@@ -23,7 +27,9 @@
     owner: georgian
     group: georgian
     mode: u=rw,g=r,o=r
-  tags: [ desktop, server, task ]
+  tags:
+    - desktop
+    - task
 
 - name: Setup Georgian.cert.pem
   ansible.builtin.copy:
@@ -32,7 +38,9 @@
     owner: georgian
     group: georgian
     mode: u=rw,g=r,o=r
-  tags: [ desktop, server, task ]
+  tags:
+    - desktop
+    - task
 
 - name: Setup Georgian.key.pem
   ansible.builtin.copy:
@@ -41,7 +49,9 @@
     owner: georgian
     group: georgian
     mode: u=rw,g=r,o=r
-  tags: [ desktop, server, task ]
+  tags:
+    - desktop
+    - task
 
 - name: Setup timewarrior hook
   when: ansible_distribution == 'Ubuntu'
@@ -51,4 +61,6 @@
     owner: georgian
     group: georgian
     mode: u=rwx,g=r,o=r
-  tags: [ desktop, server, task ]
+  tags:
+    - desktop
+    - task

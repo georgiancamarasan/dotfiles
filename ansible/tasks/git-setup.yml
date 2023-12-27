@@ -3,10 +3,14 @@
     name: user.email
     scope: global
     value: "georgian.camarasan@zohomail.eu"
-  tags: [ desktop, server, git, install ]
+  tags:
+    - git
+    - install
 - name: Git personal setup name
   git_config:
     name: user.name
     scope: global
     value: "Georgian Camarasan"
-  tags: [ desktop, server, git, install ]
+  tags:
+    - git
+    - install

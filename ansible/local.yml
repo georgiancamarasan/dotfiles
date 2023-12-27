@@ -7,7 +7,6 @@
     ed_source_key: ".ssh/id_ed25519"
     rsa_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     ed_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
-  tags: [ desktop, server ]
 
   pre_tasks:
   - name: Update Ubuntu packages
@@ -16,14 +15,16 @@
       update_cache: true
       upgrade: true
     when: ansible_distribution == 'Ubuntu'
-    tags: [ desktop, server ]
+    tags:
+      - update
   - name: Update Arch packages
     become: true
     community.general.pacman:
       update_cache: true
       upgrade: true
     when: ansible_distribution == 'Archlinux'
-    tags: [ desktop, server ]
+    tags:
+      - update
 
   - name: Install linux packages
     ansible.builtin.include_tasks: tasks/packages.yml

@@ -3,7 +3,9 @@
     dest: "{{ rsa_dest_key | dirname }}"
     mode: 0700
     state: directory
-  tags: [ dotfiles, ssh, desktop, server ]
+  tags:
+    - dotfiles
+    - ssh
 - name: check if ssh key already exists
   stat:
     path: "{{ ed_dest_key }}"
@@ -15,14 +17,18 @@
     src: "{{ ed_source_key }}"
     dest: "{{ ed_dest_key }}"
     mode: 0600
-  tags: [ dotfiles, ssh, desktop, server ]
+  tags:
+    - dotfiles
+    - ssh
 - name: Install ed ssh key public
   when: not ssh_key_already_exists.stat.exists
   copy:
     src: "{{ ed_source_key }}.pub"
     dest: "{{ ed_dest_key }}.pub"
     mode: 0644
-  tags: [ dotfiles, ssh, desktop, server ]
+  tags:
+    - dotfiles
+    - ssh
 # - name: Set authorized key took from file for ed
 #   ansible.posix.authorized_key:
 #     user: "{{ lookup('env', 'USER') }}"

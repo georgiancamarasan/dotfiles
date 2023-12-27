@@ -2,7 +2,8 @@
   shell: command -v $HOME/.cargo/bin/cargo
   register: cargo_exists
   ignore_errors: true
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 
 - name: Download Installer
   when: cargo_exists is failed
@@ -11,62 +12,81 @@
     dest: /tmp/sh.rustup.rs
     mode: '0755'
     force: true
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 
 - name: install rust/cargo
   when: cargo_exists is failed
   shell: /tmp/sh.rustup.rs -y
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 
 - name: install bat
   shell: $HOME/.cargo/bin/cargo install bat
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install cargo-update
   shell: $HOME/.cargo/bin/cargo install cargo-update
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install exa
   shell: $HOME/.cargo/bin/cargo install exa
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install diskonaut
   shell: $HOME/.cargo/bin/cargo install diskonaut
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install fd-find
   shell: $HOME/.cargo/bin/cargo install fd-find
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install just
   shell: $HOME/.cargo/bin/cargo install just
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install ripgrep
   shell: $HOME/.cargo/bin/cargo install ripgrep
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install rm-improved
   shell: $HOME/.cargo/bin/cargo install rm-improved
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install xsv
   shell: $HOME/.cargo/bin/cargo install xsv
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install zoxide
   shell: $HOME/.cargo/bin/cargo install zoxide
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install prettier
   shell: $HOME/.cargo/bin/cargo install prettier
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install stylua
   shell: $HOME/.cargo/bin/cargo install stylua
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install lsd
   shell: $HOME/.cargo/bin/cargo install lsd
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install pueue
   shell: $HOME/.cargo/bin/cargo install pueue
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install watchexec
   shell: $HOME/.cargo/bin/cargo install watchexec-cli
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install bottom
   shell: $HOME/.cargo/bin/cargo install bottom
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
 - name: install paru
   when: ansible_distribution == 'Archlinux'
   shell: $HOME/.cargo/bin/cargo install paru
-  tags: [ desktop, server, rust ]
+  tags:
+    - rust
