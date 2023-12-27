@@ -1,7 +1,7 @@
 - name: check if neovim is already built
   shell: command -v nvim
   register: neovim_is_built
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Remove neovim
   file:

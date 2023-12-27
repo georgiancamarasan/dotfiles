@@ -2,29 +2,29 @@
   become: true
   community.general.npm:
     name: eslint
-    global: yes
+    global: true
     state: present
 - name: Install typescript-language-server
   become: true
   community.general.npm:
     name: typescript-language-server
-    global: yes
+    global: true
     state: present
 - name: Install typescript
   become: true
   community.general.npm:
     name: typescript
-    global: yes
+    global: true
     state: present
 - name: Install ts-node
   become: true
   community.general.npm:
     name: ts-node
-    global: yes
+    global: true
     state: present
 - name: Install neovim
   become: true
   community.general.npm:
     name: neovim
-    global: yes
+    global: true
     state: present
