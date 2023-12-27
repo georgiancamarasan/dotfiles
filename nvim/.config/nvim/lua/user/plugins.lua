@@ -36,6 +36,12 @@ lazy.setup({
         dependencies = {
           {
             "williamboman/mason.nvim",
+            dependencies = {
+              "mfussenegger/nvim-lint",
+              config = function()
+                require("user.linters")
+              end,
+            },
             config = function()
               require("user.mason")
             end,
