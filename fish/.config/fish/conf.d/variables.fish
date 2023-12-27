@@ -14,4 +14,8 @@ if test -d /home/$USER/code/lua-language-server/bin/
   set PATH $PATH:/home/$USER/code/lua-language-server/bin/
 end
 
+if test -d /home/$USER/.dotnet/tools
+  set PATH $PATH:/home/$USER/.dotnet/tools
+end
+
 set EDITOR nvim
