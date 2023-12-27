@@ -31,6 +31,20 @@ lazy.setup({
         end,
       },
       "folke/neodev.nvim",
+      {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = {
+          {
+            "williamboman/mason.nvim",
+            config = function()
+              require("user.mason")
+            end,
+          },
+        },
+        config = function()
+          require("user.mason.lspconfig")
+        end,
+      },
     },
     config = function()
       require("user.lsp")
@@ -39,7 +53,7 @@ lazy.setup({
 
   "RRethy/vim-illuminate", -- Vim plugin for automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching.
   {
-    "folke/trouble.nvim",     -- A pretty list for showing diagnostics, references, telescope results...
+    "folke/trouble.nvim",  -- A pretty list for showing diagnostics, references, telescope results...
     config = function()
       require("trouble").setup({})
     end,
@@ -47,24 +61,24 @@ lazy.setup({
   --"jose-elias-alvarez/null-ls.nvim" -- for formatters and linters ]]
   --"jay-babu/mason-null-ls.nvim"
   {
-    "hrsh7th/nvim-cmp",                               -- A completion engine plugin for neovim written in Lua.
+    "hrsh7th/nvim-cmp",       -- A completion engine plugin for neovim written in Lua.
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",                         -- nvim-cmp source for neovim's built-in language server client.
+      "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in language server client.
       {
         "L3MON4D3/LuaSnip",
         version = "v2.*",
         build = "make install_jsregexp",
-      }, -- snippets written in lua
-      "saadparwaiz1/cmp_luasnip",                     -- luasnip completion source for nvim-cmp
-      "rafamadriz/friendly-snippets",                 -- a bunch of snippets to use
-      "hrsh7th/cmp-buffer",                           -- buffer completions
-      "hrsh7th/cmp-path",                             -- path completions
-      "hrsh7th/cmp-nvim-lua",                         -- lua API completions
-      "hrsh7th/cmp-cmdline",                          -- cmdline completions
-      "David-Kunz/cmp-npm",                           -- npm packages completions
-      "f3fora/cmp-spell",                             -- spell source for nvim-cmp based on vim's spellsuggest
-      "andersevenrud/cmp-tmux",                       -- tmux adjacent panes completionsc
-      "onsails/lspkind.nvim"                          -- This tiny plugin adds vscode-like pictograms to neovim built-in lsp
+      },                              -- snippets written in lua
+      "saadparwaiz1/cmp_luasnip",     -- luasnip completion source for nvim-cmp
+      "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+      "hrsh7th/cmp-buffer",           -- buffer completions
+      "hrsh7th/cmp-path",             -- path completions
+      "hrsh7th/cmp-nvim-lua",         -- lua API completions
+      "hrsh7th/cmp-cmdline",          -- cmdline completions
+      "David-Kunz/cmp-npm",           -- npm packages completions
+      "f3fora/cmp-spell",             -- spell source for nvim-cmp based on vim's spellsuggest
+      "andersevenrud/cmp-tmux",       -- tmux adjacent panes completionsc
+      "onsails/lspkind.nvim"          -- This tiny plugin adds vscode-like pictograms to neovim built-in lsp
     },
     config = function()
       require("user.cmp")
@@ -158,21 +172,20 @@ lazy.setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     lazy = false,
   },
-
-  --[[ "tpope/vim-sleuth" -- Detect tabstop and shiftwidth automatically ]]
+  "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
   "nvim-telescope/telescope-media-files.nvim",
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
   },
   "kyazdani42/nvim-web-devicons",
-  "moll/vim-bbye",                 -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-  "junegunn/vim-easy-align",       -- A simple, easy-to-use Vim alignment plugin.
-  "tpope/vim-surround",            --  is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more. The plugin provides mappings to easily delete, change and add such surroundings in pairs.
+  "moll/vim-bbye",                  -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
+  "junegunn/vim-easy-align",        -- A simple, easy-to-use Vim alignment plugin.
+  "tpope/vim-surround",             --  is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more. The plugin provides mappings to easily delete, change and add such surroundings in pairs.
   --[[ use 'easymotion/vim-easymotion' -- Vim motion on speed! ]]
   "ntpeters/vim-better-whitespace", -- causes all trailing whitespace characters to be highlighted.
-  "machakann/vim-highlightedyank", -- Make the yanked region apparent!
-  "editorconfig/editorconfig-vim", --
+  "machakann/vim-highlightedyank",  -- Make the yanked region apparent!
+  "editorconfig/editorconfig-vim",  --
   "christoomey/vim-tmux-navigator",
   {
     "andymass/vim-matchup",
@@ -200,7 +213,7 @@ lazy.setup({
     end,
   },
   {
-    "rcarriga/nvim-dap-ui", -- A UI for nvim-dap which provides a good out of the box configuration.
+    "rcarriga/nvim-dap-ui",    -- A UI for nvim-dap which provides a good out of the box configuration.
     requires = {
       "mfussenegger/nvim-dap", -- nvim-dap is a Debug Adapter Protocol client implementation for Neovim.
       config = function()
@@ -224,7 +237,7 @@ lazy.setup({
       require("crates").setup()
     end,
   },
-  --"dstein64/vim-startuptime"
+  "dstein64/vim-startuptime",
   --"~/code/neovim-plugins/simple-plugin-dev.nvim"
   --"~/code/neovim-plugins/stackmap.nvim"
 }, {});
