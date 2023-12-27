@@ -103,7 +103,6 @@
       # - "libreoffice"
   when: ansible_distribution == 'Ubuntu'
   tags:
-    - desktop
     - install
 - name: Install Server Packages for Ubuntu
   become: true
