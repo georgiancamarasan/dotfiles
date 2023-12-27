@@ -27,25 +27,17 @@
 
   - name: Install linux packages
     ansible.builtin.include_tasks: tasks/packages.yml
-    tags: [ desktop, server ]
   - name: Install SSH Keys
     ansible.builtin.include_tasks: tasks/ssh.yml
-    tags: [ desktop, server ]
   - name: Install Git
     ansible.builtin.include_tasks: tasks/git-setup.yml
-    tags: [ desktop, server ]
   - name: Install npm packages
     ansible.builtin.include_tasks: tasks/npm-packages.yml
-    tags: [ desktop, server ]
   - name: Install neovim
     ansible.builtin.include_tasks: tasks/nvim-setup.yml
-    tags: [ desktop, server ]
   - name: Install dotfiles
     ansible.builtin.include_tasks: tasks/dotfiles.yml
-    tags: [ desktop, server ]
   - name: Install rust
     ansible.builtin.include_tasks: tasks/rust.yml
-    tags: [ desktop, server ]
   - name: Setup taskwarrior
     ansible.builtin.include_tasks: tasks/taskwarrior.yml
-    tags: [ desktop, server ]
