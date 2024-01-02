@@ -90,3 +90,7 @@
   shell: $HOME/.cargo/bin/cargo install paru
   tags:
     - rust
+- name: install tre
+  shell: $HOME/.cargo/bin/cargo install tre-command
+  tags:
+    - rust

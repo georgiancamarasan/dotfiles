@@ -33,6 +33,7 @@
       # - "uair"
       - "kubectl"
       - "python-pynvim"
+      - "progress"
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Archlinux'
@@ -99,6 +100,7 @@
       # - "tokei"
       # - "bitwarden"
       # - "kubectl"
+      - "progress"
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Ubuntu'
