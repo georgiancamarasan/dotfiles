@@ -5,6 +5,7 @@ mason_lspconfig.setup({
     -- language servers
     ansiblels = {},
     omnisharp = {},
+    clangd = {},
     cssls = {},
     cucumber_language_server = {},
     dockerls = {},

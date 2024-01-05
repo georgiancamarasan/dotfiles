@@ -5,6 +5,7 @@ end
 
 lspconfig.ansiblels.setup {}
 lspconfig.omnisharp.setup {}
+lspconfig.clangd.setup {}
 lspconfig.cssls.setup {}
 lspconfig.cucumber_language_server.setup {}
 lspconfig.dockerls.setup {}
