@@ -32,6 +32,7 @@
       - "yarn"
       # - "uair"
       - "kubectl"
+      - "helm"
       - "python-pynvim"
       - "progress"
     state: present
@@ -39,7 +40,7 @@
   when: ansible_distribution == 'Archlinux'
   tags:
     - install
-- name: Install Server Packages for Arch
+- name: Install Desktop Packages for Arch
   become: true
   community.general.pacman:
     name:
@@ -101,14 +102,27 @@
       # - "bitwarden"
       # - "kubectl"
       - "progress"
+      - "apt-transport-https"
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Ubuntu'
   tags:
     - install
-- name: Install Server Packages for Ubuntu
+
+- name: Install helm apt key
+  ansible.builtin.shell:
+    cmd: "curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null"
+
+- name: Add helm apt repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main"
+    state: present
+
+- name: Install Desktop Packages for Ubuntu
   become: true
   ansible.builtin.apt:
+    update_cache: true
     name:
       - "xclip"
       - "ntfs-3g"
@@ -125,6 +139,7 @@
       # - "tokei"
       # - "bitwarden"
       # - "kubectl"
+      - "helm"
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Ubuntu'
