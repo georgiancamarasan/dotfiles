@@ -763,3 +763,9 @@ $env.config = {
 
 source ~/.zoxide.nu
 alias ll = ls -l
+
+def t [...args:any] {
+    clear
+    task ...$args
+}
+
