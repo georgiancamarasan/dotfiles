@@ -765,7 +765,7 @@ source ~/.zoxide.nu
 alias ll = ls -l
 
 def t [...args:any] {
-    clear
+    if ($args | length) == 0 { clear }
     task ...$args
 }
 
