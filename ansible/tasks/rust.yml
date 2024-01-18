@@ -94,3 +94,7 @@
   shell: $HOME/.cargo/bin/cargo install tre-command
   tags:
     - rust
+- name: install Nushell
+  shell: $HOME/.cargo/bin/cargo install nu
+  tags:
+    - rust

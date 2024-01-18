@@ -103,6 +103,7 @@
       # - "kubectl"
       - "progress"
       - "apt-transport-https"
+      - "libssl-dev"
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Ubuntu'
