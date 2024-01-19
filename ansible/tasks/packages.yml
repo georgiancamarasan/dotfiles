@@ -113,12 +113,16 @@
 - name: Install helm apt key
   ansible.builtin.shell:
     cmd: "curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null"
+  tags:
+    - helm
 
 - name: Add helm apt repository
   become: true
   ansible.builtin.apt_repository:
     repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main"
     state: present
+  tags:
+    - helm
 
 - name: Install Desktop Packages for Ubuntu
   become: true
