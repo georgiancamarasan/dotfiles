@@ -761,7 +761,7 @@ $env.config = {
     ]
 }
 
-source ~/.zoxide.nu
+source ~/.config/zoxide/zoxide.nu
 source ~/.config/oh-my-posh/oh-my-posh.nu
 
 alias ll = ls -l
