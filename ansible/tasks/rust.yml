@@ -98,3 +98,9 @@
   shell: $HOME/.cargo/bin/cargo install nu
   tags:
     - rust
+- name: install alacritty
+  shell: $HOME/.cargo/bin/cargo install alacritty
+  tags:
+    - rust
+    - alacritty
+    - desktopp
