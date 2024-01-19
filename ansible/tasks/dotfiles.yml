@@ -97,3 +97,8 @@
   tags:
     - mnt
     - desktop
+- name: Stow nushell
+  shell: cd $HOME/.dotfiles && stow nushell
+  tags:
+    - stow
+    - nushell
