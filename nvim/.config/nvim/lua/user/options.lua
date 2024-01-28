@@ -1,7 +1,7 @@
 local options = {
   syntax = 'on',                            -- switch syntax highlighting
   background = 'dark',                      -- set dark for the theme
-  shell = 'env fish',                  -- select fish shell
+  shell = 'env nu',                  -- select fish shell
   hidden = true,
   path = '.,**',
   tags = './tags;,tags;',
