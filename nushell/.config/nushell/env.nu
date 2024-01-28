@@ -102,4 +102,20 @@ $env.NU_PLUGIN_DIRS = [
 $env.PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin/')
 
+$env.NUPM_HOME = "~/.config/nushell/nupm/"
+
+$env.NU_LIB_DIRS = [
+    ...
+    ($env.NUPM_HOME | path join "modules")
+]
+
+$env.PATH = (
+    $env.PATH
+        | split row (char esep)
+        | prepend ($env.NUPM_HOME | path join "scripts")
+        | uniq
+)
+
+use ~/.config/nushell/nupm/nupm/
+
 zoxide init nushell | str replace -a 'def-env' 'def' | save -f ~/.zoxide.nu
