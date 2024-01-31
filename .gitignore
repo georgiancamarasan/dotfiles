@@ -13,3 +13,7 @@ awesome/.config/awesome/default/**/*.png
 awesome/.config/awesome/default/README
 nvim/.config/nvim/lazy-lock.json
 systemd/.config/systemd/user/docker.service
+user-systemd/.config/systemd/user/backup-documents.timer
+user-systemd/.config/systemd/user/backup-documents.service
+user-systemd/.config/systemd/user/timers.target.wants/
+user-systemd/.config/systemd/user/default.target.wants/
