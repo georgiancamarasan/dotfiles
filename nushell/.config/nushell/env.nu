@@ -122,4 +122,4 @@ use ~/.config/nushell/nupm/nupm/
 
 $env.EDITOR = 'nvim'
 
-zoxide init nushell | str replace -a 'def-env' 'def' | save -f ~/.zoxide.nu
+zoxide init nushell | str replace -a 'def-env' 'def' | save -f ~/.config/zoxide/zoxide.nu
