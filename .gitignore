@@ -17,3 +17,5 @@ user-systemd/.config/systemd/user/backup-documents.timer
 user-systemd/.config/systemd/user/backup-documents.service
 user-systemd/.config/systemd/user/timers.target.wants/
 user-systemd/.config/systemd/user/default.target.wants/
+nushell/.config/nushell/nupm
+nushell/.config/nushell/history.txt
