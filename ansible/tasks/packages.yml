@@ -146,6 +146,11 @@
       # - "bitwarden"
       # - "kubectl"
       - "helm"
+      - pkg-config
+      - libfreetype6-dev
+      - libfontconfig1-dev
+      - libxcb-xfixes0-dev
+      - libxkbcommon-dev
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Ubuntu'
