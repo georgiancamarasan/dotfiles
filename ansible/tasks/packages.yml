@@ -94,7 +94,6 @@
       - "mc"
       - "gh"
       - "ncdu"
-      # - "lazygit"
       # - "tree-sitter-cli"
       - "yarn"
       # - "uair"
@@ -110,6 +109,11 @@
   when: ansible_distribution == 'Ubuntu'
   tags:
     - install
+
+- name: Install snap packages for Ubuntu
+  become: true
+  community.general.snap:
+    name: lazygit
 
 - name: Install helm apt key
   ansible.builtin.shell:
@@ -138,7 +142,6 @@
       # - "mpv"
       - "taskwarrior"
       - "timewarrior"
-      # - "lazygit"
       # - "tree-sitter-cli"
       # - "uair"
       # - "taplo-cli"
