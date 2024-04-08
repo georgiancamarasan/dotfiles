@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily Backups
+RequiresMountsFor=/mnt/nfs/Backups/
+
+[Service]
+ExecStart=/home/georgian/.cargo/bin/nu ~/.local/bin/run-daily-backup.nu
+Type=oneshot
+
+[Install]
+WantedBy=default.target
