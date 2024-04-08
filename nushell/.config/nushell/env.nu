@@ -97,14 +97,14 @@ $env.NU_PLUGIN_DIRS = [
     ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-# To add entries to PATH (on Windows you might use Path), you can use the following pattern:
+# To add entries to PATH (on Windows you might use PATH), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
-$env.PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin/')
-$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin/')
+$env.PATH = ($env | get PATH | split row (char esep) | prepend '~/.cargo/bin/')
+# $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '~/.local/bin/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/snap/bin/')
 
-$env.NUPM_HOME = "~/.config/nushell/nupm/"
+$env.NUPM_HOME = $env.HOME + "/.config/nushell/nupm/"
 
 $env.NU_LIB_DIRS = [
     ...
