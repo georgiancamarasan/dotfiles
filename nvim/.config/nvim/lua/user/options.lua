@@ -1,7 +1,16 @@
 local options = {
   syntax = 'on',                            -- switch syntax highlighting
   background = 'dark',                      -- set dark for the theme
-  shell = 'env nu',                  -- select fish shell
+  --[[ shell = vim.fn.executable "pwsh" and "pwsh" or "powershell",
+  shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;',
+  shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+  shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode", ]]
+  shell = "nu",
+  shellcmdflag = "-c",
+  shellredir = "| save %s",
+  shellpipe = "2>&1 | save %s; exit $env.LAST_EXIT_CODE",
+  shellquote = "",
+  shellxquote = "",
   hidden = true,
   path = '.,**',
   tags = './tags;,tags;',
@@ -49,6 +58,7 @@ local options = {
   guicursor = "",
 
 }
+
 
 local global_options = {
   netrw_liststyle = 3,                   -- list files in netrw in tree format
