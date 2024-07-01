@@ -100,7 +100,6 @@
       # - "taplo-cli"
       # - "tokei"
       # - "bitwarden"
-      # - "kubectl"
       - "progress"
       - "apt-transport-https"
       - "libssl-dev"
@@ -113,7 +112,15 @@
 - name: Install snap packages for Ubuntu
   become: true
   community.general.snap:
-    name: lazygit
+    name:
+      - lazygit
+
+- name: Install snap packages for Ubuntu classic confinement
+  become: true
+  community.general.snap:
+    classic: yes
+    name:
+      - kubectl
 
 - name: Install helm apt key
   ansible.builtin.shell:
@@ -147,7 +154,6 @@
       # - "taplo-cli"
       # - "tokei"
       # - "bitwarden"
-      # - "kubectl"
       - "helm"
       - pkg-config
       - libfreetype6-dev
