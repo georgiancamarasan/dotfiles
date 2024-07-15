@@ -164,6 +164,7 @@ lazy.setup({
     config = function()
       require("user.which-key")
     end,
+    event = "VeryLazy",
   },
   {
     "numToStr/Comment.nvim", -- 'gc' to comment visual regions/lines
