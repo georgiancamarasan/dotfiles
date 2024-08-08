@@ -53,10 +53,6 @@
   shell: $HOME/.cargo/bin/cargo install rm-improved
   tags:
     - rust
-- name: install xsv
-  shell: $HOME/.cargo/bin/cargo install xsv
-  tags:
-    - rust
 - name: install zoxide
   shell: $HOME/.cargo/bin/cargo install zoxide
   tags:
