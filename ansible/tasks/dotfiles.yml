@@ -3,17 +3,17 @@
   tags:
     - stow
     - tmux
-- name: Remove original fish configuration
-  file:
-    path: $HOME/.config/fish/config.fish
-    state: absent
-  tags:
-    - fish
-- name: Stow fish
-  shell: cd $HOME/.dotfiles && stow fish
-  tags:
-    - stow
-    - fish
+# - name: Remove original fish configuration
+  # file:
+    # path: $HOME/.config/fish/config.fish
+    # state: absent
+  # tags:
+    # - fish
+# - name: Stow fish
+  # shell: cd $HOME/.dotfiles && stow fish
+  # tags:
+    # - stow
+    # - fish
 - name: Stow nvim
   shell: cd $HOME/.dotfiles && stow nvim
   tags:

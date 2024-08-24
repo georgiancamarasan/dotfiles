@@ -2,7 +2,7 @@
   shell: command -v nvim
   register: neovim_is_built
   ignore_errors: true
-  tags: 
+  tags:
     - nvim
 - name: Remove neovim
   file:
