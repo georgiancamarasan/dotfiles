@@ -1,0 +1,79 @@
+- name: install nupm
+  ansible.builtin.git:
+    repo: 'https://github.com/nushell/nupm.git'
+    dest: "{{ lookup('env', 'HOME') }}/.config/nushell/nupm"
+  tags:
+    - nu
+    - nupm
+
+# zoxide
+- name: check for zoxide config
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'HOME') }}/.config/zoxide/zoxide.nu"
+  register: zoxide_st
+
+- name: create zoxide config folder
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.config/zoxide/"
+    state: directory
+  when: not zoxide_st.stat.exists
+
+- name: generate zoxide config
+  ansible.builtin.shell: zoxide init nushell > "{{ lookup('env', 'HOME') }}/.config/zoxide/zoxide.nu"
+  tags:
+    - nu
+    - zoxide
+  when: not zoxide_st.stat.exists
+
+  # oh-my-posh
+- name: check for zoxide config
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'HOME') }}/.config/oh-my-posh/oh-my-posh.nu"
+  register: posh_st
+
+- name: install oh-my-posh
+  ansible.builtin.shell: "{{ lookup('env', 'HOME') }}/.cargo/bin/paru -S oh-my-posh --skipreview --noconfirm"
+  tags:
+    - nu
+    - posh
+  when: not posh_st.stat.exists
+
+- name: create oh-my-posh config folder and themes folder
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.config/oh-my-posh/themes"
+    state: directory
+  when: not posh_st.stat.exists
+
+- name: download oh-my-posh theme
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/iterm2.omp.json
+    dest: "{{ lookup('env', 'HOME') }}/.config/oh-my-posh/themes/iterm2.omp.json"
+  tags:
+    - nu
+    - posh
+  when: not posh_st.stat.exists
+
+- name: generating oh-my-posh config
+  ansible.builtin.shell: oh-my-posh init nu --config "{{ lookup('env', 'HOME') }}/.config/oh-my-posh/themes/iterm2.omp.json"
+  tags:
+    - nu
+    - posh
+  when: not posh_st.stat.exists
+
+- name: copying config file into config folder
+  ansible.builtin.copy:
+    src: "{{ lookup('env', 'HOME') }}/.oh-my-posh.nu"
+    dest: "{{ lookup('env', 'HOME') }}/.config/oh-my-posh/oh-my-posh.nu"
+  tags:
+    - nu
+    - posh
+  when: not posh_st.stat.exists
+
+- name: cleanup temporary config file
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.oh-my-posh.nu"
+    state: absent
+  tags:
+    - nu
+    - posh
+  when: not posh_st.stat.exists
