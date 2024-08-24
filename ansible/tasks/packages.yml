@@ -36,6 +36,7 @@
       - "progress"
       - "borg"
       - "firefox"
+      - "ttf-dejavu-nerd"
     state: present
       # - "libreoffice"
   when: ansible_distribution == 'Archlinux'
