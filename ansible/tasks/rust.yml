@@ -83,7 +83,7 @@
     - rust
 - name: install paru
   when: ansible_distribution == 'Archlinux'
-  shell: $HOME/.cargo/bin/cargo install paru
+  shell: $HOME/.cargo/bin/cargo install paru --git https://github.com/Morganamilo/paru/ --tag v2.0.3
   tags:
     - rust
     - paru

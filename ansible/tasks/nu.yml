@@ -19,7 +19,7 @@
   when: not zoxide_st.stat.exists
 
 - name: generate zoxide config
-  ansible.builtin.shell: zoxide init nushell > "{{ lookup('env', 'HOME') }}/.config/zoxide/zoxide.nu"
+  ansible.builtin.shell: "{{ lookup('env', 'HOME') }}/.cargo/bin/zoxide init nushell> {{ lookup('env', 'HOME') }}/.config/zoxide/zoxide.nu"
   tags:
     - nu
     - zoxide

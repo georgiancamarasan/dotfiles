@@ -3,6 +3,7 @@
   community.general.pacman:
     name:
       - "base-devel"
+      - "man-db"
       - "cmake"
       - "sudo"
       - "lua51"

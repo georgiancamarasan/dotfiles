@@ -121,5 +121,6 @@ $env.PATH = (
 use ~/.config/nushell/nupm/nupm/
 
 $env.EDITOR = 'nvim'
+$env.GIT_PAGER = 'bat --style=changes --pager=alway'
 
 zoxide init nushell | str replace -a 'def-env' 'def' | save -f ~/.config/zoxide/zoxide.nu

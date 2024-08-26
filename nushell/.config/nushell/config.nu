@@ -900,7 +900,8 @@ source ~/.config/oh-my-posh/oh-my-posh.nu
 alias ll = ls -l
 alias k = kubectl
 alias cat = bat --style full
-alias commit = git commit
+alias less = bat
+alias commit = git commit -m
 alias push = git push
 alias pull = git pull
 alias add = git add
