@@ -104,8 +104,8 @@
       - "progress"
       - "apt-transport-https"
       - "libssl-dev"
+      - "ninja-build"
     state: present
-      # - "libreoffice"
   when: ansible_distribution == 'Ubuntu'
   tags:
     - install
