@@ -12,7 +12,7 @@ mason_lspconfig.setup({
     "dockerls",
     "html",
     "jsonls",
-    "tsserver",
+    "ts_ls",
     "lua_ls",
     "marksman",
     "powershell_es",
