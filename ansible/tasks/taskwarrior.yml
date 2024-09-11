@@ -5,6 +5,7 @@
     owner: georgian
     group: georgian
     mode: u=rw,g=r,o=r
+    force: false
   tags:
     - desktop
     - task
@@ -27,6 +28,7 @@
     owner: georgian
     group: georgian
     mode: u=rw,g=r,o=r
+    force: false
   tags:
     - desktop
     - task
@@ -38,6 +40,7 @@
     owner: georgian
     group: georgian
     mode: u=rw,g=r,o=r
+    force: false
   tags:
     - desktop
     - task
@@ -49,6 +52,7 @@
     owner: georgian
     group: georgian
     mode: u=rw,g=r,o=r
+    force: false
   tags:
     - desktop
     - task
@@ -61,6 +65,7 @@
     owner: georgian
     group: georgian
     mode: u=rwx,g=r,o=r
+    force: false
   tags:
     - desktop
     - task
