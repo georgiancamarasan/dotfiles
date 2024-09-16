@@ -1,12 +1,11 @@
-- name: check if neovim is already built
-  shell: command -v nvim
-  register: neovim_is_built
-  ignore_errors: true
+- name: check if neovim folder exists
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/code/neovim"
+    state: directory
   tags:
     - nvim
 
 - name: Clone Neovim
-  when: neovim_is_built is failed
   ansible.builtin.git:
     repo: 'https://github.com/neovim/neovim.git'
     dest: "{{ lookup('env', 'HOME') }}/code/neovim"
@@ -14,7 +13,6 @@
     - nvim
 
 - name: Pull Neovim
-  when: neovim_is_built is not failed
   ansible.builtin.shell:
     chdir: "{{ lookup('env', 'HOME') }}/code/neovim"
     cmd: "git pull"
@@ -37,7 +35,6 @@
     - nvim
 
 - name: Neovim Plugin Development 2 luacheck
-  when: neovim_is_built is failed
   become: true
   shell: luarocks install luacheck
   tags:
