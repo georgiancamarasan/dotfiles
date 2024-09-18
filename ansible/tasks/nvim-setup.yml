@@ -1,7 +1,7 @@
 - name: check if neovim folder exists
-  ansible.builtin.file:
+  ansible.builtin.stat:
     path: "{{ lookup('env', 'HOME') }}/code/neovim"
-    state: directory
+  register: neovim
   tags:
     - nvim
 
@@ -9,6 +9,7 @@
   ansible.builtin.git:
     repo: 'https://github.com/neovim/neovim.git'
     dest: "{{ lookup('env', 'HOME') }}/code/neovim"
+  when: neovim.stat.isdir is not defined
   tags:
     - nvim
 
@@ -16,6 +17,7 @@
   ansible.builtin.shell:
     chdir: "{{ lookup('env', 'HOME') }}/code/neovim"
     cmd: "git pull"
+  when: neovim.stat.isdir is defined
   tags:
     - nvim
 
