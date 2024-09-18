@@ -5,6 +5,10 @@
   tags:
     - rust
 
+- name: Update rustup
+  shell: rustup update
+  when: cargo_exists is succeeded
+
 - name: Download Installer
   when: cargo_exists is failed
   get_url:
