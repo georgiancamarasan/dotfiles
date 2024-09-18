@@ -36,13 +36,13 @@
   tags:
     - nu
     - posh
-  when: not posh_st.stat.exists
+  when: not posh_st.stat.exists and ansible_distribution == 'Archlinux'
 
 - name: create oh-my-posh config folder and themes folder
   ansible.builtin.file:
     path: "{{ lookup('env', 'HOME') }}/.config/oh-my-posh/themes"
     state: directory
-  when: not posh_st.stat.exists
+  when: not posh_st.stat.exists and ansible_distribution == 'Archlinux'
 
 - name: download oh-my-posh theme
   ansible.builtin.get_url:
@@ -51,14 +51,14 @@
   tags:
     - nu
     - posh
-  when: not posh_st.stat.exists
+  when: not posh_st.stat.exists and ansible_distribution == 'Archlinux'
 
 - name: generating oh-my-posh config
   ansible.builtin.shell: oh-my-posh init nu --config "{{ lookup('env', 'HOME') }}/.config/oh-my-posh/themes/iterm2.omp.json"
   tags:
     - nu
     - posh
-  when: not posh_st.stat.exists
+  when: not posh_st.stat.exists and ansible_distribution == 'Archlinux'
 
 - name: copying config file into config folder
   ansible.builtin.copy:
@@ -67,7 +67,7 @@
   tags:
     - nu
     - posh
-  when: not posh_st.stat.exists
+  when: not posh_st.stat.exists and ansible_distribution == 'Archlinux'
 
 - name: cleanup temporary config file
   ansible.builtin.file:
@@ -76,4 +76,4 @@
   tags:
     - nu
     - posh
-  when: not posh_st.stat.exists
+  when: not posh_st.stat.exists and ansible_distribution == 'Archlinux'
