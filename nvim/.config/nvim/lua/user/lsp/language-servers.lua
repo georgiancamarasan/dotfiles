@@ -4,6 +4,7 @@ if not ok then
 end
 
 lspconfig.ansiblels.setup {}
+lspconfig.bicep.setup {}
 lspconfig.omnisharp.setup {}
 lspconfig.clangd.setup {}
 lspconfig.cssls.setup {}
@@ -12,7 +13,7 @@ lspconfig.dockerls.setup {}
 lspconfig.eslint.setup {}
 lspconfig.html.setup {}
 lspconfig.jsonls.setup {}
-lspconfig.tsserver.setup {}
+lspconfig.ts_ls.setup {}
 lspconfig.marksman.setup {}
 lspconfig.powershell_es.setup {}
 lspconfig.pyright.setup {}
@@ -20,6 +21,12 @@ lspconfig.rust_analyzer.setup {}
 lspconfig.taplo.setup {}
 lspconfig.lemminx.setup {}
 lspconfig.yamlls.setup {}
+lspconfig.ruby_lsp.setup {
+  init_options = {
+    formatter = 'standard',
+    linters = { 'standard' },
+  },
+}
 lspconfig.lua_ls.setup {
   on_init = function(client)
     local path = client.workspace_folders[1].name

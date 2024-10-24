@@ -17,6 +17,7 @@ mason_lspconfig.setup({
     "marksman",
     "powershell_es",
     "pyright",
+    "ruby_lsp",
     "rust_analyzer",
     "taplo",
     "lemminx",
