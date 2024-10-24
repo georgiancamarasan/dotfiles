@@ -905,8 +905,4 @@ alias push = git push
 alias pull = git pull
 alias add = git add
 alias status = git status
-
-def t [...args:any] {
-    if ($args | length) == 0 { clear }
-    task ...$args
-}
+alias t = task
