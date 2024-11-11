@@ -107,6 +107,8 @@
       - "apt-transport-https"
       - "libssl-dev"
       - "ninja-build"
+      - "ruby"
+      - "ruby-dev"
     state: present
   when: ansible_distribution == 'Ubuntu'
   tags:
