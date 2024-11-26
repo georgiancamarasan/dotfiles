@@ -96,7 +96,12 @@
   tags:
     - rust
 - name: install Nushell
-  shell: $HOME/.cargo/bin/cargo install nu
+  shell: $HOME/.cargo/bin/cargo install --locked nu
+  tags:
+    - rust
+    - nu
+- name: install starship
+  shell: $HOME/.cargo/bin/cargo install --locked starship
   tags:
     - rust
     - nu

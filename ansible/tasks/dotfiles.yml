@@ -69,6 +69,7 @@
     scope: user
   tags:
     - systemd
+    - pueue
 - name: Enable mnt-nfs
   become: true
   ansible.builtin.systemd_service:
@@ -102,3 +103,8 @@
   tags:
     - stow
     - nushell
+- name: Stow starship
+  shell: cd $HOME/.dotfiles && stow starship
+  tags:
+    - stow
+    - starship

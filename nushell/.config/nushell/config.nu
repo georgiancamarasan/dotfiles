@@ -894,7 +894,7 @@ $env.config = {
 }
 
 source ~/.config/zoxide/zoxide.nu
-source ~/.config/oh-my-posh/oh-my-posh.nu
+use ~/.config/nushell/starship.nu
 
 alias ll = ls -l
 alias k = kubectl

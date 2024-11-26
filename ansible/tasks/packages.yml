@@ -120,6 +120,8 @@
     name:
       - lazygit
   when: ansible_distribution == 'Ubuntu'
+  tags:
+    - snap
 
 - name: Install snap packages for Ubuntu classic confinement
   become: true
@@ -128,6 +130,8 @@
     name:
       - kubectl
   when: ansible_distribution == 'Ubuntu'
+  tags:
+    - snap
 
 - name: Install helm apt key
   ansible.builtin.shell:
