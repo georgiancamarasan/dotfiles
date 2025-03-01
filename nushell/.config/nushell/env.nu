@@ -103,6 +103,7 @@ $env.PATH = ($env | get PATH | split row (char esep) | prepend '~/.cargo/bin/')
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '~/.local/bin/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/snap/bin/')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '/usr/local/go/bin/')
 
 $env.NUPM_HOME = $env.HOME + "/.config/nushell/nupm/"
 
@@ -122,5 +123,3 @@ use ~/.config/nushell/nupm/nupm/
 
 $env.EDITOR = 'nvim'
 $env.GIT_PAGER = 'bat --style=changes --pager=alway'
-
-zoxide init nushell | str replace -a 'def-env' 'def' | save -f ~/.config/zoxide/zoxide.nu
