@@ -19,7 +19,6 @@ if not status_ok then
 end
 
 lazy.setup({
-  "lewis6991/impatient.nvim",
   {
     "neovim/nvim-lspconfig",
     dependencies = {
