@@ -74,7 +74,7 @@
   tags:
     - rust
 - name: install pueue
-  shell: $HOME/.cargo/bin/cargo install pueue
+  shell: $HOME/.cargo/bin/cargo install --locked pueue
   tags:
     - rust
 - name: install watchexec
