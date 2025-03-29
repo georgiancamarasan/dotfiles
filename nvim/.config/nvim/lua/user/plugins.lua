@@ -19,6 +19,7 @@ if not status_ok then
 end
 
 lazy.setup({
+  { 'towolf/vim-helm', ft = 'helm' },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -233,7 +234,7 @@ lazy.setup({
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = function()
-      require("todo-comments").setup({})
+      require("todo-comments").setup {}
     end,
   },
   {

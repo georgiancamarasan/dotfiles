@@ -111,3 +111,8 @@
     - rust
     - alacritty
     - desktop
+- name: install lsp-ai
+  shell: $HOME/.cargo/bin/cargo install lsp-ai
+  tags:
+    - rust
+    - llm

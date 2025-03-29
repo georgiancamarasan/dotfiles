@@ -8,11 +8,11 @@ lspconfig.bicep.setup {}
 lspconfig.omnisharp.setup {
   settings = {
     FormattingOptions = {
-        OrganizeImports = true,
+      OrganizeImports = true,
     },
     RoslynExtensionsOptions = {
-        EnableAnalyzersSupport = true,
-        EnableImportCompletion = true,
+      EnableAnalyzersSupport = true,
+      EnableImportCompletion = true,
     }
   }
 }
@@ -30,7 +30,6 @@ lspconfig.pyright.setup {}
 lspconfig.rust_analyzer.setup {}
 lspconfig.taplo.setup {}
 lspconfig.lemminx.setup {}
-lspconfig.yamlls.setup {}
 lspconfig.ruby_lsp.setup {
   init_options = {
     formatter = 'standard',
@@ -79,3 +78,13 @@ lspconfig.gopls.setup {
     }
   }
 }
+lspconfig.helm_ls.setup {
+  settings = {
+    ['helm-ls'] = {
+      yamlls = {
+        path = "~/.local/share/nvim/mason/bin/yaml-language-server",
+      }
+    }
+  }
+}
+lspconfig.yamlls.setup {}
