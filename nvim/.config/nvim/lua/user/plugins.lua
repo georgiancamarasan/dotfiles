@@ -186,6 +186,7 @@ lazy.setup({
     build = "make",
   },
   "kyazdani42/nvim-web-devicons",
+  "ryanoasis/vim-devicons",
   "moll/vim-bbye",                  -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
   "junegunn/vim-easy-align",        -- A simple, easy-to-use Vim alignment plugin.
   "tpope/vim-surround",             --  is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more. The plugin provides mappings to easily delete, change and add such surroundings in pairs.

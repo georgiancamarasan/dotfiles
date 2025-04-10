@@ -88,3 +88,4 @@ lspconfig.helm_ls.setup {
   }
 }
 lspconfig.yamlls.setup {}
+lspconfig.ember.setup {}

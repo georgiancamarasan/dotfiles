@@ -104,6 +104,8 @@ $env.PATH = ($env | get PATH | split row (char esep) | prepend '~/.cargo/bin/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '~/.local/bin/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/snap/bin/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/usr/local/go/bin/')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '~/.local/share/global_node_modules/bin/')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '~/.local/share/go/bin/')
 
 $env.NUPM_HOME = $env.HOME + "/.config/nushell/nupm/"
 
