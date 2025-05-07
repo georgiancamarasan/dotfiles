@@ -12,47 +12,14 @@
 
 - name: Make .task
   ansible.builtin.file:
-    path: $HOME/.task/hooks
+    src: /mnt/nfs/data/.task
+    path: $HOME/.task
     owner: georgian
     group: georgian
     mode: u=rwx,g=r,o=r
-    state: "directory"
-  tags:
-    - desktop
-    - task
-
-- name: Setup ca.cert.pem
-  ansible.builtin.copy:
-    src: /mnt/nfs/task/ca.cert.pem
-    dest: $HOME/.task/ca.cert.pem
-    owner: georgian
-    group: georgian
-    mode: u=rw,g=r,o=r
-    force: false
-  tags:
-    - desktop
-    - task
-
-- name: Setup Georgian.cert.pem
-  ansible.builtin.copy:
-    src: /mnt/nfs/task/Georgian.cert.pem
-    dest: $HOME/.task/Georgian.cert.pem
-    owner: georgian
-    group: georgian
-    mode: u=rw,g=r,o=r
-    force: false
-  tags:
-    - desktop
-    - task
-
-- name: Setup Georgian.key.pem
-  ansible.builtin.copy:
-    src: /mnt/nfs/task/Georgian.key.pem
-    dest: $HOME/.task/Georgian.key.pem
-    owner: georgian
-    group: georgian
-    mode: u=rw,g=r,o=r
-    force: false
+    follow: false
+    state: link
+    force: true
   tags:
     - desktop
     - task

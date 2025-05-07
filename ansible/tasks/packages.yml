@@ -98,7 +98,7 @@
       - "gh"
       - "ncdu"
       # - "tree-sitter-cli"
-      - "yarn"
+      # - "yarn"
       # - "uair"
       # - "taplo-cli"
       # - "tokei"
