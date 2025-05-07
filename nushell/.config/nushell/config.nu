@@ -901,3 +901,4 @@ alias pull = git pull
 alias add = git add
 alias status = git status
 alias t = task
+alias fg = job unfreeze
