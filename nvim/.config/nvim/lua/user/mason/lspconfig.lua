@@ -22,14 +22,7 @@ mason_lspconfig.setup({
     "taplo",
     "lemminx",
     "yamlls",
-    -- linters
-    -- "ansible_lint",
-    -- "markdownlint",
     "eslint",
-    -- "flake8",
-    -- "fish",
-    -- "luacheck",
-    -- "dotenv_linter",
   },
   automatic_installation = true,
 })
