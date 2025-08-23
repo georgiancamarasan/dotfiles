@@ -38,7 +38,8 @@
       - "borg"
       - "ttf-dejavu-nerd"
       - "ninja"
-    state: present
+    state:
+      present
       # - "libreoffice"
   when: ansible_distribution == 'Archlinux'
   tags:
@@ -59,7 +60,8 @@
       - "tokei"
       - "firefox"
       - "pcmanfm-gtk3"
-    state: present
+    state:
+      present
       # - "libreoffice"
   when: ansible_distribution == 'Archlinux'
   tags:
@@ -109,6 +111,7 @@
       - "ninja-build"
       - "ruby"
       - "ruby-dev"
+      - xonsh
     state: present
   when: ansible_distribution == 'Ubuntu'
   tags:
@@ -173,7 +176,8 @@
       - libfontconfig1-dev
       - libxcb-xfixes0-dev
       - libxkbcommon-dev
-    state: present
+    state:
+      present
       # - "libreoffice"
   when: ansible_distribution == 'Ubuntu'
   tags:
