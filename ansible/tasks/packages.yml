@@ -1,79 +1,9 @@
-- name: Install Server Packages for Arch
+- name: Install Server Packages
   become: true
-  community.general.pacman:
+  ansible.builtin.dnf:
     name:
-      - "base-devel"
-      - "man-db"
+      - "@development-tools"
       - "cmake"
-      - "sudo"
-      - "lua51"
-      - "unzip"
-      - "libtool"
-      - "gettext"
-      - "curl"
-      - "tmux"
-      - "tldr"
-      - "nodejs"
-      - "npm"
-      - "luarocks"
-      - "stow"
-      - "tidy"
-      - "python"
-      - "python-pip"
-      - "tree"
-      - "nfs-utils"
-      - "wget"
-      - "fzf"
-      - "mc"
-      - "github-cli"
-      - "ncdu"
-      - "lazygit"
-      - "tree-sitter-cli"
-      - "yarn"
-      # - "uair"
-      - "kubectl"
-      - "helm"
-      - "python-pynvim"
-      - "progress"
-      - "borg"
-      - "ttf-dejavu-nerd"
-      - "ninja"
-    state:
-      present
-      # - "libreoffice"
-  when: ansible_distribution == 'Archlinux'
-  tags:
-    - install
-- name: Install Desktop Packages for Arch
-  become: true
-  community.general.pacman:
-    name:
-      - "xclip"
-      - "ntfs-3g"
-      - "virt-manager"
-      - "qemu-full"
-      - "lutris"
-      - "mpv"
-      - "bitwarden"
-      - "taskwarrior-tui"
-      - "timew"
-      - "tokei"
-      - "firefox"
-      - "pcmanfm-gtk3"
-    state:
-      present
-      # - "libreoffice"
-  when: ansible_distribution == 'Archlinux'
-  tags:
-    - desktop
-    - install
-- name: Install Server Packages for Ubuntu
-  become: true
-  ansible.builtin.apt:
-    name:
-      - "build-essential"
-      - "cmake"
-      - "sudo"
       - "lua5.1"
       - "unzip"
       - "libtool"
@@ -89,97 +19,31 @@
       - "python3"
       - "python3-pip"
       - "tree"
-      - "nfs-common"
-      - "wget"
+      - "nfs-utils"
+      - "wget2"
+      - "wget2-wget"
       - "fzf"
-      # - "virt-manager"
-      # - "qemu-full"
-      # - "lutris"
-      # - "mpv"
-      - "mc"
+      - "virt-manager"
+      - "qemu"
+      - "lutris"
+      - "mpv"
       - "gh"
       - "ncdu"
-      # - "tree-sitter-cli"
-      # - "yarn"
-      # - "uair"
-      # - "taplo-cli"
-      # - "tokei"
-      # - "bitwarden"
       - "progress"
-      - "apt-transport-https"
-      - "libssl-dev"
       - "ninja-build"
-      - "ruby"
-      - "ruby-dev"
-      - xonsh
-    state: present
-  when: ansible_distribution == 'Ubuntu'
-  tags:
-    - install
-
-- name: Install snap packages for Ubuntu
-  become: true
-  community.general.snap:
-    name:
-      - lazygit
-  when: ansible_distribution == 'Ubuntu'
-  tags:
-    - snap
-
-- name: Install snap packages for Ubuntu classic confinement
-  become: true
-  community.general.snap:
-    classic: yes
-    name:
-      - kubectl
-  when: ansible_distribution == 'Ubuntu'
-  tags:
-    - snap
-
-- name: Install helm apt key
-  ansible.builtin.shell:
-    cmd: "curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null"
-  tags:
-    - helm
-  when: ansible_distribution == 'Ubuntu'
-
-- name: Add helm apt repository
-  become: true
-  ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main"
-    state: present
-  tags:
-    - helm
-  when: ansible_distribution == 'Ubuntu'
-
-- name: Install Desktop Packages for Ubuntu
-  become: true
-  ansible.builtin.apt:
-    update_cache: true
-    name:
+      - "xonsh"
+      - "kubernetes1.33-client"
+      - "helm"
       - "xclip"
       - "ntfs-3g"
-      # - "virt-manager"
-      # - "qemu-full"
-      # - "lutris"
-      # - "mpv"
-      - "taskwarrior"
-      - "timewarrior"
-      # - "tree-sitter-cli"
-      # - "uair"
-      # - "taplo-cli"
-      # - "tokei"
-      # - "bitwarden"
-      - "helm"
-      - pkg-config
-      - libfreetype6-dev
-      - libfontconfig1-dev
-      - libxcb-xfixes0-dev
-      - libxkbcommon-dev
-    state:
-      present
-      # - "libreoffice"
-  when: ansible_distribution == 'Ubuntu'
+      - "task"
+      - "timew"
+    state: present
   tags:
-    - desktop
     - install
+
+- name: Install pip packages
+  become: true
+  ansible.builtin.pip:
+    name:
+      - "xontrib-vox"

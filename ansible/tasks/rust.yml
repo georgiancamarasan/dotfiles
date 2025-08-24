@@ -95,22 +95,6 @@
   shell: $HOME/.cargo/bin/cargo install tre-command
   tags:
     - rust
-- name: install Nushell
-  shell: $HOME/.cargo/bin/cargo install --locked nu
-  tags:
-    - rust
-    - nu
-- name: install starship
-  shell: $HOME/.cargo/bin/cargo install --locked starship
-  tags:
-    - rust
-    - nu
-- name: install alacritty
-  shell: $HOME/.cargo/bin/cargo install alacritty
-  tags:
-    - rust
-    - alacritty
-    - desktop
 - name: install lsp-ai
   shell: $HOME/.cargo/bin/cargo install lsp-ai
   tags:

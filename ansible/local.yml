@@ -42,5 +42,3 @@
     ansible.builtin.include_tasks: tasks/rust.yml
   - name: Setup taskwarrior
     ansible.builtin.include_tasks: tasks/taskwarrior.yml
-  - name: Setup nushell
-    ansible.builtin.include_tasks: tasks/nu.yml
