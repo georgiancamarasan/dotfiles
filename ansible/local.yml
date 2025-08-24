@@ -9,20 +9,13 @@
     ed_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
 
   pre_tasks:
-  - name: Update Ubuntu packages
+  - name: Update Fedora packages
     become: true
-    ansible.builtin.apt:
+    ansible.builtin.dnf:
+      autoremove: true
+      skip_broken: true
       update_cache: true
-      upgrade: true
-    when: ansible_distribution == 'Ubuntu'
-    tags:
-      - update
-  - name: Update Arch packages
-    become: true
-    community.general.pacman:
-      update_cache: true
-      upgrade: true
-    when: ansible_distribution == 'Archlinux'
+      update_only: true
     tags:
       - update
 
