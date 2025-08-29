@@ -95,7 +95,11 @@
   shell: $HOME/.cargo/bin/cargo install tre-command
   tags:
     - rust
-# - name: install lsp-ai
+- name: install starship
+  shell: $HOME/.cargo/bin/cargo install --locked starship
+  tags:
+    - rust
+    - starship
 #   shell: $HOME/.cargo/bin/cargo install lsp-ai
 #   tags:
 #     - rust

@@ -38,12 +38,12 @@
       - "ntfs-3g"
       - "task"
       - "timew"
+      - "alacritty"
     state: present
   tags:
     - install
 
 - name: Install pip packages
-  become: true
   ansible.builtin.pip:
     name:
       - "xontrib-vox"
@@ -58,3 +58,7 @@
       - "xontrib-sh"
       - "xontrib-vox"
       - "xontrib-zoxide"
+    state: present
+  tags:
+    - install
+    - pip
