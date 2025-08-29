@@ -47,3 +47,14 @@
   ansible.builtin.pip:
     name:
       - "xontrib-vox"
+      - "xontrib-abbrevs"
+      - "xontrib-argcomplete"
+      - "xontrib-autojump"
+      - "xontrib-broot"
+      - "xontrib-dalias"
+      - "xontrib-dir-picker"
+      - "xontrib-fzf-completions"
+      - "xontrib-prompt-starship"
+      - "xontrib-sh"
+      - "xontrib-vox"
+      - "xontrib-zoxide"

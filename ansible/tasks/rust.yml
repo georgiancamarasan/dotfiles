@@ -14,7 +14,7 @@
   get_url:
     url: https://sh.rustup.rs
     dest: /tmp/sh.rustup.rs
-    mode: '0755'
+    mode: "0755"
     force: true
   tags:
     - rust
@@ -95,8 +95,8 @@
   shell: $HOME/.cargo/bin/cargo install tre-command
   tags:
     - rust
-- name: install lsp-ai
-  shell: $HOME/.cargo/bin/cargo install lsp-ai
-  tags:
-    - rust
-    - llm
+# - name: install lsp-ai
+#   shell: $HOME/.cargo/bin/cargo install lsp-ai
+#   tags:
+#     - rust
+#     - llm
