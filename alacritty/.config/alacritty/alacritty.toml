@@ -6,3 +6,6 @@ family = "FiraCodeNerdFont"
 
 [terminal]
 shell = { program = "/usr/bin/xonsh" }
+
+[window]
+startup_mode = "Maximized"
