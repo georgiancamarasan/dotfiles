@@ -5,4 +5,4 @@ size = 12.0
 family = "FiraCodeNerdFont"
 
 [terminal]
-shell = { program = "/home/georgian/.cargo/bin/nu" }
+shell = { program = "/usr/bin/xonsh" }
