@@ -12,6 +12,10 @@ XSH.env['fzf_ssh_binding'] = "c-s"  # Ctrl+S
 XSH.env['fzf_file_binding'] = "c-t"  # Ctrl+T
 XSH.env['fzf_dir_binding'] = "c-g"  # Ctrl+G
 
+$PATH.append('/home/georgian/.opencode/bin')
+$VIRTUALENV_HOME = './'
+
 aliases["ll"] = "ls -l"
 aliases["t"] = "task"
 aliases["k"] = "kubectl"
+
