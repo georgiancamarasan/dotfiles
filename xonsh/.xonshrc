@@ -14,3 +14,4 @@ XSH.env['fzf_dir_binding'] = "c-g"  # Ctrl+G
 
 aliases["ll"] = "ls -l"
 aliases["t"] = "task"
+aliases["k"] = "kubectl"
