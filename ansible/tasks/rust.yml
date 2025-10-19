@@ -109,3 +109,8 @@
   tags:
     - rust
     - carl
+- name: install tui-journal
+  shell: $HOME/.cargo/bin/cargo install tui-journal --locked
+  tags:
+    - rust
+    - tui-journal
