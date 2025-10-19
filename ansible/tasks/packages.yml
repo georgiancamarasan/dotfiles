@@ -1,4 +1,4 @@
-- name: Install Server Packages
+- name: Install Packages
   become: true
   ansible.builtin.dnf:
     name:
@@ -39,6 +39,7 @@
       - "task"
       - "timew"
       - "alacritty"
+      - "golang"
     state: present
   tags:
     - install
