@@ -104,3 +104,8 @@
 #   tags:
 #     - rust
 #     - llm
+- name: install carl
+  shell: $HOME/.cargo/bin/cargo install carl
+  tags:
+    - rust
+    - carl
