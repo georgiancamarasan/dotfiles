@@ -30,47 +30,47 @@
   tags:
     - rust
 - name: install cargo-update
-  shell: $HOME/.cargo/bin/cargo install cargo-update
+  shell: $HOME/.cargo/bin/cargo install --locked cargo-update
   tags:
     - rust
 - name: install exa
-  shell: $HOME/.cargo/bin/cargo install exa
+  shell: $HOME/.cargo/bin/cargo install --locked exa
   tags:
     - rust
 - name: install diskonaut
-  shell: $HOME/.cargo/bin/cargo install diskonaut
+  shell: $HOME/.cargo/bin/cargo install --locked diskonaut
   tags:
     - rust
 - name: install fd-find
-  shell: $HOME/.cargo/bin/cargo install fd-find
+  shell: $HOME/.cargo/bin/cargo install --locked fd-find
   tags:
     - rust
 - name: install just
-  shell: $HOME/.cargo/bin/cargo install just
+  shell: $HOME/.cargo/bin/cargo install --locked just
   tags:
     - rust
 - name: install ripgrep
-  shell: $HOME/.cargo/bin/cargo install ripgrep
+  shell: $HOME/.cargo/bin/cargo install --locked ripgrep
   tags:
     - rust
 - name: install rm-improved
-  shell: $HOME/.cargo/bin/cargo install rm-improved
+  shell: $HOME/.cargo/bin/cargo install --locked rm-improved
   tags:
     - rust
 - name: install zoxide
-  shell: $HOME/.cargo/bin/cargo install zoxide
+  shell: $HOME/.cargo/bin/cargo install --locked zoxide
   tags:
     - rust
 - name: install prettier
-  shell: $HOME/.cargo/bin/cargo install prettier
+  shell: $HOME/.cargo/bin/cargo install --locked prettier
   tags:
     - rust
 - name: install stylua
-  shell: $HOME/.cargo/bin/cargo install stylua
+  shell: $HOME/.cargo/bin/cargo install --locked stylua
   tags:
     - rust
 - name: install lsd
-  shell: $HOME/.cargo/bin/cargo install lsd
+  shell: $HOME/.cargo/bin/cargo install --locked lsd
   tags:
     - rust
 - name: install pueue
@@ -78,11 +78,11 @@
   tags:
     - rust
 - name: install watchexec
-  shell: $HOME/.cargo/bin/cargo install watchexec-cli
+  shell: $HOME/.cargo/bin/cargo install --locked watchexec-cli
   tags:
     - rust
 - name: install bottom
-  shell: $HOME/.cargo/bin/cargo install bottom
+  shell: $HOME/.cargo/bin/cargo install --locked bottom
   tags:
     - rust
 - name: install paru
@@ -105,12 +105,12 @@
 #     - rust
 #     - llm
 - name: install carl
-  shell: $HOME/.cargo/bin/cargo install carl
+  shell: $HOME/.cargo/bin/cargo install --locked carl
   tags:
     - rust
     - carl
 - name: install tui-journal
-  shell: $HOME/.cargo/bin/cargo install tui-journal --locked
+  shell: $HOME/.cargo/bin/cargo install --locked tui-journal
   tags:
     - rust
     - tui-journal
