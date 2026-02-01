@@ -1,0 +1,14 @@
+---
+- name: Dotfiles
+  hosts: k8s-hosts
+  pre_tasks:
+    - name: Update packages
+      become: true
+      ansible.builtin.dnf:
+        name: "*"
+        skip_broken: true
+        update_cache: true
+        update_only: true
+        state: latest
+      tags:
+        - update
