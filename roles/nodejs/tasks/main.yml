@@ -1,0 +1,52 @@
+---
+- name: Check whether fnm is installed
+  ansible.builtin.stat:
+    path: "{{ nodejs_fnm_dir }}/fnm"
+  register: nodejs_fnm
+
+- name: Install fnm
+  when: not nodejs_fnm.stat.exists
+  block:
+    - name: Download fnm installer
+      ansible.builtin.get_url:
+        url: https://fnm.vercel.app/install
+        dest: /tmp/fnm-install.sh
+        mode: "0755"
+
+    # --skip-shell: shell integration lives in your zshrc, not added by the installer.
+    - name: Run fnm installer
+      ansible.builtin.command:
+        argv: [bash, /tmp/fnm-install.sh, --install-dir, "{{ nodejs_fnm_dir }}", --skip-shell]
+        creates: "{{ nodejs_fnm_dir }}/fnm"
+
+- name: Install latest Node.js LTS
+  ansible.builtin.command:
+    argv: ["{{ nodejs_fnm_dir }}/fnm", install, --lts]
+  environment:
+    FNM_DIR: "{{ nodejs_fnm_dir }}"
+  register: nodejs_install
+  changed_when: "'already installed' not in (nodejs_install.stdout + nodejs_install.stderr)"
+
+- name: Make the latest LTS the default Node.js
+  ansible.builtin.command:
+    argv: ["{{ nodejs_fnm_dir }}/fnm", default, lts-latest]
+  environment:
+    FNM_DIR: "{{ nodejs_fnm_dir }}"
+  changed_when: false
+
+# In --check mode on a fresh machine Node isn't installed yet.
+- name: Check for npm
+  ansible.builtin.stat:
+    path: "{{ nodejs_bin_dir }}/npm"
+  register: nodejs_npm
+
+- name: Install global npm packages
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+    state: present
+    executable: "{{ nodejs_bin_dir }}/npm"
+  environment:
+    PATH: "{{ nodejs_bin_dir }}:{{ ansible_facts.env.PATH }}"
+  loop: "{{ npm_packages }}"
+  when: nodejs_npm.stat.exists or not ansible_check_mode

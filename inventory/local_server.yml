@@ -1,0 +1,11 @@
+---
+# Used when this repo is cloned on an Ubuntu server and run there directly:
+#   make server-local   (or ./bootstrap.sh server)
+# group_vars/ next to this file are loaded as usual, so the machine gets the
+# "servers" configuration.
+all:
+  children:
+    servers:
+      hosts:
+        localhost:
+          ansible_connection: local

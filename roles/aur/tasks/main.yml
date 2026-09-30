@@ -1,0 +1,34 @@
+---
+# Pattern recommended by the kewlfft.aur collection: a dedicated build user
+# that may run pacman (and only pacman) without a password.
+- name: Create the AUR build user
+  ansible.builtin.user:
+    name: "{{ aur_builder_user }}"
+    create_home: true
+    group: wheel
+  become: true
+
+- name: Allow the AUR build user to run pacman without a password
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/11-install-{{ aur_builder_user }}
+    content: "{{ aur_builder_user }} ALL=(ALL) NOPASSWD: /usr/bin/pacman\n"
+    mode: "0440"
+    validate: visudo -cf %s
+  become: true
+
+- name: Install the AUR helper ({{ aur_helper_package }})
+  kewlfft.aur.aur:
+    name: "{{ aur_helper_package }}"
+    use: makepkg
+    state: present
+  become: true
+  become_user: "{{ aur_builder_user }}"
+
+- name: Install AUR packages
+  kewlfft.aur.aur:
+    name: "{{ aur_packages }}"
+    use: paru
+    state: present
+  become: true
+  become_user: "{{ aur_builder_user }}"
+  when: aur_packages | length > 0

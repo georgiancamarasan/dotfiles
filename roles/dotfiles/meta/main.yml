@@ -1,0 +1,8 @@
+---
+galaxy_info:
+  role_name: dotfiles
+  description: Symlink the folders under stow/ into $HOME with GNU stow
+  author: georgian
+  license: MIT
+  min_ansible_version: "2.16"
+dependencies: []

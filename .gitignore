@@ -1,0 +1,10 @@
+# Never commit vault passwords
+.vault_pass*
+vault_pass*
+*.retry
+
+# Private key must only be committed when vault-encrypted (see roles/ssh/files/README.md)
+
+# Editor / OS noise
+*.swp
+.DS_Store

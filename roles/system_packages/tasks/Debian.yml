@@ -1,0 +1,36 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  become: true
+
+- name: Upgrade all packages (apt dist-upgrade)
+  ansible.builtin.apt:
+    upgrade: dist
+    autoremove: true
+  become: true
+  when: system_upgrade | bool
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ packages_common + packages_debian }}"
+    state: present
+  become: true
+
+# Ubuntu renames some binaries to avoid clashes; expose the usual names.
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.local/bin"
+    state: directory
+    mode: "0755"
+
+- name: Link Debian-renamed binaries to their usual names
+  ansible.builtin.file:
+    src: "{{ item.src }}"
+    dest: "{{ ansible_facts.env.HOME }}/.local/bin/{{ item.name }}"
+    state: link
+  loop:
+    - { name: fd, src: /usr/bin/fdfind }
+    - { name: bat, src: /usr/bin/batcat }
+  when: item.src is file

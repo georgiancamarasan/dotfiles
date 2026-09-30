@@ -1,0 +1,15 @@
+---
+# Arch does not support partial upgrades, so the cache is only refreshed
+# together with a full upgrade.
+- name: Upgrade all packages (pacman -Syu)
+  community.general.pacman:
+    update_cache: true
+    upgrade: true
+  become: true
+  when: system_upgrade | bool
+
+- name: Install packages
+  community.general.pacman:
+    name: "{{ packages_common + packages_arch }}"
+    state: present
+  become: true

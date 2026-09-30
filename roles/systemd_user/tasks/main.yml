@@ -1,0 +1,11 @@
+---
+- name: Enable and start systemd user units
+  ansible.builtin.systemd_service:
+    name: "{{ item.name }}"
+    scope: user
+    daemon_reload: true
+    enabled: "{{ item.enabled | default(true) }}"
+    state: "{{ item.state | default('started') }}"
+  loop: "{{ systemd_user_units }}"
+  loop_control:
+    label: "{{ item.name }}"

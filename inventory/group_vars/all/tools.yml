@@ -1,0 +1,20 @@
+---
+# Language-level tools, installed per user (no sudo).
+
+# npm global packages (installed with fnm's default Node LTS).
+npm_packages:
+  - neovim            # node provider for neovim
+  # - typescript
+  # - prettier
+
+# Rust CLI tools, installed with `cargo install --locked`.
+cargo_packages: []
+  # - eza
+  # - zoxide
+  # - git-delta
+
+# Python applications, installed with `uv tool install` into isolated venvs.
+uv_tools: []
+  # - ruff
+  # - httpie
+  # - ansible-lint

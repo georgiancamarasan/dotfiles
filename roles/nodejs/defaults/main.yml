@@ -1,0 +1,5 @@
+---
+npm_packages: []
+nodejs_fnm_dir: "{{ ansible_facts.env.HOME }}/.local/share/fnm"
+# Node binaries of fnm's "default" alias (what your shell uses by default).
+nodejs_bin_dir: "{{ nodejs_fnm_dir }}/aliases/default/bin"

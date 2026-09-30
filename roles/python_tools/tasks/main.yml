@@ -1,0 +1,41 @@
+---
+- name: Install uv from the Arch repos
+  community.general.pacman:
+    name: uv
+    state: present
+  become: true
+  when: ansible_facts.os_family == 'Archlinux'
+
+- name: Install uv with the official installer
+  when: ansible_facts.os_family != 'Archlinux'
+  block:
+    - name: Download uv installer
+      ansible.builtin.get_url:
+        url: https://astral.sh/uv/install.sh
+        dest: /tmp/uv-install.sh
+        mode: "0755"
+
+    - name: Run uv installer
+      ansible.builtin.command:
+        argv: [sh, /tmp/uv-install.sh]
+        creates: "{{ python_tools_bin_dir }}/uv"
+      environment:
+        UV_NO_MODIFY_PATH: "1"
+
+- name: Install Python applications
+  ansible.builtin.command:
+    argv: [uv, tool, install, "{{ item }}"]
+  environment:
+    PATH: "{{ python_tools_bin_dir }}:{{ ansible_facts.env.PATH }}"
+  register: python_tools_install
+  changed_when: "'already installed' not in python_tools_install.stderr"
+  loop: "{{ uv_tools }}"
+
+- name: Upgrade Python applications
+  ansible.builtin.command:
+    argv: [uv, tool, upgrade, --all]
+  environment:
+    PATH: "{{ python_tools_bin_dir }}:{{ ansible_facts.env.PATH }}"
+  register: python_tools_upgrade
+  changed_when: "'Updated' in python_tools_upgrade.stderr"
+  when: uv_tools_upgrade | bool and uv_tools | length > 0

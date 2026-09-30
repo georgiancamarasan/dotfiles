@@ -1,0 +1,6 @@
+---
+aur_packages: []
+# Dedicated unprivileged user that builds AUR packages (makepkg refuses root).
+aur_builder_user: aur_builder
+# paru-bin avoids compiling paru (and pulling in rust) from source.
+aur_helper_package: paru-bin

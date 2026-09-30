@@ -1,0 +1,8 @@
+---
+galaxy_info:
+  role_name: systemd_user
+  description: Enable and start systemd --user units
+  author: georgian
+  license: MIT
+  min_ansible_version: "2.16"
+dependencies: []

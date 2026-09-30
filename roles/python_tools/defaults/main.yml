@@ -1,0 +1,5 @@
+---
+uv_tools: []
+# Run `uv tool upgrade --all` on every playbook run.
+uv_tools_upgrade: false
+python_tools_bin_dir: "{{ ansible_facts.env.HOME }}/.local/bin"

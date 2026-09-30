@@ -1,0 +1,10 @@
+---
+# File names inside roles/ssh/files/ (private key is vault-encrypted).
+ssh_key_name: id_ed25519
+ssh_dir: "{{ ansible_facts.env.HOME }}/.ssh"
+# Copy the private + public key to ~/.ssh (desktop).
+ssh_install_private_key: false
+# Overwrite an already installed private key (needs the vault password).
+ssh_update_private_key: false
+# Add the public key to ~/.ssh/authorized_keys (servers).
+ssh_authorize_public_key: false

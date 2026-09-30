@@ -1,0 +1,7 @@
+---
+# Ubuntu's apt neovim is too old; a pinned upstream release is used there.
+neovim_release: v0.12.5
+neovim_release_arch: "{{ 'arm64' if ansible_facts.architecture == 'aarch64' else 'x86_64' }}"
+neovim_install_dir: /opt/nvim-{{ neovim_release }}
+# Install plugins headlessly after stowing the config.
+neovim_sync_plugins: true

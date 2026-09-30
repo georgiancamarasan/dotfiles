@@ -1,0 +1,46 @@
+---
+- name: Install neovim from the Arch repos
+  community.general.pacman:
+    name: neovim
+    state: present
+  become: true
+  when: ansible_facts.os_family == 'Archlinux'
+
+- name: Install neovim {{ neovim_release }} from GitHub
+  when: ansible_facts.os_family != 'Archlinux'
+  become: true
+  block:
+    - name: Create neovim install directory
+      ansible.builtin.file:
+        path: "{{ neovim_install_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Download and extract neovim release
+      ansible.builtin.unarchive:
+        src: https://github.com/neovim/neovim/releases/download/{{ neovim_release }}/nvim-linux-{{ neovim_release_arch }}.tar.gz
+        dest: "{{ neovim_install_dir }}"
+        remote_src: true
+        creates: "{{ neovim_install_dir }}/nvim-linux-{{ neovim_release_arch }}/bin/nvim"
+
+    - name: Link nvim into /usr/local/bin
+      ansible.builtin.file:
+        src: "{{ neovim_install_dir }}/nvim-linux-{{ neovim_release_arch }}/bin/nvim"
+        dest: /usr/local/bin/nvim
+        state: link
+
+- name: Check for a committed lazy.nvim lockfile
+  ansible.builtin.stat:
+    path: "{{ dotfiles_dir }}/stow/nvim/.config/nvim/lazy-lock.json"
+  register: neovim_lockfile
+
+# "restore" pins plugins to the lockfile; "sync" installs/updates when there is none.
+- name: Install neovim plugins with lazy.nvim
+  ansible.builtin.command:
+    argv:
+      - nvim
+      - --headless
+      - "+Lazy! {{ 'restore' if neovim_lockfile.stat.exists else 'sync' }}"
+      - +qa
+  changed_when: false
+  when: neovim_sync_plugins | bool

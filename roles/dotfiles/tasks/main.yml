@@ -1,0 +1,44 @@
+---
+- name: Ensure GNU stow is installed
+  ansible.builtin.package:
+    name: stow
+    state: present
+  become: true
+
+- name: Ensure base directories exist in $HOME
+  ansible.builtin.file:
+    path: "{{ dotfiles_stow_target }}/{{ item }}"
+    state: directory
+    mode: "0755"
+  loop: "{{ dotfiles_ensure_dirs }}"
+
+# For SSH runs the target doesn't have this repo, so copy the stow tree over.
+- name: Copy stow tree to the remote host
+  when: ansible_connection | default('ssh') != 'local'
+  block:
+    - name: Ensure dotfiles directory exists
+      ansible.builtin.file:
+        path: "{{ dotfiles_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Synchronize stow/ to {{ dotfiles_dir }}
+      ansible.posix.synchronize:
+        src: "{{ playbook_dir }}/stow/"
+        dest: "{{ dotfiles_dir }}/stow/"
+        delete: true
+        recursive: true
+
+- name: Stow packages
+  ansible.builtin.command:
+    argv: >-
+      {{ ['stow', '--verbose=1', '--restow',
+          '--dir', dotfiles_dir + '/stow',
+          '--target', dotfiles_stow_target]
+         + (['--no-folding'] if item.no_folding | default(false) else [])
+         + [item.name] }}
+  register: dotfiles_stow
+  changed_when: dotfiles_stow.stderr is search('^LINK:', multiline=true)
+  loop: "{{ stow_packages }}"
+  loop_control:
+    label: "{{ item.name }}"

@@ -1,0 +1,9 @@
+---
+stow_packages: []
+dotfiles_stow_target: "{{ ansible_facts.env.HOME }}"
+# Created before stowing so stow links files *inside* them instead of
+# replacing the whole directory with a symlink into the repo.
+dotfiles_ensure_dirs:
+  - .config
+  - .local/bin
+  - .local/share

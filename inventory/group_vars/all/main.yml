@@ -1,0 +1,75 @@
+---
+# ---------------------------------------------------------------------------
+# Settings shared by every machine. Group files (desktop.yml / servers.yml)
+# override anything defined here.
+# ---------------------------------------------------------------------------
+
+# Where the repo lives on the target. For local runs it is this checkout;
+# for SSH runs the stow/ tree is copied to ~/.dotfiles on the server.
+dotfiles_dir: "{{ playbook_dir if ansible_connection | default('ssh') == 'local' else ansible_facts.env.HOME + '/.dotfiles' }}"
+
+# Upgrade all system packages on every run (pacman -Syu / apt dist-upgrade).
+system_upgrade: true
+
+# Feature toggles – turn whole roles on/off per group.
+install_rust: true
+install_nodejs: true
+install_python_tools: true
+install_neovim: true
+
+# ---------------------------------------------------------------------------
+# Native packages
+# ---------------------------------------------------------------------------
+# Same package name on Manjaro and Ubuntu.
+packages_common:
+  - git
+  - curl
+  - wget
+  - unzip
+  - stow
+  - tmux
+  - ripgrep
+  - fzf
+  - jq
+  - htop
+  - zsh
+  - neovim
+  - gettext
+  - less
+  - mypy
+  - nodejs
+  - npm
+  - ntfs-3g
+  - progress
+  - starship
+  - tidy
+  - tree
+  - tree-sitter-cli
+  - yamllint
+  - zoxide
+
+# Manjaro / Arch only.
+packages_arch:
+  - base-devel
+  - fd
+  - bat
+  - nfs-utils
+  - bind
+
+# Ubuntu / Debian only.
+packages_debian:
+  - build-essential
+  - fd-find
+  - bat
+  - rsync
+  - nfs-common
+  - uuid-dev
+  - bind9
+
+# ---------------------------------------------------------------------------
+# Stow packages: folder names under stow/. no_folding keeps target dirs real
+# directories (needed for systemd, where systemctl writes its own symlinks).
+# ---------------------------------------------------------------------------
+stow_packages:
+  - name: nvim
+  - name: tmux
