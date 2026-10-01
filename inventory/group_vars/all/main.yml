@@ -25,6 +25,12 @@ shell_aliases:
   ll: eza -lah
   gs: git status
   cat: bat
+  cal: cal -m -3
+
+# Environment variables exported in bash and zsh (values are literal).
+shell_env:
+  EDITOR: nvim
+  VISUAL: nvim
 
 # Directories prepended to PATH (bash and zsh). $HOME is expanded by the shell.
 shell_path:
@@ -37,6 +43,9 @@ shell_init:
   - eval "$(starship init $SHELL_NAME)"
   - eval "$(zoxide init $SHELL_NAME)"
   - eval "$(fnm env --use-on-cd --shell $SHELL_NAME)"
+  - eval "$(fzf --$SHELL_NAME 2>/dev/null)"
+  # Key bindings (Ctrl-R/T/G/S/Z); must come after the tool init lines above.
+  - '[ -f "$HOME/.config/shell/keybindings.sh" ] && . "$HOME/.config/shell/keybindings.sh"'
   # md: make a directory (and parents) and cd into it. A function, since an alias can't cd.
   - 'md() { mkdir -p -- "$1" && cd -- "$1"; }'
 
@@ -100,3 +109,4 @@ stow_packages:
   - name: nvim
   - name: tmux
   - name: starship
+  - name: shell

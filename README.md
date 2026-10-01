@@ -25,7 +25,7 @@ Day to day:
 | `make server-local` | run on the server this repo is cloned on |
 
 Tags: `packages`, `system_packages`, `aur`, `dotfiles`/`stow`, `rust`, `nodejs`,
-`python_tools`, `neovim`, `ssh`, `shell_aliases`/`shell_path`/`shell_init` (`shell`), `mnt_dirs`, `systemd_system`, `systemd_user`/`systemd`.
+`python_tools`, `neovim`, `ssh`, `shell_aliases`/`shell_env`/`shell_path`/`shell_init` (`shell`), `mnt_dirs`, `systemd_system`, `systemd_user`/`systemd`.
 
 ## Layout
 
@@ -66,6 +66,8 @@ Shared lists (packages, stow packages, tools) live in `all/`; `desktop.yml` and
 
 - **Shell alias** (bash and zsh): add `name: command` to `shell_aliases` in `all/main.yml`,
   then `make desktop TAGS=shell_aliases`.
+- **Environment variable**: add `NAME: value` to `shell_env` (or `shell_env_extra`),
+  then `make desktop TAGS=shell_env`.
 - **Directory on PATH**: add it to `shell_path` in `all/main.yml` (or `shell_path_extra`
   in a group file), then `make desktop TAGS=shell_path`.
 - **Shell init line** (e.g. `eval "$(tool init $SHELL_NAME)"`): add it to `shell_init`
@@ -106,9 +108,20 @@ asks for it on the first run only; later runs (and all server runs) don't.
 The installers are run with "don't modify my shell" flags, so the playbook sets
 up bash and zsh itself (managed blocks in `~/.bashrc` and `~/.zshrc`):
 
+- `shell_env`: environment variables (`EDITOR`, `VISUAL`).
 - `shell_path`: directories added to `PATH` (`~/.local/bin`, `~/.cargo/bin`, fnm).
 - `shell_init`: lines run at shell start after PATH, such as `eval "$(starship init $SHELL_NAME)"`.
   `$SHELL_NAME` is `bash` or `zsh`.
 - `shell_aliases`: aliases. Anything that needs arguments or `cd` (like `md`) is a function in `shell_init`.
+
+Key bindings live in `stow/shell/.config/shell/keybindings.sh` (loaded last by `shell_init`):
+
+| Key | Action |
+|---|---|
+| Ctrl-R | fzf history |
+| Ctrl-T | fzf file picker |
+| Ctrl-G | fzf directory picker (cd) |
+| Ctrl-S | pick a host from `~/.ssh/config` with fzf and run `ssh` |
+| Ctrl-Z | zoxide interactive pick (`zi`); in bash this disables suspending jobs with Ctrl-Z (`stty susp undef`) |
 
 Lines you previously added to `.zshrc` by hand for these can be deleted.

@@ -8,6 +8,7 @@
     - { role: system_packages, tags: [system_packages, packages] }
     - { role: dotfiles, tags: [dotfiles, stow] }
     - { role: shell_aliases, tags: [shell_aliases, shell] }
+    - { role: shell_env, tags: [shell_env, shell] }
     - { role: shell_path, tags: [shell_path, shell] }
     - { role: shell_init, tags: [shell_init, shell] }
     - { role: mnt_dirs, tags: [mnt_dirs, mnt] }

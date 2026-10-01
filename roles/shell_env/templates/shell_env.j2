@@ -1,0 +1,4 @@
+# Managed by Ansible (role shell_env). Edit shell_env in group_vars.
+{% for name, value in (shell_env | combine(shell_env_extra)).items() %}
+export {{ name }}={{ value | quote }}
+{% endfor %}
