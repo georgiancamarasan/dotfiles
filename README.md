@@ -25,7 +25,7 @@ Day to day:
 | `make server-local` | run on the server this repo is cloned on |
 
 Tags: `packages`, `system_packages`, `aur`, `dotfiles`/`stow`, `rust`, `nodejs`,
-`python_tools`, `neovim`, `ssh`, `systemd_system`, `systemd_user`/`systemd`.
+`python_tools`, `neovim`, `ssh`, `shell_aliases`/`shell_path`/`shell_init` (`shell`), `mnt_dirs`, `systemd_system`, `systemd_user`/`systemd`.
 
 ## Layout
 
@@ -68,6 +68,8 @@ Shared lists (packages, stow packages, tools) live in `all/`; `desktop.yml` and
   then `make desktop TAGS=shell_aliases`.
 - **Directory on PATH**: add it to `shell_path` in `all/main.yml` (or `shell_path_extra`
   in a group file), then `make desktop TAGS=shell_path`.
+- **Shell init line** (e.g. `eval "$(tool init $SHELL_NAME)"`): add it to `shell_init`
+  (or `shell_init_extra`), then `make desktop TAGS=shell_init`.
 - **Folder in /mnt**: add its name to `mnt_dirs`, then `make desktop TAGS=mnt_dirs`.
 
 ### Stow notes
@@ -99,11 +101,14 @@ asks for it on the first run only; later runs (and all server runs) don't.
 - Want no prompt at all? Store the password outside the repo and
   `export VAULT_PASS_FILE=~/.config/ansible/vault-pass` (chmod 600).
 
-## Shell setup (add to your zshrc)
+## Shell setup
 
-The installers are run with "don't modify my shell" flags, so add:
+The installers are run with "don't modify my shell" flags, so the playbook sets
+up bash and zsh itself (managed blocks in `~/.bashrc` and `~/.zshrc`):
 
-```sh
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.local/share/fnm:$PATH"
-eval "$(fnm env --use-on-cd --shell zsh)"
-```
+- `shell_path`: directories added to `PATH` (`~/.local/bin`, `~/.cargo/bin`, fnm).
+- `shell_init`: lines run at shell start after PATH, such as `eval "$(starship init $SHELL_NAME)"`.
+  `$SHELL_NAME` is `bash` or `zsh`.
+- `shell_aliases`: aliases.
+
+Lines you previously added to `.zshrc` by hand for these can be deleted.

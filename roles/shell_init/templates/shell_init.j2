@@ -1,0 +1,6 @@
+# Managed by Ansible (role shell_init). Edit shell_init in group_vars.
+SHELL_NAME=bash
+[ -n "$ZSH_VERSION" ] && SHELL_NAME=zsh
+{% for line in shell_init + shell_init_extra %}
+{{ line }}
+{% endfor %}

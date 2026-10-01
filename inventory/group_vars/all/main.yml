@@ -22,12 +22,20 @@ install_neovim: true
 # Shell aliases (bash and zsh) and /mnt directories
 # ---------------------------------------------------------------------------
 shell_aliases:
-  ll: ls -lah
+  ll: eza -lah
   gs: git status
 
 # Directories prepended to PATH (bash and zsh). $HOME is expanded by the shell.
 shell_path:
+  - $HOME/.local/bin
   - $HOME/.cargo/bin
+  - $HOME/.local/share/fnm
+
+# Lines run at shell start, after PATH is set. $SHELL_NAME is "bash" or "zsh".
+shell_init:
+  - eval "$(starship init $SHELL_NAME)"
+  - eval "$(zoxide init $SHELL_NAME)"
+  - eval "$(fnm env --use-on-cd --shell $SHELL_NAME)"
 
 # Names (or {name, mode, owner}) of directories to create under /mnt.
 mnt_dirs: []

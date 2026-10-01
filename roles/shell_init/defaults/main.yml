@@ -1,0 +1,9 @@
+---
+# Lines run at shell start, after PATH is set. $SHELL_NAME is "bash" or "zsh".
+shell_init: []
+shell_init_extra: []
+shell_init_file: "{{ ansible_facts.env.HOME }}/.shell_init"
+# rc files (relative to $HOME) that source the init file.
+shell_init_rc_files:
+  - .bashrc
+  - .zshrc

@@ -9,6 +9,7 @@
     - { role: dotfiles, tags: [dotfiles, stow] }
     - { role: shell_aliases, tags: [shell_aliases, shell] }
     - { role: shell_path, tags: [shell_path, shell] }
+    - { role: shell_init, tags: [shell_init, shell] }
     - { role: mnt_dirs, tags: [mnt_dirs, mnt] }
     - { role: rust, tags: [rust], when: install_rust | bool }
     - { role: nodejs, tags: [nodejs], when: install_nodejs | bool }
