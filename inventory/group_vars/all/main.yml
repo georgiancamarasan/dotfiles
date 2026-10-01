@@ -24,6 +24,7 @@ install_neovim: true
 shell_aliases:
   ll: eza -lah
   gs: git status
+  cat: bat
 
 # Directories prepended to PATH (bash and zsh). $HOME is expanded by the shell.
 shell_path:
@@ -36,6 +37,8 @@ shell_init:
   - eval "$(starship init $SHELL_NAME)"
   - eval "$(zoxide init $SHELL_NAME)"
   - eval "$(fnm env --use-on-cd --shell $SHELL_NAME)"
+  # md: make a directory (and parents) and cd into it. A function, since an alias can't cd.
+  - 'md() { mkdir -p -- "$1" && cd -- "$1"; }'
 
 # Names (or {name, mode, owner}) of directories to create under /mnt.
 mnt_dirs: []

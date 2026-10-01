@@ -109,6 +109,6 @@ up bash and zsh itself (managed blocks in `~/.bashrc` and `~/.zshrc`):
 - `shell_path`: directories added to `PATH` (`~/.local/bin`, `~/.cargo/bin`, fnm).
 - `shell_init`: lines run at shell start after PATH, such as `eval "$(starship init $SHELL_NAME)"`.
   `$SHELL_NAME` is `bash` or `zsh`.
-- `shell_aliases`: aliases.
+- `shell_aliases`: aliases. Anything that needs arguments or `cd` (like `md`) is a function in `shell_init`.
 
 Lines you previously added to `.zshrc` by hand for these can be deleted.
