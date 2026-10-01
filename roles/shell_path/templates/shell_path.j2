@@ -1,0 +1,4 @@
+# Managed by Ansible (role shell_path). Edit shell_path in group_vars.
+{% for dir in shell_path + shell_path_extra %}
+case ":$PATH:" in *":{{ dir }}:"*) ;; *) export PATH="{{ dir }}:$PATH" ;; esac
+{% endfor %}

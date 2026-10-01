@@ -4,17 +4,33 @@
 # npm global packages (installed with fnm's default Node LTS).
 npm_packages:
   - neovim            # node provider for neovim
-  # - typescript
-  # - prettier
+  - eslint
+  - ts-node
+  - typescript
+  - typescript-language-server
 
 # Rust CLI tools, installed with `cargo install --locked`.
-cargo_packages: []
-  # - eza
-  # - zoxide
-  # - git-delta
+cargo_packages:
+  - bat
+  - bottom
+  - carl
+  - diskonaut
+  - fd-find
+  - just
+  - eza
+  - git-delta
+  - prettier
+  - pueue
+  - ripgrep
+  - rm-improved
+  - stylua
+  - tre-command
+  - watchexec-cli
+  - tui-journal
 
 # Python applications, installed with `uv tool install` into isolated venvs.
-uv_tools: []
-  # - ruff
-  # - httpie
-  # - ansible-lint
+uv_tools:
+  - tldr
+  - ruff
+  - httpie
+  - ansible-lint

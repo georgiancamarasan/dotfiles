@@ -66,6 +66,8 @@ Shared lists (packages, stow packages, tools) live in `all/`; `desktop.yml` and
 
 - **Shell alias** (bash and zsh): add `name: command` to `shell_aliases` in `all/main.yml`,
   then `make desktop TAGS=shell_aliases`.
+- **Directory on PATH**: add it to `shell_path` in `all/main.yml` (or `shell_path_extra`
+  in a group file), then `make desktop TAGS=shell_path`.
 - **Folder in /mnt**: add its name to `mnt_dirs`, then `make desktop TAGS=mnt_dirs`.
 
 ### Stow notes

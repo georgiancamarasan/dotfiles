@@ -1,0 +1,15 @@
+---
+- name: Write the shared PATH file
+  ansible.builtin.template:
+    src: shell_path.j2
+    dest: "{{ shell_path_file }}"
+    mode: "0644"
+
+- name: Source the PATH file from bash and zsh
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_facts.env.HOME }}/{{ item }}"
+    create: true
+    mode: "0644"
+    marker: "# {mark} ANSIBLE shell_path"
+    block: '[ -f "{{ shell_path_file }}" ] && . "{{ shell_path_file }}"'
+  loop: "{{ shell_path_rc_files }}"

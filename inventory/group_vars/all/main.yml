@@ -18,13 +18,16 @@ install_rust: true
 install_nodejs: true
 install_python_tools: true
 install_neovim: true
-
 # ---------------------------------------------------------------------------
 # Shell aliases (bash and zsh) and /mnt directories
 # ---------------------------------------------------------------------------
 shell_aliases:
   ll: ls -lah
   gs: git status
+
+# Directories prepended to PATH (bash and zsh). $HOME is expanded by the shell.
+shell_path:
+  - $HOME/.cargo/bin
 
 # Names (or {name, mode, owner}) of directories to create under /mnt.
 mnt_dirs: []
@@ -51,7 +54,6 @@ packages_common:
   - mypy
   - nodejs
   - npm
-  - ntfs-3g
   - progress
   - starship
   - tidy
@@ -67,6 +69,7 @@ packages_arch:
   - bat
   - nfs-utils
   - bind
+  - ntfs-3g
 
 # Ubuntu / Debian only.
 packages_debian:

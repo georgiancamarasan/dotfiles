@@ -1,0 +1,9 @@
+---
+# Directories prepended to PATH. $HOME is expanded by the shell.
+shell_path: []
+shell_path_extra: []
+shell_path_file: "{{ ansible_facts.env.HOME }}/.shell_path"
+# rc files (relative to $HOME) that source the PATH file.
+shell_path_rc_files:
+  - .bashrc
+  - .zshrc
