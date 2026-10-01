@@ -14,7 +14,7 @@
 
 - name: Install packages
   ansible.builtin.apt:
-    name: "{{ packages_common + packages_debian }}"
+    name: "{{ packages_common + packages_debian + packages_debian_extra }}"
     state: present
   become: true
 

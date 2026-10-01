@@ -45,6 +45,9 @@ stow/<app>/               config for one app, laid out exactly as in $HOME
 
 **Where do I change things?** Almost always in `inventory/group_vars/`. Role
 `defaults/main.yml` files only hold fallbacks; group_vars override them.
+Shared lists (packages, stow packages, tools) live in `all/`; `desktop.yml` and
+`servers.yml` add to them through `<name>_extra` (e.g. `stow_packages_extra`,
+`packages_arch_extra`) instead of redefining the whole list.
 
 ## Adding things
 
@@ -54,7 +57,8 @@ stow/<app>/               config for one app, laid out exactly as in $HOME
 - **npm / Rust / Python tool**: `npm_packages`, `cargo_packages`, `uv_tools` in `all/tools.yml`
   (or override the list in `desktop.yml` / `servers.yml`).
 - **Config for a new app**: create `stow/<app>/` mirroring the path in `$HOME`,
-  e.g. `stow/git/.config/git/config`, then add `- name: git` to `stow_packages`.
+  e.g. `stow/git/.config/git/config`, then add `- name: git` to `stow_packages`
+  (or `stow_packages_extra` in `desktop.yml` / `servers.yml` for one group only).
 - **systemd user unit**: put it in `stow/systemd/.config/systemd/user/` and list
   it in `systemd_user_units` in `desktop.yml`.
 - **systemd system unit** (e.g. NFS mounts, needs root): put it in

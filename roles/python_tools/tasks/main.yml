@@ -29,7 +29,7 @@
     PATH: "{{ python_tools_bin_dir }}:{{ ansible_facts.env.PATH }}"
   register: python_tools_install
   changed_when: "'already installed' not in python_tools_install.stderr"
-  loop: "{{ uv_tools }}"
+  loop: "{{ uv_tools + uv_tools_extra }}"
 
 - name: Upgrade Python applications
   ansible.builtin.command:
@@ -38,4 +38,4 @@
     PATH: "{{ python_tools_bin_dir }}:{{ ansible_facts.env.PATH }}"
   register: python_tools_upgrade
   changed_when: "'Updated' in python_tools_upgrade.stderr"
-  when: uv_tools_upgrade | bool and uv_tools | length > 0
+  when: uv_tools_upgrade | bool and (uv_tools + uv_tools_extra) | length > 0

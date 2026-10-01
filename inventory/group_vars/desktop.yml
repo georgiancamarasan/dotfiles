@@ -1,10 +1,8 @@
 ---
 # Desktop (Manjaro) specific settings.
 
-packages_arch:
-  - base-devel
-  - fd
-  - bat
+# Added on top of packages_arch in all/main.yml.
+packages_arch_extra: []
   # desktop apps
   # - firefox
   # - kitty
@@ -13,9 +11,8 @@ packages_arch:
 aur_packages: []
   # - visual-studio-code-bin
 
-stow_packages:
-  - name: nvim
-  - name: tmux
+# Added on top of stow_packages in all/main.yml.
+stow_packages_extra:
   - name: systemd
     no_folding: true
 
@@ -31,7 +28,11 @@ systemd_system_units:
     state: started      # started | stopped (default: started)
     enabled: true
   - name: mnt-Pictures.mount
+    state: started      # started | stopped (default: started)
+    enabled: true
   - name: mnt-Videos.mount
+    state: started      # started | stopped (default: started)
+    enabled: true
 
 # systemd --user units (files live in stow/systemd/.config/systemd/user/).
 systemd_user_units: []

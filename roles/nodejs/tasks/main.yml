@@ -48,5 +48,5 @@
     executable: "{{ nodejs_bin_dir }}/npm"
   environment:
     PATH: "{{ nodejs_bin_dir }}:{{ ansible_facts.env.PATH }}"
-  loop: "{{ npm_packages }}"
+  loop: "{{ npm_packages + npm_packages_extra }}"
   when: nodejs_npm.stat.exists or not ansible_check_mode

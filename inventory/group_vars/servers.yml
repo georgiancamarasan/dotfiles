@@ -6,9 +6,8 @@ install_nodejs: true   # needed if your neovim config relies on node-based tools
 install_python_tools: true
 install_neovim: true
 
-stow_packages:
-  - name: nvim
-  - name: tmux
+# Added on top of stow_packages in all/main.yml.
+stow_packages_extra: []
 
 # Don't copy your private key to servers; authorize your public key instead.
 ssh_install_private_key: false

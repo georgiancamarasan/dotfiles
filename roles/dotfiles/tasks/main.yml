@@ -39,6 +39,6 @@
          + [item.name] }}
   register: dotfiles_stow
   changed_when: dotfiles_stow.stderr is search('^LINK:', multiline=true)
-  loop: "{{ stow_packages }}"
+  loop: "{{ stow_packages + stow_packages_extra }}"
   loop_control:
     label: "{{ item.name }}"

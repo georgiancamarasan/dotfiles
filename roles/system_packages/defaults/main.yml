@@ -3,3 +3,5 @@ system_upgrade: true
 packages_common: []
 packages_arch: []
 packages_debian: []
+packages_arch_extra: []
+packages_debian_extra: []

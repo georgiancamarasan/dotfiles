@@ -10,6 +10,6 @@
 
 - name: Install packages
   community.general.pacman:
-    name: "{{ packages_common + packages_arch }}"
+    name: "{{ packages_common + packages_arch + packages_arch_extra }}"
     state: present
   become: true

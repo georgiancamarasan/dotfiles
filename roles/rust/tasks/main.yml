@@ -21,11 +21,11 @@
 
 - name: Install cargo packages
   community.general.cargo:
-    name: "{{ cargo_packages }}"
+    name: "{{ cargo_packages + cargo_packages_extra }}"
     locked: true
     state: present
   environment:
     PATH: "{{ rust_cargo_home }}/bin:{{ ansible_facts.env.PATH }}"
   when:
-    - cargo_packages | length > 0
+    - (cargo_packages + cargo_packages_extra) | length > 0
     - rust_rustup.stat.exists or not ansible_check_mode

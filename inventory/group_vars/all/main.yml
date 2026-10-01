@@ -1,7 +1,9 @@
 ---
 # ---------------------------------------------------------------------------
 # Settings shared by every machine. Group files (desktop.yml / servers.yml)
-# override anything defined here.
+# override scalar settings defined here. A group list *replaces* the shared
+# list, so for lists put shared items here and per-group additions in the
+# matching `<name>_extra` variable (e.g. stow_packages_extra) in the group file.
 # ---------------------------------------------------------------------------
 
 # Where the repo lives on the target. For local runs it is this checkout;
@@ -83,3 +85,4 @@ packages_debian:
 stow_packages:
   - name: nvim
   - name: tmux
+  - name: starship

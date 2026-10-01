@@ -2,3 +2,4 @@
 cargo_packages: []
 rust_toolchain: stable
 rust_cargo_home: "{{ ansible_facts.env.HOME }}/.cargo"
+cargo_packages_extra: []

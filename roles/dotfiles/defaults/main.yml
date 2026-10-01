@@ -7,3 +7,4 @@ dotfiles_ensure_dirs:
   - .config
   - .local/bin
   - .local/share
+stow_packages_extra: []
