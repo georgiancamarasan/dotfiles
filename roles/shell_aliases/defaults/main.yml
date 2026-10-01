@@ -1,0 +1,8 @@
+---
+# Map of alias name -> command.
+shell_aliases: {}
+shell_aliases_file: "{{ ansible_facts.env.HOME }}/.shell_aliases"
+# rc files (relative to $HOME) that source the aliases file.
+shell_aliases_rc_files:
+  - .bashrc
+  - .zshrc

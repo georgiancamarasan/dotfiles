@@ -1,0 +1,4 @@
+# Managed by Ansible (role shell_aliases). Edit shell_aliases in group_vars.
+{% for name, command in shell_aliases.items() %}
+alias {{ name }}={{ command | quote }}
+{% endfor %}

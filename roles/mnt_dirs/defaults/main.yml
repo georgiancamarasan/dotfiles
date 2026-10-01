@@ -1,0 +1,4 @@
+---
+# Directories to create under /mnt. Each entry is a name, or
+# {name, mode (default "0755"), owner (default: current user)}.
+mnt_dirs: []

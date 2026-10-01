@@ -1,0 +1,14 @@
+[Unit]
+After=network-online.target
+Wants=network-online.target
+Description=Mount videos at boot
+
+[Mount]
+What=nfs.server.rsp:/volume1/video
+Where=/mnt/Videos/
+Options=vers=4
+Type=nfs
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target

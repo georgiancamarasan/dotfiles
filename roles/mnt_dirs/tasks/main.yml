@@ -1,0 +1,14 @@
+---
+# Directories that are already mountpoints (e.g. NFS mounts) are skipped: their
+# owner/mode belong to the mounted filesystem and chown/chmod fails on NFS.
+- name: Create directories under /mnt
+  ansible.builtin.file:
+    path: "/mnt/{{ item.name | default(item) }}"
+    state: directory
+    owner: "{{ item.owner | default(ansible_facts.user_id) if item is mapping else ansible_facts.user_id }}"
+    mode: "{{ item.mode | default('0755') if item is mapping else '0755' }}"
+  become: true
+  loop: "{{ mnt_dirs }}"
+  loop_control:
+    label: "{{ item.name | default(item) }}"
+  when: "'/mnt/' ~ (item.name | default(item)) not in ansible_facts.mounts | map(attribute='mount')"

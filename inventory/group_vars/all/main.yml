@@ -18,6 +18,16 @@ install_python_tools: true
 install_neovim: true
 
 # ---------------------------------------------------------------------------
+# Shell aliases (bash and zsh) and /mnt directories
+# ---------------------------------------------------------------------------
+shell_aliases:
+  ll: ls -lah
+  gs: git status
+
+# Names (or {name, mode, owner}) of directories to create under /mnt.
+mnt_dirs: []
+
+# ---------------------------------------------------------------------------
 # Native packages
 # ---------------------------------------------------------------------------
 # Same package name on Manjaro and Ubuntu.

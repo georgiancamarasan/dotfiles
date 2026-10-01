@@ -25,7 +25,7 @@ Day to day:
 | `make server-local` | run on the server this repo is cloned on |
 
 Tags: `packages`, `system_packages`, `aur`, `dotfiles`/`stow`, `rust`, `nodejs`,
-`python_tools`, `neovim`, `ssh`, `systemd_user`/`systemd`.
+`python_tools`, `neovim`, `ssh`, `systemd_system`, `systemd_user`/`systemd`.
 
 ## Layout
 
@@ -39,6 +39,7 @@ inventory/group_vars/
   desktop.yml             desktop overrides (AUR, systemd units, SSH private key)
   servers.yml             server overrides (lighter setup)
 roles/<name>/             one role per concern (tasks/, defaults/, meta/)
+files/                    unit files copied to /etc/systemd/system (systemd_system role)
 stow/<app>/               config for one app, laid out exactly as in $HOME
 ```
 
@@ -56,6 +57,12 @@ stow/<app>/               config for one app, laid out exactly as in $HOME
   e.g. `stow/git/.config/git/config`, then add `- name: git` to `stow_packages`.
 - **systemd user unit**: put it in `stow/systemd/.config/systemd/user/` and list
   it in `systemd_user_units` in `desktop.yml`.
+- **systemd system unit** (e.g. NFS mounts, needs root): put it in
+  `files/` and list it in `systemd_system_units` in `desktop.yml`.
+
+- **Shell alias** (bash and zsh): add `name: command` to `shell_aliases` in `all/main.yml`,
+  then `make desktop TAGS=shell_aliases`.
+- **Folder in /mnt**: add its name to `mnt_dirs`, then `make desktop TAGS=mnt_dirs`.
 
 ### Stow notes
 

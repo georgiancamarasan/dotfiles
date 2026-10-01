@@ -1,0 +1,4 @@
+---
+# List of {name, state (started|stopped), enabled (bool)}. Unit files live in
+# files/ at the repo root and are copied to /etc/systemd/system/.
+systemd_system_units: []

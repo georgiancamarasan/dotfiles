@@ -1,0 +1,15 @@
+---
+- name: Write the shared aliases file
+  ansible.builtin.template:
+    src: shell_aliases.j2
+    dest: "{{ shell_aliases_file }}"
+    mode: "0644"
+
+- name: Source the aliases file from bash and zsh
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_facts.env.HOME }}/{{ item }}"
+    create: true
+    mode: "0644"
+    marker: "# {mark} ANSIBLE shell_aliases"
+    block: '[ -f "{{ shell_aliases_file }}" ] && . "{{ shell_aliases_file }}"'
+  loop: "{{ shell_aliases_rc_files }}"

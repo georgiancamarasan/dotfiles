@@ -19,6 +19,20 @@ stow_packages:
   - name: systemd
     no_folding: true
 
+# Mountpoints for the NFS mount units below (systemd does not create them).
+mnt_dirs:
+  - nfs
+  - Pictures
+  - Videos
+
+# systemd system units (unit files live in the repo-root files/ dir).
+systemd_system_units:
+  - name: mnt-nfs.mount
+    state: started      # started | stopped (default: started)
+    enabled: true
+  - name: mnt-Pictures.mount
+  - name: mnt-Videos.mount
+
 # systemd --user units (files live in stow/systemd/.config/systemd/user/).
 systemd_user_units: []
   # - name: my-sync.timer
