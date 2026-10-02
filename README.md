@@ -25,7 +25,7 @@ Day to day:
 | `make server-local` | run on the server this repo is cloned on |
 
 Tags: `packages`, `system_packages`, `aur`, `dotfiles`/`stow`, `rust`, `nodejs`,
-`python_tools`, `neovim`, `ssh`, `shell_aliases`/`shell_env`/`shell_path`/`shell_init` (`shell`), `mnt_dirs`, `systemd_system`, `systemd_user`/`systemd`.
+`python_tools`, `neovim`, `ssh`, `shell_aliases`/`shell_env`/`shell_path`/`shell_init` (`shell`), `mnt_dirs`, `links`, `systemd_system`, `systemd_user`/`systemd`.
 
 ## Layout
 
@@ -73,6 +73,9 @@ Shared lists (packages, stow packages, tools) live in `all/`; `desktop.yml` and
 - **Shell init line** (e.g. `eval "$(tool init $SHELL_NAME)"`): add it to `shell_init`
   (or `shell_init_extra`), then `make desktop TAGS=shell_init`.
 - **Folder in /mnt**: add its name to `mnt_dirs`, then `make desktop TAGS=mnt_dirs`.
+- **Symlink** (e.g. config kept on the NFS): add `{src, dest}` to `links` (or `links_extra`
+  in a group file; `dest` is relative to `$HOME`), then `make desktop TAGS=links`. An existing
+  real file at `dest` is never overwritten; the run fails until you move it away.
 
 ### Stow notes
 

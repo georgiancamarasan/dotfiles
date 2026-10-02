@@ -26,6 +26,8 @@ shell_aliases:
   gs: git status
   cat: bat
   cal: cal -m -3
+  t: task
+  k: kubectl
 
 # Environment variables exported in bash and zsh (values are literal).
 shell_env:
@@ -51,6 +53,10 @@ shell_init:
 
 # Names (or {name, mode, owner}) of directories to create under /mnt.
 mnt_dirs: []
+
+# Symlinks as {src, dest}; dest is relative to $HOME (or absolute). Per-group
+# additions go in links_extra.
+links: []
 
 # ---------------------------------------------------------------------------
 # Native packages
@@ -90,6 +96,7 @@ packages_arch:
   - nfs-utils
   - bind
   - ntfs-3g
+  - task
 
 # Ubuntu / Debian only.
 packages_debian:

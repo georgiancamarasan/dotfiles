@@ -1,0 +1,5 @@
+---
+# Symlinks to create. Each entry is {src, dest}: src is the target the link
+# points to; dest is the link path, relative to $HOME or absolute.
+links: []
+links_extra: []

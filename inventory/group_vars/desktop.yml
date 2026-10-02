@@ -22,6 +22,12 @@ mnt_dirs:
   - Pictures
   - Videos
 
+# Symlinks added on top of links in all/main.yml (the NFS share only exists here).
+# Taskwarrior config and data live on the NFS.
+links_extra:
+  - { src: /mnt/nfs/task/.taskrc, dest: .taskrc }
+  - { src: /mnt/nfs/data/.task, dest: .task }
+
 # systemd system units (unit files live in the repo-root files/ dir).
 systemd_system_units:
   - name: mnt-nfs.mount

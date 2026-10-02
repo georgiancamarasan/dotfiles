@@ -9,6 +9,9 @@ install_neovim: true
 # Added on top of stow_packages in all/main.yml.
 stow_packages_extra: []
 
+# Added on top of links in all/main.yml.
+links_extra: []
+
 # Don't copy your private key to servers; authorize your public key instead.
 ssh_install_private_key: false
 ssh_authorize_public_key: true
