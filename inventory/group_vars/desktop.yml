@@ -4,6 +4,10 @@
 # Added on top of packages_arch in all/main.yml.
 packages_arch_extra:
   - dotnet-sdk
+  - dotnet-runtime
+  - aspnet-runtime
+  - dotnet-targeting-pack
+  - aspnet-targeting-pack
   - go
   - lazygit
 
@@ -31,13 +35,13 @@ links_extra:
 # systemd system units (unit files live in the repo-root files/ dir).
 systemd_system_units:
   - name: mnt-nfs.mount
-    state: started      # started | stopped (default: started)
+    state: started # started | stopped (default: started)
     enabled: true
   - name: mnt-Pictures.mount
-    state: started      # started | stopped (default: started)
+    state: started # started | stopped (default: started)
     enabled: true
   - name: mnt-Videos.mount
-    state: started      # started | stopped (default: started)
+    state: started # started | stopped (default: started)
     enabled: true
 
 # systemd --user units (files live in stow/systemd/.config/systemd/user/).
