@@ -21,6 +21,7 @@ require("lazy").setup({
     { import = "plugins" },
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
+  rocks = { enabled = false }, -- no plugin here needs luarocks
   checker = { enabled = false }, -- update plugins explicitly with :Lazy update
   change_detection = { notify = false },
 })

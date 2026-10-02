@@ -1,0 +1,7 @@
+# Base config for markdownlint-cli2 when run from Neovim (see lua/plugins/formatting.lua).
+# A project's own .markdownlint* / .markdownlint-cli2.* file still overrides this.
+config:
+  MD013:
+    line_length: 120 # same as 'colorcolumn' in lua/config/options.lua
+    code_blocks: false # long lines in code blocks are fine
+    tables: false # so are table rows
