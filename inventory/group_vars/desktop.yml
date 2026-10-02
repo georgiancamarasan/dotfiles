@@ -2,14 +2,14 @@
 # Desktop (Manjaro) specific settings.
 
 # Added on top of packages_arch in all/main.yml.
-packages_arch_extra: []
-  # desktop apps
-  # - firefox
-  # - kitty
+packages_arch_extra:
+  - dotnet-sdk
+  - go
+  - lazygit
 
 # AUR packages, installed with paru.
-aur_packages: []
-  # - visual-studio-code-bin
+aur_packages:
+  - lm-studio-bin
 
 # Added on top of stow_packages in all/main.yml.
 stow_packages_extra:
