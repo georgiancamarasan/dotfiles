@@ -1,7 +1,3 @@
--- Leader keys must be set before lazy.nvim loads plugins so mappings pick them up.
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 local opt = vim.opt
 
 -- UI
