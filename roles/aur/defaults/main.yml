@@ -2,5 +2,7 @@
 aur_packages: []
 # Dedicated unprivileged user that builds AUR packages (makepkg refuses root).
 aur_builder_user: aur_builder
-# paru-bin avoids compiling paru (and pulling in rust) from source.
-aur_helper_package: paru-bin
+# Compiled from source (needs cargo, pulled in as a build dependency). Not paru-bin: its prebuilt binary
+# is linked against libalpm.so.15, but Manjaro's pacman 7.1 ships libalpm.so.16, so it fails to start.
+# Switch back to paru-bin once the AUR package is rebuilt against libalpm 16.
+aur_helper_package: paru
