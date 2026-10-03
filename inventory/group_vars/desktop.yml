@@ -10,6 +10,7 @@ packages_arch_extra:
   - aspnet-targeting-pack
   - go
   - lazygit
+  - helm
 
 # AUR packages, installed with paru.
 aur_packages:
