@@ -30,7 +30,9 @@ cargo_packages:
 
 # Python applications, installed with `uv tool install` into isolated venvs.
 uv_tools:
-  - tldr
-  - ruff
-  - httpie
   - ansible-lint
+  - dunk
+  - harlequin[postgres]
+  - httpie
+  - ruff
+  - tldr
