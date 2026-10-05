@@ -24,6 +24,7 @@ install_neovim: true
 shell_aliases:
   ll: eza -lah
   gs: git status
+  gdiff: git diff | dunk
   cat: bat
   cal: cal -m -3
   t: task
