@@ -18,6 +18,11 @@ install_rust: true
 install_nodejs: true
 install_python_tools: true
 install_neovim: true
+# Global git options (~/.gitconfig).
+git_config:
+  user.name: Georgian Camarasan
+  user.email: georgian.camarasan@gmail.com
+
 # ---------------------------------------------------------------------------
 # Shell aliases (bash and zsh) and /mnt directories
 # ---------------------------------------------------------------------------
