@@ -12,7 +12,6 @@
     - { role: shell_path, tags: [shell_path, shell] }
     - { role: shell_init, tags: [shell_init, shell] }
     - { role: mnt_dirs, tags: [mnt_dirs, mnt] }
-    - { role: links, tags: [links] }
     - { role: rust, tags: [rust], when: install_rust | bool }
     - { role: nodejs, tags: [nodejs], when: install_nodejs | bool }
     - { role: python_tools, tags: [python_tools], when: install_python_tools | bool }
@@ -26,3 +25,10 @@
     - { role: aur, tags: [aur, packages], when: ansible_facts.os_family == 'Archlinux' }
     - { role: systemd_system, tags: [systemd_system, systemd] }
     - { role: systemd_user, tags: [systemd_user, systemd] }
+
+# Last, so link targets on mounts (e.g. NFS from systemd_system) exist.
+- name: Symlinks
+  hosts: all
+  become: false
+  roles:
+    - { role: links, tags: [links] }
