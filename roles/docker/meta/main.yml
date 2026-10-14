@@ -1,0 +1,8 @@
+---
+galaxy_info:
+  role_name: docker
+  description: Enable the docker daemon and add users to the docker group
+  author: georgian
+  license: MIT
+  min_ansible_version: "2.16"
+dependencies: []

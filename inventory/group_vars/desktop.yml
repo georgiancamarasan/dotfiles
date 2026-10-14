@@ -3,6 +3,7 @@
 
 # Added on top of packages_arch in all/main.yml.
 packages_arch_extra:
+  - docker
   - dotnet-sdk
   - dotnet-runtime
   - aspnet-runtime

@@ -24,6 +24,7 @@
   become: false
   roles:
     - { role: aur, tags: [aur, packages], when: ansible_facts.os_family == 'Archlinux' }
+    - { role: docker, tags: [docker] }
     - { role: systemd_system, tags: [systemd_system, systemd] }
     - { role: systemd_user, tags: [systemd_user, systemd] }
 

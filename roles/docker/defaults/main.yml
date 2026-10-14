@@ -1,0 +1,4 @@
+---
+# Users added to the docker group, so they can run docker without sudo.
+docker_users:
+  - "{{ ansible_facts.user_id }}"

@@ -1,0 +1,17 @@
+---
+- name: Enable and start the docker service
+  ansible.builtin.systemd_service:
+    name: docker.service
+    scope: system
+    enabled: true
+    state: started
+  become: true
+
+# Takes effect after the next login (or `newgrp docker`).
+- name: Add users to the docker group
+  ansible.builtin.user:
+    name: "{{ item }}"
+    groups: docker
+    append: true
+  become: true
+  loop: "{{ docker_users }}"
