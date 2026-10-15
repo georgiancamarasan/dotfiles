@@ -12,6 +12,7 @@ packages_arch_extra:
   - go
   - lazygit
   - helm
+  - tea
 
 # AUR packages, installed with paru.
 aur_packages:
