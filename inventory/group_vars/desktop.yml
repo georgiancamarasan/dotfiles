@@ -13,6 +13,7 @@ packages_arch_extra:
   - lazygit
   - helm
   - tea
+  - kubectl
 
 # AUR packages, installed with paru.
 aur_packages:
