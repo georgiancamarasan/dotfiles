@@ -1,0 +1,5 @@
+# Journal DB lives on the NFS share (desktop only).
+backend_type = "Sqlite"
+
+[sqlite_backend]
+file_path = "/mnt/nfs/data/tui-journal/entries.db"

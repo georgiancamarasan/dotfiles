@@ -22,6 +22,7 @@ aur_packages:
 stow_packages_extra:
   - name: systemd
     no_folding: true
+  - name: tui-journal # config points at the DB on the NFS share
 
 # Mountpoints for the NFS mount units below (systemd does not create them).
 mnt_dirs:
