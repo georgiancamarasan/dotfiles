@@ -3,17 +3,18 @@
 
 # Added on top of packages_arch in all/main.yml.
 packages_arch_extra:
+  - aspnet-targeting-pack
+  - crane
   - docker
   - dotnet-sdk
   - dotnet-runtime
   - aspnet-runtime
   - dotnet-targeting-pack
-  - aspnet-targeting-pack
   - go
+  - kubectl
   - lazygit
   - helm
   - tea
-  - kubectl
 
 # AUR packages, installed with paru.
 aur_packages:
