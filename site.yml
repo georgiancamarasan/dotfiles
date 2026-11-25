@@ -5,6 +5,7 @@
   hosts: all
   become: false
   roles:
+    - { role: apt_repositories, tags: [apt_repositories, packages] }
     - { role: system_packages, tags: [system_packages, packages] }
     - { role: dotfiles, tags: [dotfiles, stow] }
     - { role: git_config, tags: [git_config, git] }

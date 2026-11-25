@@ -1,0 +1,8 @@
+---
+# Third-party apt repositories, as a list of:
+#   name:        file name under /etc/apt/sources.list.d/ (<name>.sources)
+#   uris:        repository URL
+#   suites:      suite, e.g. "{{ ansible_facts.distribution_release }}", or "/" for a flat repo
+#   components:  optional, e.g. stable / main (omit for a flat repo)
+#   signed_by:   URL of the repo's signing key
+apt_repositories: []

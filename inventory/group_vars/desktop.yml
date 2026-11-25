@@ -1,11 +1,40 @@
 ---
 # Desktop (Ubuntu) specific settings.
 
+# Kubernetes minor version for the pkgs.k8s.io repo. The repo only carries
+# patch releases of this minor, so bump it by hand to upgrade kubectl.
+kubernetes_minor: v1.37
+
+# Third-party apt repositories, added before packages are installed.
+apt_repositories:
+  - name: docker
+    uris: https://download.docker.com/linux/ubuntu
+    suites: "{{ ansible_facts.distribution_release }}"
+    components: stable
+    signed_by: https://download.docker.com/linux/ubuntu/gpg
+  - name: kubernetes
+    uris: https://pkgs.k8s.io/core:/stable:/{{ kubernetes_minor }}/deb/
+    suites: /
+    signed_by: https://pkgs.k8s.io/core:/stable:/{{ kubernetes_minor }}/deb/Release.key
+  - name: helm
+    uris: https://packages.buildkite.com/helm-linux/helm-debian/any/
+    suites: any
+    components: main
+    signed_by: https://packages.buildkite.com/helm-linux/helm-debian/gpgkey
+
 # Added on top of packages in all/main.yml.
 packages_extra:
   - dotnet-sdk-10.0 # pulls in the .NET and ASP.NET Core runtimes
   - golang-go
   - lazygit
+  # From the apt_repositories above.
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-buildx-plugin
+  - docker-compose-plugin
+  - kubectl
+  - helm
 
 # AUR packages, installed with paru.
 aur_packages:

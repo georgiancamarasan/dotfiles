@@ -1,0 +1,30 @@
+---
+# deb822_repository needs python3-debian on the target.
+- name: Install python3-debian
+  ansible.builtin.apt:
+    name: python3-debian
+    state: present
+  become: true
+  when: apt_repositories | length > 0
+
+- name: Add apt repositories
+  ansible.builtin.deb822_repository:
+    name: "{{ item.name }}"
+    uris: "{{ item.uris }}"
+    suites: "{{ item.suites }}"
+    components: "{{ item.components | default(omit) }}"
+    signed_by: "{{ item.signed_by }}"
+    state: present
+  become: true
+  loop: "{{ apt_repositories }}"
+  loop_control:
+    label: "{{ item.name }}"
+  register: apt_repositories_added
+
+# system_packages only refreshes a cache older than an hour, which would miss
+# a repository added just now.
+- name: Refresh the apt cache after adding a repository
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+  when: apt_repositories_added is changed
