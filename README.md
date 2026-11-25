@@ -83,7 +83,8 @@ Shared lists (packages, stow packages, tools) live in `all/`; `desktop.yml` and
   in a group file), then `make desktop TAGS=shell_path`.
 - **Shell init line** (e.g. `eval "$(tool init bash)"`): add it to `shell_init`
   (or `shell_init_extra`), then `make desktop TAGS=shell_init`.
-- **Git option** (e.g. `user.email`): add `option: value` to `git_config` in `all/main.yml`,
+- **Git option** (e.g. `user.email`): add `option: value` to `git_config` in `all/main.yml`
+  (or `git_config_extra` in a group file),
   then `make desktop TAGS=git_config`.
 - **Folder in /mnt**: add its name to `mnt_dirs`, then `make desktop TAGS=mnt_dirs`.
 - **Symlink** (e.g. config kept on the NFS): add `{src, dest}` to `links` (or `links_extra`

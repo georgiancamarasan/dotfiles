@@ -27,6 +27,7 @@ packages_extra:
   - dotnet-sdk-10.0 # pulls in the .NET and ASP.NET Core runtimes
   - golang-go
   - lazygit
+  - gh
   # From the apt_repositories above.
   - docker-ce
   - docker-ce-cli
@@ -87,6 +88,11 @@ systemd_user_units: []
   # - name: my-sync.timer
   #   state: started      # started | stopped (default: started)
   #   enabled: true
+
+# Added on top of git_config in all/main.yml.
+# Let gh supply GitHub credentials for HTTPS pushes (run `gh auth login` once).
+git_config_extra:
+  credential.https://github.com.helper: "!gh auth git-credential"
 
 # Install the vault-encrypted private key from roles/ssh/files/.
 ssh_install_private_key: true

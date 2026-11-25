@@ -1,3 +1,5 @@
 ---
 # Map of git option -> value, written to the global ~/.gitconfig.
 git_config: {}
+# Added on top of git_config (set in a group file, e.g. desktop.yml).
+git_config_extra: {}
