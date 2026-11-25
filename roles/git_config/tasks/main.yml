@@ -4,6 +4,6 @@
     name: "{{ item.key }}"
     value: "{{ item.value }}"
     scope: global
-  loop: "{{ git_config | dict2items }}"
+  loop: "{{ git_config | combine(git_config_extra) | dict2items }}"
   loop_control:
     label: "{{ item.key }}"

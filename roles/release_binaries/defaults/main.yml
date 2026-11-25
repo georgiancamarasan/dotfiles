@@ -1,0 +1,12 @@
+---
+# Single-executable tools downloaded from upstream releases, as a list of:
+#   name:     command name, linked as ~/.local/bin/<name>
+#   version:  pinned version; bump it to upgrade
+#   url:      download URL; "{version}" is replaced with version
+#   member:   optional path of the executable inside a .tar.gz archive. Without
+#             it, the URL is the executable itself.
+release_binaries: []
+# Each version is unpacked into its own <dir>/<name>-<version>/, so a version
+# bump downloads again and the old one can be deleted by hand.
+release_binaries_dir: "{{ ansible_facts.env.HOME }}/.local/opt"
+release_binaries_bin_dir: "{{ ansible_facts.env.HOME }}/.local/bin"

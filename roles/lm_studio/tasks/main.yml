@@ -1,0 +1,46 @@
+---
+# AppImages need FUSE 2, which Ubuntu no longer installs by default.
+- name: Install libfuse2
+  ansible.builtin.apt:
+    name: libfuse2t64
+    state: present
+  become: true
+
+- name: Create the LM Studio directory
+  ansible.builtin.file:
+    path: "{{ lm_studio_dir }}"
+    state: directory
+    mode: "0755"
+
+# About 1 GB; only downloaded when this version isn't there yet.
+- name: Download LM Studio {{ lm_studio_version }}
+  ansible.builtin.get_url:
+    url: "{{ lm_studio_url }}"
+    dest: "{{ lm_studio_dir }}/LM-Studio.AppImage"
+    mode: "0755"
+    timeout: 600
+
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ lm_studio_bin | dirname }}"
+    state: directory
+    mode: "0755"
+
+- name: Link lm-studio into ~/.local/bin
+  ansible.builtin.file:
+    src: "{{ lm_studio_dir }}/LM-Studio.AppImage"
+    dest: "{{ lm_studio_bin }}"
+    state: link
+    force: "{{ ansible_check_mode }}"
+
+- name: Ensure ~/.local/share/applications exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.local/share/applications"
+    state: directory
+    mode: "0755"
+
+- name: Install the desktop launcher
+  ansible.builtin.template:
+    src: lm-studio.desktop.j2
+    dest: "{{ ansible_facts.env.HOME }}/.local/share/applications/lm-studio.desktop"
+    mode: "0644"

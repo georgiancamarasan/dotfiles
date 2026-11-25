@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: shell_init
-  description: Manage tool init lines (eval ...) run at shell start for bash and zsh
+  description: Manage tool init lines (eval ...) run at shell start for bash
   author: georgian
   license: MIT
   min_ansible_version: "2.16"

@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: shell_env
-  description: Manage exported environment variables for bash and zsh
+  description: Manage exported environment variables for bash
   author: georgian
   license: MIT
   min_ansible_version: "2.16"

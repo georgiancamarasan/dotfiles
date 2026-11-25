@@ -1,0 +1,11 @@
+[Desktop Entry]
+# Managed by Ansible (role lm_studio).
+Type=Application
+Name=LM Studio
+Comment=Run local LLMs
+# --no-sandbox: Ubuntu's AppArmor blocks the unprivileged user namespaces
+# Electron's sandbox needs when it runs from an AppImage.
+Exec={{ lm_studio_bin }} --no-sandbox %U
+Terminal=false
+Categories=Development;
+StartupWMClass=LM Studio

@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: shell_path
-  description: Manage directories added to PATH for bash and zsh
+  description: Manage directories added to PATH for bash
   author: georgian
   license: MIT
   min_ansible_version: "2.16"

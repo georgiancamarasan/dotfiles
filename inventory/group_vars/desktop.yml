@@ -1,24 +1,57 @@
 ---
-# Desktop (Manjaro) specific settings.
+# Desktop (Ubuntu) specific settings.
 
-# Added on top of packages_arch in all/main.yml.
-packages_arch_extra:
-  - aspnet-targeting-pack
-  - crane
-  - docker
-  - dotnet-sdk
-  - dotnet-runtime
-  - aspnet-runtime
-  - dotnet-targeting-pack
-  - go
-  - kubectl
+# Kubernetes minor version for the pkgs.k8s.io repo. The repo only carries
+# patch releases of this minor, so bump it by hand to upgrade kubectl.
+kubernetes_minor: v1.37
+
+# Third-party apt repositories, added before packages are installed.
+apt_repositories:
+  - name: docker
+    uris: https://download.docker.com/linux/ubuntu
+    suites: "{{ ansible_facts.distribution_release }}"
+    components: stable
+    signed_by: https://download.docker.com/linux/ubuntu/gpg
+  - name: kubernetes
+    uris: https://pkgs.k8s.io/core:/stable:/{{ kubernetes_minor }}/deb/
+    suites: /
+    signed_by: https://pkgs.k8s.io/core:/stable:/{{ kubernetes_minor }}/deb/Release.key
+  - name: helm
+    uris: https://packages.buildkite.com/helm-linux/helm-debian/any/
+    suites: any
+    components: main
+    signed_by: https://packages.buildkite.com/helm-linux/helm-debian/gpgkey
+
+# Added on top of packages in all/main.yml.
+packages_extra:
+  - dotnet-sdk-10.0 # pulls in the .NET and ASP.NET Core runtimes
+  - golang-go
   - lazygit
+  - gh
+  # From the apt_repositories above.
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-buildx-plugin
+  - docker-compose-plugin
+  - kubectl
   - helm
-  - tea
 
-# AUR packages, installed with paru.
-aur_packages:
-  - lm-studio-bin
+# Tools without an apt package, downloaded from upstream releases into
+# ~/.local/bin. Bump version to upgrade.
+release_binaries:
+  - name: tea # Gitea CLI
+    version: 0.16.0
+    url: https://dl.gitea.com/tea/{version}/tea-{version}-linux-amd64
+  - name: crane # container registry tool (go-containerregistry)
+    version: v0.22.1
+    url: https://github.com/google/go-containerregistry/releases/download/{version}/go-containerregistry_Linux_x86_64.tar.gz
+    member: crane
+
+# Nerd Fonts (icons for starship and neovim) and the Ptyxis terminal font.
+nerd_fonts:
+  - DejaVuSansMono
+terminal_font: DejaVuSansM Nerd Font Mono 11
 
 # Added on top of stow_packages in all/main.yml.
 stow_packages_extra:
@@ -55,6 +88,11 @@ systemd_user_units: []
   # - name: my-sync.timer
   #   state: started      # started | stopped (default: started)
   #   enabled: true
+
+# Added on top of git_config in all/main.yml.
+# Let gh supply GitHub credentials for HTTPS pushes (run `gh auth login` once).
+git_config_extra:
+  credential.https://github.com.helper: "!gh auth git-credential"
 
 # Install the vault-encrypted private key from roles/ssh/files/.
 ssh_install_private_key: true

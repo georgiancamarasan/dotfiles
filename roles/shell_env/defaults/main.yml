@@ -6,4 +6,3 @@ shell_env_file: "{{ ansible_facts.env.HOME }}/.shell_env"
 # rc files (relative to $HOME) that source the env file.
 shell_env_rc_files:
   - .bashrc
-  - .zshrc

@@ -5,7 +5,7 @@
     dest: "{{ shell_env_file }}"
     mode: "0644"
 
-- name: Source the environment file from bash and zsh
+- name: Source the environment file from bash
   ansible.builtin.blockinfile:
     path: "{{ ansible_facts.env.HOME }}/{{ item }}"
     create: true

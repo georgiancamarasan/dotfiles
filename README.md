@@ -3,13 +3,15 @@
 Ansible provisions the machine (packages, tools, SSH key) and GNU Stow symlinks
 the config folders under `stow/` into `$HOME`.
 
-- **Desktop**: Manjaro, run locally.
-- **Servers**: Ubuntu, run over SSH from the desktop *or* locally on the server.
+Every machine runs Ubuntu (see `GLOSSARY.md`):
+
+- **Desktop**: run locally.
+- **Servers**: run over SSH from the desktop *or* locally on the server.
 
 ## Quick start
 
 ```sh
-./bootstrap.sh            # fresh Manjaro desktop: installs ansible, collections, runs everything
+./bootstrap.sh            # fresh Ubuntu desktop: installs ansible, collections, runs everything
 ./bootstrap.sh server     # on an Ubuntu server with this repo cloned
 ```
 
@@ -24,8 +26,10 @@ Day to day:
 | `make servers` | run against the hosts in `inventory/hosts.yml` → `servers` |
 | `make server-local` | run on the server this repo is cloned on |
 
-Tags: `packages`, `system_packages`, `aur`, `dotfiles`/`stow`, `rust`, `nodejs`,
-`python_tools`, `neovim`, `ssh`, `git_config` (`git`), `shell_aliases`/`shell_env`/`shell_path`/`shell_init` (`shell`), `mnt_dirs`, `links`, `systemd_system`, `systemd_user`/`systemd`.
+Tags: `packages` (`apt_repositories`, `system_packages`, `release_binaries`), `dotfiles`/`stow`,
+`rust`, `nodejs`, `python_tools`, `neovim`, `ssh`, `git_config` (`git`),
+`shell_aliases`/`shell_env`/`shell_path`/`shell_init` (`shell`), `mnt_dirs`, `links`,
+`nerd_fonts` (`fonts`), `lm_studio`, `docker`, `systemd_system`, `systemd_user`/`systemd`.
 
 ## Layout
 
@@ -34,9 +38,9 @@ site.yml                  playbook: "all" play + "desktop only" play
 inventory/hosts.yml       machines (desktop = localhost, servers = your Ubuntu boxes)
 inventory/local_server.yml  inventory used when a server provisions itself
 inventory/group_vars/
-  all/main.yml            shared settings, native package lists, stow packages
+  all/main.yml            shared settings, apt packages, stow packages
   all/tools.yml           npm / cargo / uv tool lists
-  desktop.yml             desktop overrides (AUR, systemd units, SSH private key)
+  desktop.yml             desktop overrides (apt repos, release binaries, fonts, systemd units, SSH key)
   servers.yml             server overrides (lighter setup)
 roles/<name>/             one role per concern (tasks/, defaults/, meta/)
 files/                    unit files copied to /etc/systemd/system (systemd_system role)
@@ -47,13 +51,20 @@ stow/<app>/               config for one app, laid out exactly as in $HOME
 `defaults/main.yml` files only hold fallbacks; group_vars override them.
 Shared lists (packages, stow packages, tools) live in `all/`; `desktop.yml` and
 `servers.yml` add to them through `<name>_extra` (e.g. `stow_packages_extra`,
-`packages_arch_extra`) instead of redefining the whole list.
+`packages_extra`) instead of redefining the whole list.
 
 ## Adding things
 
-- **Native package**: add to `packages_common` (same name on both distros), or
-  `packages_arch` / `packages_debian`.
-- **AUR package**: `aur_packages` in `desktop.yml`.
+- **apt package**: add to `packages` in `all/main.yml`, or `packages_extra` in a group file.
+- **apt package from a third-party repo**: add the repo to `apt_repositories` in
+  `desktop.yml` (`name`, `uris`, `suites`, optional `components`, `signed_by` key URL),
+  then the package to `packages_extra`.
+- **Tool with no apt package** (a single executable from an upstream release): add
+  `{name, version, url, member}` to `release_binaries` in `desktop.yml`. `{version}` in
+  `url` is replaced by `version`; `member` is the executable's path inside a `.tar.gz`
+  (omit it when the URL is the executable). Bump `version` to upgrade.
+- **Nerd Font**: add the archive name (e.g. `JetBrainsMono`) to `nerd_fonts` in `desktop.yml`.
+  `terminal_font` sets the Ptyxis font.
 - **npm / Rust / Python tool**: `npm_packages`, `cargo_packages`, `uv_tools` in `all/tools.yml`
   (or override the list in `desktop.yml` / `servers.yml`).
 - **Config for a new app**: create `stow/<app>/` mirroring the path in `$HOME`,
@@ -64,15 +75,16 @@ Shared lists (packages, stow packages, tools) live in `all/`; `desktop.yml` and
 - **systemd system unit** (e.g. NFS mounts, needs root): put it in
   `files/` and list it in `systemd_system_units` in `desktop.yml`.
 
-- **Shell alias** (bash and zsh): add `name: command` to `shell_aliases` in `all/main.yml`,
+- **Shell alias**: add `name: command` to `shell_aliases` in `all/main.yml`,
   then `make desktop TAGS=shell_aliases`.
 - **Environment variable**: add `NAME: value` to `shell_env` (or `shell_env_extra`),
   then `make desktop TAGS=shell_env`.
 - **Directory on PATH**: add it to `shell_path` in `all/main.yml` (or `shell_path_extra`
   in a group file), then `make desktop TAGS=shell_path`.
-- **Shell init line** (e.g. `eval "$(tool init $SHELL_NAME)"`): add it to `shell_init`
+- **Shell init line** (e.g. `eval "$(tool init bash)"`): add it to `shell_init`
   (or `shell_init_extra`), then `make desktop TAGS=shell_init`.
-- **Git option** (e.g. `user.email`): add `option: value` to `git_config` in `all/main.yml`,
+- **Git option** (e.g. `user.email`): add `option: value` to `git_config` in `all/main.yml`
+  (or `git_config_extra` in a group file),
   then `make desktop TAGS=git_config`.
 - **Folder in /mnt**: add its name to `mnt_dirs`, then `make desktop TAGS=mnt_dirs`.
 - **Symlink** (e.g. config kept on the NFS): add `{src, dest}` to `links` (or `links_extra`
@@ -111,12 +123,11 @@ asks for it on the first run only; later runs (and all server runs) don't.
 ## Shell setup
 
 The installers are run with "don't modify my shell" flags, so the playbook sets
-up bash and zsh itself (managed blocks in `~/.bashrc` and `~/.zshrc`):
+up bash itself (managed blocks in `~/.bashrc`):
 
 - `shell_env`: environment variables (`EDITOR`, `VISUAL`).
 - `shell_path`: directories added to `PATH` (`~/.local/bin`, `~/.cargo/bin`, fnm).
-- `shell_init`: lines run at shell start after PATH, such as `eval "$(starship init $SHELL_NAME)"`.
-  `$SHELL_NAME` is `bash` or `zsh`.
+- `shell_init`: lines run at shell start after PATH, such as `eval "$(starship init bash)"`.
 - `shell_aliases`: aliases. Anything that needs arguments or `cd` (like `md`) is a function in `shell_init`.
 
 Key bindings live in `stow/shell/.config/shell/keybindings.sh` (loaded last by `shell_init`):
@@ -127,6 +138,4 @@ Key bindings live in `stow/shell/.config/shell/keybindings.sh` (loaded last by `
 | Ctrl-T | fzf file picker |
 | Ctrl-G | fzf directory picker (cd) |
 | Ctrl-S | pick a host from `~/.ssh/config` with fzf and run `ssh` |
-| Ctrl-Z | zoxide interactive pick (`zi`); in bash this disables suspending jobs with Ctrl-Z (`stty susp undef`) |
-
-Lines you previously added to `.zshrc` by hand for these can be deleted.
+| Ctrl-Z | zoxide interactive pick (`zi`); this disables suspending jobs with Ctrl-Z (`stty susp undef`) |
