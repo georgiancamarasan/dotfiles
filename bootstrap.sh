@@ -10,11 +10,10 @@ target="${1:-desktop}"
 . /etc/os-release
 case "${ID_LIKE:-$ID}" in
   *debian*|*ubuntu*)
-    # Distro ansible is too old for current collections; use the official PPA.
+    # The distro ansible is used on every release (the PPA lags behind
+    # non-LTS releases); it is new enough for the collections in requirements.yml.
     sudo apt-get update
-    sudo apt-get install -y software-properties-common git make rsync
-    sudo add-apt-repository -y --update ppa:ansible/ansible
-    sudo apt-get install -y ansible
+    sudo apt-get install -y ansible git make rsync
     ;;
   *)
     echo "Unsupported distribution: $ID" >&2
