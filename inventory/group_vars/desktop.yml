@@ -1,20 +1,11 @@
 ---
-# Desktop (Manjaro) specific settings.
+# Desktop (Ubuntu) specific settings.
 
-# Added on top of packages_arch in all/main.yml.
-packages_arch_extra:
-  - aspnet-targeting-pack
-  - crane
-  - docker
-  - dotnet-sdk
-  - dotnet-runtime
-  - aspnet-runtime
-  - dotnet-targeting-pack
-  - go
-  - kubectl
+# Added on top of packages in all/main.yml.
+packages_extra:
+  - dotnet-sdk-10.0 # pulls in the .NET and ASP.NET Core runtimes
+  - golang-go
   - lazygit
-  - helm
-  - tea
 
 # AUR packages, installed with paru.
 aur_packages:

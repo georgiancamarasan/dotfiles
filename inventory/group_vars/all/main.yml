@@ -10,7 +10,7 @@
 # for SSH runs the stow/ tree is copied to ~/.dotfiles on the server.
 dotfiles_dir: "{{ playbook_dir if ansible_connection | default('ssh') == 'local' else ansible_facts.env.HOME + '/.dotfiles' }}"
 
-# Upgrade all system packages on every run (pacman -Syu / apt dist-upgrade).
+# Upgrade all system packages on every run (apt dist-upgrade).
 system_upgrade: true
 
 # Feature toggles – turn whole roles on/off per group.
@@ -67,20 +67,25 @@ links: []
 # ---------------------------------------------------------------------------
 # Native packages
 # ---------------------------------------------------------------------------
-# Same package name on Manjaro and Ubuntu.
-packages_common:
+# apt packages for every machine. Per-group additions go in packages_extra.
+# neovim is not here: the neovim role installs a pinned upstream release.
+packages:
   - git
   - curl
   - wget
   - unzip
+  - rsync
+  - build-essential
   - stow
   - tmux
   - ripgrep
+  - fd-find
+  - bat
+  - eza
   - fzf
   - jq
   - htop
   - zsh
-  - neovim
   - gettext
   - less
   - mypy
@@ -93,26 +98,11 @@ packages_common:
   - tree-sitter-cli
   - yamllint
   - zoxide
-
-# Manjaro / Arch only.
-packages_arch:
-  - base-devel
-  - fd
-  - bat
-  - nfs-utils
-  - bind
-  - ntfs-3g
-  - task
-
-# Ubuntu / Debian only.
-packages_debian:
-  - build-essential
-  - fd-find
-  - bat
-  - rsync
+  - taskwarrior
   - nfs-common
+  - ntfs-3g
   - uuid-dev
-  - bind9
+  - bind9-dnsutils # dig, nslookup (bind9 itself is the DNS server)
 
 # ---------------------------------------------------------------------------
 # Stow packages: folder names under stow/. no_folding keeps target dirs real

@@ -10,18 +10,15 @@ npm_packages:
   - typescript
   - typescript-language-server
 
-# Rust CLI tools, installed with `cargo install --locked`.
+# Rust CLI tools, installed with `cargo install --locked`. Tools Ubuntu packages
+# (bat, fd, ripgrep, eza) come from apt instead (`packages` in main.yml).
 cargo_packages:
-  - bat
   - bottom
   - carl
   - diskonaut
-  - fd-find
   - just
-  - eza
   - git-delta
   - pueue
-  - ripgrep
   - rm-improved
   - stylua
   - tre-command
