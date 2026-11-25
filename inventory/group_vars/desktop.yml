@@ -36,6 +36,17 @@ packages_extra:
   - kubectl
   - helm
 
+# Tools without an apt package, downloaded from upstream releases into
+# ~/.local/bin. Bump version to upgrade.
+release_binaries:
+  - name: tea # Gitea CLI
+    version: 0.16.0
+    url: https://dl.gitea.com/tea/{version}/tea-{version}-linux-amd64
+  - name: crane # container registry tool (go-containerregistry)
+    version: v0.22.1
+    url: https://github.com/google/go-containerregistry/releases/download/{version}/go-containerregistry_Linux_x86_64.tar.gz
+    member: crane
+
 # AUR packages, installed with paru.
 aur_packages:
   - lm-studio-bin

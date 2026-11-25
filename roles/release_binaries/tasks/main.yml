@@ -1,0 +1,47 @@
+---
+- name: Create version directories
+  ansible.builtin.file:
+    path: "{{ release_binaries_dir }}/{{ item.name }}-{{ item.version }}"
+    state: directory
+    mode: "0755"
+  loop: "{{ release_binaries }}"
+  loop_control:
+    label: "{{ item.name }} {{ item.version }}"
+
+- name: Download executables
+  ansible.builtin.get_url:
+    url: "{{ item.url | replace('{version}', item.version) }}"
+    dest: "{{ release_binaries_dir }}/{{ item.name }}-{{ item.version }}/{{ item.name }}"
+    mode: "0755"
+  loop: "{{ release_binaries | rejectattr('member', 'defined') }}"
+  loop_control:
+    label: "{{ item.name }} {{ item.version }}"
+
+- name: Download and extract archived executables
+  ansible.builtin.unarchive:
+    src: "{{ item.url | replace('{version}', item.version) }}"
+    dest: "{{ release_binaries_dir }}/{{ item.name }}-{{ item.version }}"
+    remote_src: true
+    include: ["{{ item.member }}"]
+    creates: "{{ release_binaries_dir }}/{{ item.name }}-{{ item.version }}/{{ item.member }}"
+  loop: "{{ release_binaries | selectattr('member', 'defined') }}"
+  loop_control:
+    label: "{{ item.name }} {{ item.version }}"
+
+- name: Ensure the bin directory exists
+  ansible.builtin.file:
+    path: "{{ release_binaries_bin_dir }}"
+    state: directory
+    mode: "0755"
+  when: release_binaries | length > 0
+
+# In --check mode on a fresh machine the targets don't exist yet.
+- name: Link executables into the bin directory
+  ansible.builtin.file:
+    src: "{{ release_binaries_dir }}/{{ item.name }}-{{ item.version }}/{{ item.member | default(item.name) }}"
+    dest: "{{ release_binaries_bin_dir }}/{{ item.name }}"
+    state: link
+    force: "{{ ansible_check_mode }}"
+  loop: "{{ release_binaries }}"
+  loop_control:
+    label: "{{ item.name }} {{ item.version }}"
