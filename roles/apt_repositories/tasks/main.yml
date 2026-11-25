@@ -19,12 +19,9 @@
   loop: "{{ apt_repositories }}"
   loop_control:
     label: "{{ item.name }}"
-  register: apt_repositories_added
+  notify: Refresh the apt cache
 
 # system_packages only refreshes a cache older than an hour, which would miss
-# a repository added just now.
-- name: Refresh the apt cache after adding a repository
-  ansible.builtin.apt:
-    update_cache: true
-  become: true
-  when: apt_repositories_added is changed
+# a repository added just now, so refresh before it runs.
+- name: Refresh the apt cache now if a repository was added
+  ansible.builtin.meta: flush_handlers

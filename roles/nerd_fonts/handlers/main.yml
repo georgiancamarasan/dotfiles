@@ -1,0 +1,5 @@
+---
+- name: Refresh the font cache
+  ansible.builtin.command:
+    argv: [fc-cache, -f, "{{ nerd_fonts_dir }}"]
+  changed_when: true
