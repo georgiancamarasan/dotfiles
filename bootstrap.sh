@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Prepare a fresh machine and run the playbook.
-#   ./bootstrap.sh           desktop (Manjaro)
+#   ./bootstrap.sh           desktop (Ubuntu)
 #   ./bootstrap.sh server    Ubuntu server, provisioning itself
 set -euo pipefail
 
@@ -9,9 +9,6 @@ target="${1:-desktop}"
 
 . /etc/os-release
 case "${ID_LIKE:-$ID}" in
-  *arch*)
-    sudo pacman -Syu --needed --noconfirm ansible git make rsync
-    ;;
   *debian*|*ubuntu*)
     # Distro ansible is too old for current collections; use the official PPA.
     sudo apt-get update

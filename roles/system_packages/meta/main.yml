@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: system_packages
-  description: Upgrade the system and install native packages (pacman / apt)
+  description: Upgrade the system and install native packages (apt)
   author: georgian
   license: MIT
   min_ansible_version: "2.16"

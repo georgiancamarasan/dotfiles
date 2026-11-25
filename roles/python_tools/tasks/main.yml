@@ -1,13 +1,5 @@
 ---
-- name: Install uv from the Arch repos
-  community.general.pacman:
-    name: uv
-    state: present
-  become: true
-  when: ansible_facts.os_family == 'Archlinux'
-
 - name: Install uv with the official installer
-  when: ansible_facts.os_family != 'Archlinux'
   block:
     - name: Download uv installer
       ansible.builtin.get_url:
