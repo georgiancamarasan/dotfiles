@@ -1,0 +1,8 @@
+---
+# Nerd Fonts release and the font archives to install from it (archive names
+# without .tar.xz, as listed on https://github.com/ryanoasis/nerd-fonts/releases).
+nerd_fonts_version: v3.5.1
+nerd_fonts: []
+nerd_fonts_dir: "{{ ansible_facts.env.HOME }}/.local/share/fonts/NerdFonts"
+# Font for the Ptyxis terminal, as "<family> <size>". Empty leaves Ptyxis alone.
+terminal_font: ""

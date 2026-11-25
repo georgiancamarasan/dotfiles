@@ -47,6 +47,11 @@ release_binaries:
     url: https://github.com/google/go-containerregistry/releases/download/{version}/go-containerregistry_Linux_x86_64.tar.gz
     member: crane
 
+# Nerd Fonts (icons for starship and neovim) and the Ptyxis terminal font.
+nerd_fonts:
+  - DejaVuSansMono
+terminal_font: DejaVuSansM Nerd Font Mono 11
+
 # Added on top of stow_packages in all/main.yml.
 stow_packages_extra:
   - name: systemd

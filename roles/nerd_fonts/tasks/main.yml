@@ -1,0 +1,42 @@
+---
+- name: Create font directories
+  ansible.builtin.file:
+    path: "{{ nerd_fonts_dir }}/{{ item }}"
+    state: directory
+    mode: "0755"
+  loop: "{{ nerd_fonts }}"
+
+# The marker file records the installed release, so a version bump re-extracts.
+- name: Download and extract Nerd Fonts {{ nerd_fonts_version }}
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/{{ nerd_fonts_version }}/{{ item }}.tar.xz
+    dest: "{{ nerd_fonts_dir }}/{{ item }}"
+    remote_src: true
+    creates: "{{ nerd_fonts_dir }}/{{ item }}/.version-{{ nerd_fonts_version }}"
+  loop: "{{ nerd_fonts }}"
+  register: nerd_fonts_extracted
+
+- name: Record the installed release
+  ansible.builtin.copy:
+    dest: "{{ nerd_fonts_dir }}/{{ item }}/.version-{{ nerd_fonts_version }}"
+    content: ""
+    mode: "0644"
+  loop: "{{ nerd_fonts }}"
+
+- name: Refresh the font cache
+  ansible.builtin.command:
+    argv: [fc-cache, -f, "{{ nerd_fonts_dir }}"]
+  when: nerd_fonts_extracted is changed
+  changed_when: true
+
+- name: Set the Ptyxis terminal font
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  loop:
+    - { key: /org/gnome/Ptyxis/use-system-font, value: "false" }
+    - { key: /org/gnome/Ptyxis/font-name, value: "'{{ terminal_font }}'" }
+  loop_control:
+    label: "{{ item.key }}"
+  when: terminal_font | length > 0
