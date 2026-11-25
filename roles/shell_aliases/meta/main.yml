@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: shell_aliases
-  description: Manage shell aliases for bash and zsh
+  description: Manage shell aliases for bash
   author: georgian
   license: MIT
   min_ansible_version: "2.16"

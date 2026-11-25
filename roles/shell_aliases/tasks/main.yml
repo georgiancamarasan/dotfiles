@@ -5,7 +5,7 @@
     dest: "{{ shell_aliases_file }}"
     mode: "0644"
 
-- name: Source the aliases file from bash and zsh
+- name: Source the aliases file from bash
   ansible.builtin.blockinfile:
     path: "{{ ansible_facts.env.HOME }}/{{ item }}"
     create: true

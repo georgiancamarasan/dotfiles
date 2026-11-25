@@ -13,7 +13,7 @@
         dest: /tmp/fnm-install.sh
         mode: "0755"
 
-    # --skip-shell: shell integration lives in your zshrc, not added by the installer.
+    # --skip-shell: shell integration comes from shell_path/shell_init, not the installer.
     - name: Run fnm installer
       ansible.builtin.command:
         argv: [bash, /tmp/fnm-install.sh, --install-dir, "{{ nodejs_fnm_dir }}", --skip-shell]

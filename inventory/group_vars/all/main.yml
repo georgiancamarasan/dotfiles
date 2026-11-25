@@ -24,7 +24,7 @@ git_config:
   user.email: georgian.camarasan@gmail.com
 
 # ---------------------------------------------------------------------------
-# Shell aliases (bash and zsh) and /mnt directories
+# Shell aliases and /mnt directories
 # ---------------------------------------------------------------------------
 shell_aliases:
   ll: eza -lah
@@ -35,23 +35,23 @@ shell_aliases:
   t: task
   k: kubectl
 
-# Environment variables exported in bash and zsh (values are literal).
+# Environment variables exported in bash (values are literal).
 shell_env:
   EDITOR: nvim
   VISUAL: nvim
 
-# Directories prepended to PATH (bash and zsh). $HOME is expanded by the shell.
+# Directories prepended to PATH. $HOME is expanded by the shell.
 shell_path:
   - $HOME/.local/bin
   - $HOME/.cargo/bin
   - $HOME/.local/share/fnm
 
-# Lines run at shell start, after PATH is set. $SHELL_NAME is "bash" or "zsh".
+# Lines run at shell start (bash), after PATH is set.
 shell_init:
-  - eval "$(starship init $SHELL_NAME)"
-  - eval "$(zoxide init $SHELL_NAME)"
-  - eval "$(fnm env --use-on-cd --shell $SHELL_NAME)"
-  - eval "$(fzf --$SHELL_NAME 2>/dev/null)"
+  - eval "$(starship init bash)"
+  - eval "$(zoxide init bash)"
+  - eval "$(fnm env --use-on-cd --shell bash)"
+  - eval "$(fzf --bash 2>/dev/null)"
   # Key bindings (Ctrl-R/T/G/S/Z); must come after the tool init lines above.
   - '[ -f "$HOME/.config/shell/keybindings.sh" ] && . "$HOME/.config/shell/keybindings.sh"'
   # md: make a directory (and parents) and cd into it. A function, since an alias can't cd.
@@ -85,7 +85,6 @@ packages:
   - fzf
   - jq
   - htop
-  - zsh
   - gettext
   - less
   - mypy
