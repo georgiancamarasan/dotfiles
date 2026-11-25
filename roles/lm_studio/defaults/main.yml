@@ -1,0 +1,7 @@
+---
+# Pinned LM Studio release (the part of the download URL after linux/x64/).
+# Bump it to upgrade; each version lands in its own directory.
+lm_studio_version: 0.4.29-2
+lm_studio_url: https://installers.lmstudio.ai/linux/x64/{{ lm_studio_version }}/LM-Studio-{{ lm_studio_version }}-x64.AppImage
+lm_studio_dir: "{{ ansible_facts.env.HOME }}/.local/opt/lm-studio-{{ lm_studio_version }}"
+lm_studio_bin: "{{ ansible_facts.env.HOME }}/.local/bin/lm-studio"

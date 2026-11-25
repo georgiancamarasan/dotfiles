@@ -47,10 +47,6 @@ release_binaries:
     url: https://github.com/google/go-containerregistry/releases/download/{version}/go-containerregistry_Linux_x86_64.tar.gz
     member: crane
 
-# AUR packages, installed with paru.
-aur_packages:
-  - lm-studio-bin
-
 # Added on top of stow_packages in all/main.yml.
 stow_packages_extra:
   - name: systemd

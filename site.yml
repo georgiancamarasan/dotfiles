@@ -25,6 +25,7 @@
   hosts: desktop
   become: false
   roles:
+    - { role: lm_studio, tags: [lm_studio] }
     - { role: docker, tags: [docker] }
     - { role: systemd_system, tags: [systemd_system, systemd] }
     - { role: systemd_user, tags: [systemd_user, systemd] }
